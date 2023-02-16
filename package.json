@@ -15,9 +15,13 @@
     "@types/react-dom": "18.0.10",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "mysql": "github:mysqljs/mysql",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21"
   }
 }
