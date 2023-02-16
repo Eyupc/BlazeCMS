@@ -18,7 +18,4 @@ export default class DatabaseServer {
   public get Connection(): mysql.Connection {
     return this.connection;
   }
-  private connect(): void {
-    this.connection.connect();
-  }
 }
