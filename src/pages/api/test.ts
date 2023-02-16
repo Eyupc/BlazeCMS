@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<[{}]>
 ) {
-  let data = await DatabaseManager.getInstance().query(
+  let data = await DatabaseManager.GetInstance().Query(
     "SELECT username FROM users"
   );
   res.status(200).json(data);
