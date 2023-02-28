@@ -22,4 +22,34 @@ export default class DatabaseManager extends DatabaseServer {
       });
     });
   }
+  public async GetUser(username: string): Promise<{
+    status: string;
+    id?: string;
+    username?: string;
+    mail?: string;
+    password?: string;
+    rank?: number;
+    auth_ticket?: string;
+  }> {
+    return new Promise((resolve, reject) => {
+      this.Connection.query(
+        "SELECT `id`,`username`,`password`,`mail`,`rank`,`auth_ticket` FROM `users` WHERE `username`=" +
+          `"${username}"` +
+          " LIMIT 1",
+        function (error, results, fields) {
+          console.log(error);
+          if (error) resolve({ status: "ERR" });
+          resolve({
+            status: "OK",
+            id: results[0].id,
+            username: results[0].username,
+            mail: results[0].mail,
+            password: results[0].password,
+            rank: results[0].rank,
+            auth_ticket: results[0].auth_ticket,
+          });
+        }
+      );
+    });
+  }
 }
