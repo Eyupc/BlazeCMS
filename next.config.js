@@ -9,6 +9,7 @@ const nextConfig = {
     MYSQL_DATABASE: "retro",
     MYSQL_USER: "root",
     MYSQL_PASSWORD: "root",
+    NEXTAUTH_URL: "http://localhost:3000",
   },
 };
 
