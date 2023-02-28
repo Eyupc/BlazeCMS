@@ -10,8 +10,13 @@ export default function Index() {
       "login-modal animate__animated animate__fadeIn"
     ) as HTMLCollectionOf<HTMLElement>;
     if (element[0] != null) {
-      if (open) element[0].style.display = "flex";
-      else element[0].style.display = "none";
+      if (open) {
+        element[0].style.visibility = "visible";
+        element[0].style.opacity = "1";
+      } else {
+        element[0].style.visibility = "hidden";
+        element[0].style.opacity = "0";
+      }
     }
   }, []);
 
@@ -102,7 +107,7 @@ export default function Index() {
       </div>
       <div
         className="login-modal animate__animated animate__fadeIn"
-        style={{ display: "none" }}
+        style={{ visibility: "hidden", opacity: 0 }}
       >
         <div className="modalbox">
           <div className="userbox d-flex direction-row">
@@ -143,17 +148,6 @@ export default function Index() {
                   id="password"
                   className="login-i"
                   placeholder="Parola"
-                />
-                <div className="error"></div>
-              </div>
-              <div className="login-pincode">
-                <div className="pincode"></div>
-                <input
-                  type="password"
-                  name="pincode"
-                  id="pincode"
-                  className="login-i"
-                  placeholder="Pin kodu"
                 />
                 <div className="error"></div>
               </div>

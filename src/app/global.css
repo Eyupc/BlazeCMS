@@ -1946,6 +1946,7 @@ nav ul li .name {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  transition: opacity 200ms, visibility 200ms;
 }
 
 .login-modal .modalbox {
@@ -1958,8 +1959,6 @@ nav ul li .name {
   border-radius: 4px;
   -webkit-box-shadow: 0 0 8px 2px #00000014;
   box-shadow: 0 0 400px 50px #00000052;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 
 .login-modal .modalbox .userbox {
@@ -2065,8 +2064,6 @@ nav ul li .name {
   border: 1px solid #cfcfcf;
   border-radius: 3px;
   outline: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
   overflow: hidden;
   display: block;
   -webkit-appearance: none;
@@ -2102,8 +2099,7 @@ nav ul li .name {
   border: 1px solid #cfcfcf;
   border-radius: 3px;
   outline: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+
   overflow: hidden;
   display: block;
   -webkit-appearance: none;
@@ -2139,8 +2135,7 @@ nav ul li .name {
   border: 1px solid #cfcfcf;
   border-radius: 3px;
   outline: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+
   overflow: hidden;
   display: block;
   -webkit-appearance: none;
@@ -2171,8 +2166,7 @@ nav ul li .name {
   text-transform: uppercase;
   border-radius: 3px;
   outline: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+
   text-align: center;
   overflow: hidden;
   font-size: 14px;
