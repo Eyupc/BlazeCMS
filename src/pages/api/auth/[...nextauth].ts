@@ -65,18 +65,19 @@ export default NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
+        if (credentials === undefined) return null;
         let user = await DatabaseManager.GetInstance().GetUser(
-          credentials!.username
+          credentials.username
         );
         if ((user.status = "ERR")) {
           return null;
         } else {
-          if (await bcrypt.compare(credentials!.password, user.password!)) {
+          if (await bcrypt.compare(credentials.password, user.password!)) {
             return {
               id: user.id!,
               username: user.username!,
               mail: user.mail!,
-              rank: user.rank,
+              rank: user.rank!,
             };
           }
         }
