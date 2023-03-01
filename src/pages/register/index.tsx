@@ -1,5 +1,6 @@
 import { Footer } from "@/app/footer/footer";
 import { Header } from "@/app/header/header";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import {
   ChangeEvent,
