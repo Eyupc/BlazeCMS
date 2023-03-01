@@ -10,6 +10,7 @@ const nextConfig = {
     MYSQL_USER: "root",
     MYSQL_PASSWORD: "root",
     NEXTAUTH_URL: "http://localhost:3000",
+    SECRET: "Eyup-is-dit",
   },
 };
 
