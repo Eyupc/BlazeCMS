@@ -2049,8 +2049,8 @@ nav ul li .name {
   .login-user-avatar
   .login-avatar {
   position: relative;
-  top: -20px;
-  right: 5px;
+  top: -30px;
+  right: 20px;
   -webkit-filter: drop-shadow(-2px 0px 0px #cfcfcf);
   filter: drop-shadow(-2px 0px 0px #cfcfcf);
 }
@@ -2223,8 +2223,8 @@ nav ul li .name {
   height: 0px;
   z-index: 1;
   position: absolute;
-  top: -20px;
-  left: 10px;
+  top: -30px;
+  left: 20px;
 }
 
 .footermain {
