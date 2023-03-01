@@ -2,9 +2,22 @@
 import { Footer } from "@/app/footer/footer";
 import { Header } from "@/app/header/header";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { getSession, signIn, useSession } from "next-auth/react";
+import {
+  LegacyRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import "../app/global.css";
+import router from "next/router";
+import axios from "axios";
 export default function Index() {
+  const usernameRef: LegacyRef<HTMLInputElement> = useRef(null);
+  const passwordRef: LegacyRef<HTMLInputElement> = useRef(null);
+  const [avatar, setAvatar] = useState("");
   const ShowLoginForm = useCallback((open: boolean) => {
     let element = document.getElementsByClassName(
       "login-modal animate__animated animate__fadeIn"
@@ -19,6 +32,32 @@ export default function Index() {
       }
     }
   }, []);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let signed = await signIn("credentials", {
+      username: usernameRef.current?.value || "",
+      password: passwordRef.current?.value || "",
+      callbackUrl: "/home",
+      redirect: false,
+    });
+    if (signed!.ok) {
+    }
+  };
+
+  const changeAvatar = async (e: any) => {
+    await axios({
+      method: "get",
+      url: `/api/avatar/image?username=${usernameRef.current!.value || ""}`,
+      responseType: "json",
+    }).then(function (response) {
+      if (response.data.status == "OK") setAvatar(response.data.look);
+      else setAvatar("");
+    });
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -123,11 +162,11 @@ export default function Index() {
                 x
               </div>
             </div>
-            <form id="form">
+            <form id="form" onSubmit={handleSubmit}>
               <div className="login-username">
                 <div className="login-user-avatar">
                   <img
-                    src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user=OS&amp;headonly=0&amp;size=b&amp;gesture=sml&amp;direction=4&amp;head_direction=4&amp;action=std"
+                    src={`https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar}&head_direction=4&direction=4&size=sml`}
                     className="login-avatar"
                   />
                 </div>
@@ -137,6 +176,8 @@ export default function Index() {
                   type="text"
                   name="username"
                   id="username"
+                  ref={usernameRef}
+                  onChange={changeAvatar}
                 />
                 <div className="error"></div>
               </div>
@@ -146,6 +187,7 @@ export default function Index() {
                   type="password"
                   name="password"
                   id="password"
+                  ref={passwordRef}
                   className="login-i"
                   placeholder="Parola"
                 />
