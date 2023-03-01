@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session, User } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
@@ -7,6 +7,7 @@ import TwitterProvider from "next-auth/providers/twitter";
 import CredetentialProvider from "next-auth/providers/credentials";
 import DatabaseManager from "database/DatabaseManager";
 import bcrypt from "bcrypt";
+import { JWT } from "next-auth/jwt";
 // import EmailProvider from "next-auth/providers/email"
 // import AppleProvider from "next-auth/providers/apple"
 
@@ -14,6 +15,7 @@ import bcrypt from "bcrypt";
 // https://next-auth.js.org/configuration/options
 export default NextAuth({
   // https://next-auth.js.org/configuration/providers
+
   providers: [
     // EmailProvider({
     //   server: process.env.EMAIL_SERVER,
@@ -54,7 +56,8 @@ export default NextAuth({
       clientSecret: process.env.TWITTER_SECRET,
     }),
     CredetentialProvider({
-      name: "Credentials",
+      id: "credentials",
+      name: "Login",
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
@@ -63,22 +66,24 @@ export default NextAuth({
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
         if (credentials === undefined) return null;
         let user = await DatabaseManager.GetInstance().GetUser(
           credentials.username
         );
-        if ((user.status = "ERR")) {
+        if (user.status == "ERR") {
           return null;
         } else {
           if (await bcrypt.compare(credentials.password, user.password!)) {
-            return {
-              id: user.id!,
+            return Promise.resolve({
+              id: user.id!.toString(),
               username: user.username!,
+              password: user.password!,
               mail: user.mail!,
               rank: user.rank!,
-            };
+              auth_ticket: user.auth_ticket!,
+            });
           }
         }
         return null;
@@ -96,7 +101,7 @@ export default NextAuth({
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
   // a separate secret is defined explicitly for encrypting the JWT.
-  secret: process.env.SECRET,
+  secret: "ikbeneyup",
 
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
@@ -105,12 +110,12 @@ export default NextAuth({
     strategy: "jwt",
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    // maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 3 * 24 * 60 * 60, // 30 days
 
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
     // Note: This option is ignored if using JSON Web Tokens
-    // updateAge: 24 * 60 * 60, // 24 hours
+    //updateAge: 24 * 60 * 60, // 24 hours
   },
 
   // JSON Web tokens are only used for sessions if the `strategy: 'jwt'` session
@@ -118,9 +123,8 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/options#jwt
   jwt: {
     // A secret to use for key generation (you should set this explicitly)
-    secret: process.env.SECRET,
+    secret: "testisdit",
     // Set to true to use encryption (default: false)
-    // encryption: true,
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behaviour.
     // encode: async ({ secret, token, maxAge }) => {},
@@ -133,21 +137,32 @@ export default NextAuth({
   // pages is not specified for that route.
   // https://next-auth.js.org/configuration/pages
   pages: {
-    // signIn: '/auth/signin',  // Displays signin buttons
+    signIn: "/",
     // signOut: '/auth/signout', // Displays form with sign out button
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
-    // newUser: null // If set, new users will be directed here on first sign in
+    newUser: "/", // If set, new users will be directed here on first sign in
   },
 
   // Callbacks are asynchronous functions you can use to control what happens
   // when an action is performed.
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
-    // async signIn({ user, account, profile, email, credentials }) { return true },
-    // async redirect({ url, baseUrl }) { return baseUrl },
-    // async session({ session, token, user }) { return session },
-    // async jwt({ token, user, account, profile, isNewUser }) { return token }
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = {
+          id: user.id,
+          username: user.username,
+          rank: user.rank,
+        };
+      }
+      return Promise.resolve(token);
+    },
+    session: async ({ session, token }) => {
+      //session.token = token;
+      session.user = token.user!;
+      return session;
+    },
   },
 
   // Events are useful for logging
@@ -155,5 +170,5 @@ export default NextAuth({
   events: {},
 
   // Enable debug messages in the console if you are having problems
-  debug: false,
+  debug: true,
 });
