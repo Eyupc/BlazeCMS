@@ -1,6 +1,7 @@
 import { Footer } from "@/app/footer/footer";
 import { Header } from "@/app/header/header";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 import Link from "next/link";
 import {
   ChangeEvent,
@@ -22,6 +23,9 @@ export default function Index() {
 
   return (
     <>
+      <Head>
+        <title>Blaze - Register</title>
+      </Head>
       <nav>
         <div className="content">
           <ul className="nav">
