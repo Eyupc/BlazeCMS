@@ -69,7 +69,7 @@ export default NextAuth({
       async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
         if (credentials === undefined) return null;
-        let user = await DatabaseManager.GetInstance().GetUser(
+        const user = await DatabaseManager.GetInstance().GetUser(
           credentials.username
         );
         if (user.status == "ERR") {
@@ -101,7 +101,7 @@ export default NextAuth({
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
   // a separate secret is defined explicitly for encrypting the JWT.
-  secret: "ikbeneyup",
+  secret: process.env.SECRET,
 
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
@@ -123,7 +123,7 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/options#jwt
   jwt: {
     // A secret to use for key generation (you should set this explicitly)
-    secret: "testisdit",
+    //secret: process.env.SECRET,
     // Set to true to use encryption (default: false)
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behaviour.
