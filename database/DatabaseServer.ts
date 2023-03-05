@@ -1,7 +1,8 @@
 import mysql from "mysql";
 import { env } from "process";
+import { IDatabaseServer } from "./IDatabaseServer";
 
-export default class DatabaseServer {
+export default class DatabaseServer implements IDatabaseServer {
   private connection: mysql.Connection;
 
   constructor() {
