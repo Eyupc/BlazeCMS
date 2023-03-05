@@ -3,6 +3,7 @@ import { Footer } from "@/app/footer/footer";
 import { Header } from "@/app/header/header";
 import Link from "next/link";
 import { getSession, signIn, useSession } from "next-auth/react";
+
 import {
   LegacyRef,
   useCallback,
@@ -13,11 +14,17 @@ import {
 } from "react";
 import "../app/global.css";
 import router from "next/router";
+import { redirect } from "next/navigation";
+
 import axios from "axios";
+import Head from "next/head";
 export default function Index() {
-  const usernameRef: LegacyRef<HTMLInputElement> = useRef(null);
-  const passwordRef: LegacyRef<HTMLInputElement> = useRef(null);
-  const [avatar, setAvatar] = useState("");
+  const usernameRef: LegacyRef<HTMLInputElement> =
+    useRef<HTMLInputElement>(null);
+  const passwordRef: LegacyRef<HTMLInputElement> =
+    useRef<HTMLInputElement>(null);
+  const [avatar, setAvatar] = useState({ look: "" });
+
   const ShowLoginForm = useCallback((open: boolean) => {
     let element = document.getElementsByClassName(
       "login-modal animate__animated animate__fadeIn"
@@ -33,34 +40,53 @@ export default function Index() {
     }
   }, []);
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    let signed = await signIn("credentials", {
-      username: usernameRef.current?.value || "",
-      password: passwordRef.current?.value || "",
-      callbackUrl: "/home",
-      redirect: false,
-    });
-    if (signed!.ok) {
-    }
-  };
+  const handleSubmit = useCallback(
+    async (e: any) => {
+      e.preventDefault();
+      e.stopPropagation();
+      let signed = await signIn("credentials", {
+        username: usernameRef.current!.value,
+        password: passwordRef.current!.value,
+        redirect: false,
+      });
+      switch (signed?.ok) {
+        case true:
+          router.push("/home");
+          break;
+        case false:
+          const element = document.getElementsByClassName("error")[0];
+          element.innerHTML = "Wrong username/password combination.";
+          break;
+        default:
+          break;
+      }
+    },
+    [usernameRef, passwordRef]
+  );
+  useEffect(() => {}, [setAvatar, avatar]);
 
   const changeAvatar = async (e: any) => {
     await axios({
-      method: "get",
-      url: `/api/avatar/image?username=${usernameRef.current!.value || ""}`,
+      method: "GET",
+      url: `/api/avatar/image?username=${usernameRef.current!.value}`,
       responseType: "json",
     }).then(function (response) {
-      if (response.data.status == "OK") setAvatar(response.data.look);
-      else setAvatar("");
+      if (response.data.status == "OK") {
+        avatar.look = response.data.look;
+      } else {
+        avatar.look = "";
+      }
+      (
+        document.getElementById("userLook") as HTMLImageElement
+      ).src = `https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar.look}&head_direction=4&direction=4&size=sml`;
     });
   };
 
-  useEffect(() => {}, []);
-
   return (
     <>
+      <Head>
+        <title>Blaze - Index</title>
+      </Head>
       <nav>
         <div className="content">
           <ul className="nav">
@@ -166,7 +192,8 @@ export default function Index() {
               <div className="login-username">
                 <div className="login-user-avatar">
                   <img
-                    src={`https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar}&head_direction=4&direction=4&size=sml`}
+                    id="userLook"
+                    src={`https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar.look}&head_direction=4&direction=4&size=sml`}
                     className="login-avatar"
                   />
                 </div>
@@ -179,7 +206,6 @@ export default function Index() {
                   ref={usernameRef}
                   onChange={changeAvatar}
                 />
-                <div className="error"></div>
               </div>
               <div className="login-password">
                 <div className="passico"></div>
