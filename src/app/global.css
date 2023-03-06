@@ -20,7 +20,8 @@
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
   float: left;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   -ms-grid-columns: 400px 1fr;
   grid-template-columns: 400px 1fr;
   grid-column-gap: 20px;
@@ -168,6 +169,7 @@
 }
 
 body {
+  height: 100%;
   background: #f6f5f7;
   font-family: "Quicksand", sans-serif;
   font-size: 14px;
@@ -1930,7 +1932,7 @@ nav ul li .name {
 }
 
 .login-modal {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
