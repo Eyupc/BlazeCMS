@@ -63,7 +63,6 @@ export default function Index() {
     },
     [usernameRef, passwordRef]
   );
-  useEffect(() => {}, [setAvatar, avatar]);
 
   const changeAvatar = async (e: any) => {
     await axios({
