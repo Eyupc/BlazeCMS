@@ -57,7 +57,7 @@ function Navigator() {
                 <div
                   className="submenu-ico"
                   style={{
-                    backgroundImage: "url(/assets/images/staff.gif?0);",
+                    backgroundImage: "url(/assets/images/staff.gif)",
                   }}
                 ></div>
                 <div className="submenu-info">
@@ -70,7 +70,7 @@ function Navigator() {
               <div className="submenu-box">
                 <div
                   className="submenu-ico"
-                  style={{ backgroundImage: "url(/assets/images/map.gif?0);" }}
+                  style={{ backgroundImage: "url(/assets/images/map.gif)" }}
                 ></div>
                 <div className="submenu-info">
                   <div className="submenu-name">City Map</div>
@@ -85,7 +85,7 @@ function Navigator() {
                 <div
                   className="submenu-ico"
                   style={{
-                    backgroundImage: "url(/assets/images/leader.gif?00);",
+                    backgroundImage: "url(/assets/images/leader.gif)",
                   }}
                 ></div>
                 <div className="submenu-info">
@@ -100,7 +100,7 @@ function Navigator() {
               <div className="submenu-box">
                 <div
                   className="submenu-ico"
-                  style={{ backgroundImage: "url(/assets/images/user.gif?0);" }}
+                  style={{ backgroundImage: "url(/assets/images/user.gif)" }}
                 ></div>
                 <div className="submenu-info">
                   <div className="submenu-name">Civilians Online</div>
