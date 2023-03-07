@@ -42,7 +42,7 @@ export default function Home(data: HomeProps) {
                       className="figure"
                       style={{
                         backgroundImage:
-                          "url('https://habbo.com/habbo-imaging/avatarimage?figure=hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-1012-110.hr-828-61&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png');",
+                          "url('https://habbo.com/habbo-imaging/avatarimage?figure=hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-1012-110.hr-828-61&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png')",
                       }}
                     ></div>
                     <div className="plate"></div>
@@ -52,7 +52,7 @@ export default function Home(data: HomeProps) {
                   <div className="username">{data.user?.username}</div>
                   <div className="motto">
                     <i className="fa fa-quote-left"></i>
-                    <em>{data.user?.motto}</em>
+                    <em></em>
                     <i className="fa fa-quote-right"></i>
                   </div>
                   <div className="user-stats">
@@ -75,21 +75,21 @@ export default function Home(data: HomeProps) {
               <div className="me-status">
                 <div
                   className="statistics"
-                  style={{ borderBottom: "solid 1px #fe1500;" }}
+                  style={{ borderBottom: "solid 1px #fe1500" }}
                 >
                   <div className="icon health"></div> <strong>100</strong>
                   &nbsp;kredi
                 </div>
                 <div
                   className="statistics"
-                  style={{ borderBottom: "solid 1px #5bc025;" }}
+                  style={{ borderBottom: "solid 1px #5bc025" }}
                 >
                   <div className="icon energy"></div> <strong>88</strong>
                   &nbsp;ördek
                 </div>
                 <div
                   className="statistics"
-                  style={{ borderBottom: "solid 1px #8547be;" }}
+                  style={{ borderBottom: "solid 1px #8547be" }}
                 >
                   <div className="icon hyg"></div> <strong>60</strong>
                   &nbsp;elmas
