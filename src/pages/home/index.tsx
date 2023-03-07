@@ -6,9 +6,11 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerSession, Session } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
+import { userAgent } from "next/server";
 import "../../app/global.css";
 
 export default function Home(data: HomeProps) {
+  console.log(data.user);
   return (
     <>
       <Head>
@@ -41,8 +43,7 @@ export default function Home(data: HomeProps) {
                     <div
                       className="figure"
                       style={{
-                        backgroundImage:
-                          "url('https://habbo.com/habbo-imaging/avatarimage?figure=hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-1012-110.hr-828-61&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png')",
+                        backgroundImage: `url("https://habbo.com/habbo-imaging/avatarimage?figure=${data.user?.look}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png")`,
                       }}
                     ></div>
                     <div className="plate"></div>
@@ -52,17 +53,19 @@ export default function Home(data: HomeProps) {
                   <div className="username">{data.user?.username}</div>
                   <div className="motto">
                     <i className="fa fa-quote-left"></i>
-                    <em></em>
+                    <em>{data.user?.motto}</em>
                     <i className="fa fa-quote-right"></i>
                   </div>
                   <div className="user-stats">
                     <strong>Son giriş: </strong> 19.11.2021
                   </div>
-                  <div className="user-stats bank">
-                    <strong>Etkinlik puanı:</strong> 2
-                  </div>
+                  {
+                    ///<div className="user-stats bank">
+                    //<strong>Etkinlik puanı:</strong> 2
+                    // </div>
+                  }
                   <div className="user-stats level">
-                    <strong>Başarı puanı:</strong> 23925
+                    <strong>Başarı puanı:</strong> {data.user?.activity_points}
                   </div>
                 </div>
                 <div className="hotel-button">
@@ -77,21 +80,24 @@ export default function Home(data: HomeProps) {
                   className="statistics"
                   style={{ borderBottom: "solid 1px #fe1500" }}
                 >
-                  <div className="icon health"></div> <strong>100</strong>
+                  <div className="icon health"></div>{" "}
+                  <strong>{data.user?.credits}</strong>
                   &nbsp;kredi
                 </div>
                 <div
                   className="statistics"
                   style={{ borderBottom: "solid 1px #5bc025" }}
                 >
-                  <div className="icon energy"></div> <strong>88</strong>
+                  <div className="icon energy"></div>{" "}
+                  <strong>{data.user?.duckets}</strong>
                   &nbsp;ördek
                 </div>
                 <div
                   className="statistics"
                   style={{ borderBottom: "solid 1px #8547be" }}
                 >
-                  <div className="icon hyg"></div> <strong>60</strong>
+                  <div className="icon hyg"></div>{" "}
+                  <strong>{data.user?.diamonds}</strong>
                   &nbsp;elmas
                 </div>
               </div>
@@ -124,25 +130,57 @@ export default function Home(data: HomeProps) {
 }
 
 type HomeProps = {
-  user?: Session["user"];
-  credits?: number;
-  duckets?: number;
-  diamonds?: number;
+  user?: {
+    username: string;
+    motto: string;
+    look: string;
+    credits: number;
+    duckets: number;
+    diamonds: number;
+    type: number;
+    amount: number;
+    activity_points: number;
+  };
 };
+export interface QueryProps {
+  error: boolean;
+  data?: {
+    username: string;
+    motto: string;
+    look: string;
+    credits: number;
+    type: number;
+    amount: number;
+    activity_points: number;
+  }[];
+}
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const session = await getSession({ req: ctx.req });
   if (session) {
-    const currency = await DatabaseManager.GetInstance().GetUserCurrencies(
-      parseInt(session.user.id!)
+    const data: QueryProps = await DatabaseManager.GetInstance().Query(
+      "SELECT u.username as username , u.motto as motto, u.activity_points as activity_points, u.look as look, u.credits AS credits,uc.type, uc.amount as amount FROM `users` u INNER JOIN `users_currency` uc ON `u`.id = `uc`.user_id WHERE `u`.id = " +
+        `${session.user.id};`
     );
-    if (currency.status == "OK")
+    console.log(data);
+    if (!data.error)
       return {
         props: {
-          user: session.user,
-          credits: currency.credits,
-          duckets: currency.duckets,
-          diamonds: currency.diamonds,
-        }, // will be passed to the page component as props
+          user: {
+            username: session.user.username,
+            motto: data.data?.[0].motto,
+            look: data.data?.[0].look,
+            activity_points: data.data?.[0].activity_points,
+            credits: data.data?.[0].credits,
+            duckets:
+              data.data?.[0].type == 0
+                ? data.data[0].amount
+                : data.data?.[1].amount,
+            diamonds:
+              data.data?.[0].type == 5
+                ? data.data[0].amount
+                : data.data?.[1].amount,
+          }, // will be passed to the
+        },
       };
   }
   return {
