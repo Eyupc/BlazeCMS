@@ -142,7 +142,7 @@ type HomeProps = {
     activity_points: number;
   };
 };
-export interface QueryProps {
+type QueryProps = {
   error: boolean;
   data?: {
     username: string;
@@ -153,7 +153,7 @@ export interface QueryProps {
     amount: number;
     activity_points: number;
   }[];
-}
+};
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const session = await getSession({ req: ctx.req });
   if (session) {
