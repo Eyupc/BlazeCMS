@@ -1,5 +1,4 @@
 import mysql from "mysql";
-import { env } from "process";
 import { IDatabaseServer } from "./IDatabaseServer";
 
 export default class DatabaseServer implements IDatabaseServer {
@@ -8,7 +7,7 @@ export default class DatabaseServer implements IDatabaseServer {
   constructor() {
     this.connection = mysql.createConnection({
       host: process.env.MYSQL_HOST,
-      port: Number.parseInt(process.env.MYSQL_PORT!),
+      port: process.env.MYSQL_PORT,
       user: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
