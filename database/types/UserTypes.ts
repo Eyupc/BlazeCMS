@@ -1,5 +1,5 @@
 export type User = {
-  status: string;
+  status: "OK" | "ERROR";
   id?: number;
   username?: string;
   look?: string;
@@ -12,7 +12,7 @@ export type User = {
   ip_reg?: string;
 };
 export type UserCurrencies = {
-  status: string;
+  status: "OK" | "ERROR";
   credits?: number;
   duckets?: number;
   diamonds?: number;
