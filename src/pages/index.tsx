@@ -67,7 +67,7 @@ export default function Index() {
   const changeAvatar = async (e: any) => {
     await axios({
       method: "GET",
-      url: `/api/avatar/image?username=${usernameRef.current!.value}`,
+      url: `/api/avatar/${usernameRef.current!.value}`,
       responseType: "json",
     }).then(function (response) {
       if (response.data.status == "OK") {
