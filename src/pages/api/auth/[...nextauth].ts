@@ -72,7 +72,7 @@ export default NextAuth({
         const user = await DatabaseManager.GetInstance().GetUser(
           credentials.username
         );
-        if (user.status == "ERR") {
+        if (user.status == "ERROR") {
           return null;
         } else {
           if (await bcrypt.compare(credentials.password, user.password!)) {
@@ -141,7 +141,7 @@ export default NextAuth({
     signOut: "/logout", // Displays form with sign out button
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
-    newUser: "/", // If set, new users will be directed here on first sign in
+    //newUser: "/", // If set, new users will be directed here on first sign in
   },
 
   // Callbacks are asynchronous functions you can use to control what happens
