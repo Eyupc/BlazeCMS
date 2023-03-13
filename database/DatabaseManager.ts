@@ -1,4 +1,5 @@
 import { Connection } from "mysql";
+import { resolve } from "path";
 import { Type } from "typescript";
 import DatabaseServer from "./DatabaseServer";
 import { RegisterType, RegisterUserCurrency } from "./types/RegisterTypes";
@@ -81,15 +82,13 @@ export default class DatabaseManager extends DatabaseServer {
     let exec = false;
     exec = await new Promise((resolve, reject) => {
       this.Connection.query(
-        `INSERT INTO
-        users
-        (username, password, rank, motto, gender,account_created, last_login, mail, look, ip_current, ip_register, credits)
-        VALUES(${user.username},${user.password},${user.rank},${user.auth_ticket},${user.motto},${user.gender},${user.account_created},${user.last_login},${user.mail},${user.look},${user.ip_current},${user.ip_register},${user.credits})`,
+        "INSERT INTO `users` (`username`, `password`, `rank`, `motto`, `gender`,`account_created`, `last_login`, `mail`, `look`, `ip_current`, `ip_register`, `credits`) " +
+          `VALUES("${user.username}","${user.password}",${user.rank},"${user.motto}","${user.gender}","${user.account_created}","${user.last_login}","${user.mail}","${user.look}","${user.ip_current}","${user.ip_register}",${user.credits})`,
         function (_error, results) {
           if (_error || results.length == 0) {
-            return false;
+            resolve(false);
           } else {
-            return true;
+            resolve(true);
           }
         }
       );
@@ -97,12 +96,14 @@ export default class DatabaseManager extends DatabaseServer {
     if (!exec) return false;
     const user_id: number = await new Promise((resolve, reject) => {
       this.Connection.query(
-        `SELECT id FROM users WHERE username=${user.username} LIMIT 1`,
+        "SELECT `id` FROM `users` WHERE `username`='" +
+          user.username +
+          "' LIMIT 1",
         (err, results) => {
           if (err || results.length == 0) {
-            return 0;
+            resolve(0);
           } else {
-            return results[0].id;
+            resolve(results[0].id);
           }
         }
       );
@@ -129,15 +130,13 @@ export default class DatabaseManager extends DatabaseServer {
     // return true if statement is executed
     return await new Promise((resolve, reject) => {
       this.Connection.query(
-        `INSERT INTO
-      users_currency
-      (user_id,type,amount)
-      VALUES(${user.id},${user.type},${user.amount})`,
+        "INSERT INTO `users_currency` (`user_id`,`type`,`amount`) " +
+          `VALUES(${user.id},${user.type},${user.amount})`,
         function (_error, results) {
           if (_error || results.length == 0) {
-            return false;
+            resolve(false);
           } else {
-            return true;
+            resolve(true);
           }
         }
       );
