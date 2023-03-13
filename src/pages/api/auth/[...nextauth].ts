@@ -68,7 +68,9 @@ export default NextAuth({
       },
       async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
+
         if (credentials === undefined) return null;
+        console.log(credentials);
         const user = await DatabaseManager.GetInstance().GetUser(
           credentials.username
         );
