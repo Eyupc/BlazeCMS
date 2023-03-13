@@ -7,10 +7,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
-  let data = await DatabaseManager.GetInstance().Query(
-    `SELECT id FROM users WHERE username = '${req.query.username}' LIMIT 1`
-  );
-  if (!data.error) {
+  const username: string = req.query.username!.toString() || "";
+  let data = await DatabaseManager.GetInstance().UsernameExist(username);
+  console.log(data);
+  if (data) {
     res.status(200).json({
       exist: true,
     });
