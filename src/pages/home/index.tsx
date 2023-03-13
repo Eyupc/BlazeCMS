@@ -10,7 +10,6 @@ import { userAgent } from "next/server";
 import "../../app/global.css";
 
 export default function Home(data: HomeProps) {
-  console.log(data.user);
   return (
     <>
       <Head>
@@ -158,9 +157,10 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const session = await getSession({ req: ctx.req });
   if (session) {
     const data: QueryProps = await DatabaseManager.GetInstance().Query(
-      "SELECT u.username as username , u.motto as motto, u.activity_points as activity_points, u.look as look, u.credits AS credits,uc.type, uc.amount as amount FROM `users` u INNER JOIN `users_currency` uc ON `u`.id = `uc`.user_id WHERE `u`.id = " +
+      "SELECT u.username as username , u.motto as motto, u.look as look, u.credits AS credits,uc.type, uc.amount as amount FROM `users` u INNER JOIN `users_currency` uc ON `u`.id = `uc`.user_id WHERE `u`.id = " +
         `${session.user.id};`
     );
+
     console.log(data);
     if (!data.error)
       return {
@@ -169,7 +169,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
             username: session.user.username,
             motto: data.data?.[0].motto,
             look: data.data?.[0].look,
-            activity_points: data.data?.[0].activity_points,
+            activity_points: data.data?.[0].activity_points || 10,
             credits: data.data?.[0].credits,
             duckets:
               data.data?.[0].type == 0
