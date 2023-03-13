@@ -65,6 +65,7 @@ export default function Index() {
   );
 
   const changeAvatar = async (e: any) => {
+    if (usernameRef.current!.value == "") return;
     await axios({
       method: "GET",
       url: `/api/avatar/${usernameRef.current!.value}`,
@@ -203,7 +204,8 @@ export default function Index() {
                   name="username"
                   id="username"
                   ref={usernameRef}
-                  onChange={changeAvatar}
+                  onBlur={changeAvatar}
+                  required
                 />
               </div>
               <div className="login-password">
@@ -215,6 +217,7 @@ export default function Index() {
                   ref={passwordRef}
                   className="login-i"
                   placeholder="Parola"
+                  required
                 />
                 <div className="error"></div>
               </div>
