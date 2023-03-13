@@ -143,4 +143,27 @@ export default class DatabaseManager extends DatabaseServer {
       );
     });
   }
+
+  public async UsernameExist(username: string): Promise<boolean> {
+    return await new Promise((res, rej) => {
+      this.Connection.query(
+        "SELECT id FROM `users` WHERE `username`= '" + username + "' LIMIT 1",
+        (_err, results) => {
+          if (_err || results.length == 0) res(false);
+          else res(true);
+        }
+      );
+    });
+  }
+  public async MailExist(mail: string): Promise<boolean> {
+    return await new Promise((res, rej) => {
+      this.Connection.query(
+        "SELECT id FROM `users` WHERE `mail`= '" + mail + "' LIMIT 1",
+        (_err, results) => {
+          if (_err || results.length == 0) res(false);
+          else res(true);
+        }
+      );
+    });
+  }
 }
