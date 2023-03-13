@@ -15,8 +15,4 @@ declare module "next/app" {
     };
   };
 }
-declare namespace React {
-  interface HTMLProps<T> extends HTMLAttributes, ClassAttributes<T> {
-    active?: string;
-  }
-}
+
