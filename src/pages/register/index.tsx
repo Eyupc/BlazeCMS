@@ -1,10 +1,12 @@
 import { Footer } from "@/app/footer/footer";
 import { Header } from "@/app/header/header";
+import { Alert } from "@mui/material";
 import axios from "axios";
 import DatabaseManager from "database/DatabaseManager";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import router from "next/router";
 import {
   BaseSyntheticEvent,
   ChangeEvent,
@@ -24,11 +26,41 @@ export default function Index(ctx: any) {
   const rePassword: LegacyRef<HTMLInputElement> = useRef(null);
   const emailRef: LegacyRef<HTMLInputElement> = useRef(null);
   const genderRef: LegacyRef<HTMLSelectElement> = useRef(null);
-
+  const checkbox: LegacyRef<HTMLInputElement> = useRef(null);
   const [unameValid, setUnameValid] = useState<boolean | null>(null);
-
+  const [errors, setErrors] = useState<string[]>([]);
   const handleRegister = async (e: BaseSyntheticEvent) => {
     e.preventDefault();
+    if (!checkbox.current?.checked) return;
+    await axios("/api/auth/register", {
+      method: "POST",
+      withCredentials: true,
+      data: {
+        username: username,
+        password: passwordRef.current?.value,
+        rePassword: rePassword.current?.value,
+        mail: emailRef.current?.value,
+        gender: genderRef.current?.value,
+      },
+    }).then(async (resp) => {
+      if (resp.data.status == "OK") {
+        const signed = await signIn("credentials", {
+          username: username,
+          password: passwordRef.current?.value,
+          redirect: false,
+        });
+        console.log(signed);
+        switch (signed?.ok) {
+          case true:
+            router.push("/home");
+            break;
+          default:
+            break;
+        }
+      } else {
+        setErrors(resp.data.errors);
+      }
+    });
   };
 
   const checkUsername = async (name: string) => {
@@ -37,7 +69,7 @@ export default function Index(ctx: any) {
       setUnameValid(false);
       return;
     }
-    console.log(regexUsername.test(name));
+    //  console.log(regexUsername.test(name));
 
     setUnameValid(
       await axios
@@ -95,7 +127,22 @@ export default function Index(ctx: any) {
           <div className="register">
             <div className="regbox d-flex direction-row bbgreen">
               <div className="box-inner">
-                <form id="form">
+                <form id="form" onSubmit={handleRegister}>
+                  {errors.length > 0 ? (
+                    <Alert
+                      severity="error"
+                      style={{ margin: ".5rem .5rem .5rem 0" }}
+                    >
+                      {errors.map((e, i) => (
+                        <div key={i}>
+                          {e}
+                          <br />
+                        </div>
+                      ))}
+                    </Alert>
+                  ) : (
+                    <></>
+                  )}
                   <b>Kullanıcı adı</b>
                   <em>
                     Gelecekte Blaze'de oturum açmak için bu kullanıcı adını
@@ -122,6 +169,7 @@ export default function Index(ctx: any) {
                     }}
                     onBlur={async () => await checkUsername(username)}
                     autoComplete="on"
+                    required
                   />
                   <div className="register-password-main">
                     <b>Parola</b>
@@ -133,6 +181,7 @@ export default function Index(ctx: any) {
                       ref={passwordRef}
                       id="password"
                       autoComplete="on"
+                      required
                     />
                     <b className="mb-05">Parolanı tekrarla</b>
                     <input
@@ -142,6 +191,7 @@ export default function Index(ctx: any) {
                       id="repeat"
                       ref={rePassword}
                       autoComplete="on"
+                      required
                     />
                   </div>
                   <b>E-posta</b>
@@ -156,6 +206,7 @@ export default function Index(ctx: any) {
                     name="email"
                     id="email"
                     autoComplete="on"
+                    required
                   />
                   <hr />
                   <b>Cinsiyet</b>
@@ -178,6 +229,8 @@ export default function Index(ctx: any) {
                           id="terms-of-service"
                           type="checkbox"
                           className="form-checkbox"
+                          ref={checkbox}
+                          required
                         />
                         <span>
                           <strong>
@@ -191,12 +244,7 @@ export default function Index(ctx: any) {
                       </label>
                     </div>
                   </fieldset>
-                  <button
-                    type="submit"
-                    id="submit"
-                    className="enterhotel"
-                    onClick={(e) => handleRegister(e)}
-                  >
+                  <button type="submit" id="submit" className="enterhotel">
                     Tamamladık! Hadi, bir avatar yapalım!
                   </button>
                 </form>
