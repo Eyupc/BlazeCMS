@@ -17,3 +17,11 @@ export type UserCurrencies = {
   duckets?: number;
   diamonds?: number;
 };
+export type UserSettings = {
+  status: "OK" | "ERROR";
+  user_id?: number;
+  achievement_score?: number;
+  respects_given?: number;
+  respects_received?: number;
+  can_trade?: boolean;
+};
