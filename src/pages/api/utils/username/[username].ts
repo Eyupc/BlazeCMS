@@ -8,7 +8,9 @@ export default async function handler(
   res: NextApiResponse<{}>
 ) {
   const username: string = req.query.username!.toString() || "";
-  let data = await DatabaseManager.GetInstance().UsernameExist(username);
+  let data = await DatabaseManager.GetInstance().UserQueries.UsernameExist(
+    username
+  );
   console.log(data);
   if (data) {
     res.status(200).json({

@@ -153,7 +153,10 @@ type QueryProps = {
     activity_points: number;
   }[];
 };
+
+//TODO
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  //@TODO Shitty code lmao
   const session = await getSession({ req: ctx.req });
   if (session) {
     const data: QueryProps = await DatabaseManager.GetInstance().Query(
@@ -179,7 +182,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
               data.data?.[0].type == 5
                 ? data.data[0].amount
                 : data.data?.[1].amount,
-          }, // will be passed to the
+          },
         },
       };
   }

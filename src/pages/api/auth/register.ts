@@ -30,7 +30,9 @@ export default async function handler(
 
   if (req.method != "POST") return res.status(404).json({ status: "ERROR" });
 
-  if (await DatabaseManager.GetInstance().UsernameExist(body.username)) {
+  if (
+    await DatabaseManager.GetInstance().UserQueries.UsernameExist(body.username)
+  ) {
     errors.push("This username is already taken!");
   }
   if (!regexUsername.test(body.username)) {
@@ -38,7 +40,7 @@ export default async function handler(
       "This username is not allowed! It may contain disallow characters OR is too long (max 15. char.)"
     );
   }
-  if (await DatabaseManager.GetInstance().MailExist(body.mail)) {
+  if (await DatabaseManager.GetInstance().UserQueries.MailExist(body.mail)) {
     errors.push("This email does already exist!");
   }
 
@@ -55,7 +57,7 @@ export default async function handler(
       errors: errors,
     });
   }
-  const insert = await DatabaseManager.GetInstance().CreateUser({
+  const insert = await DatabaseManager.GetInstance().UserQueries.CreateUser({
     username: body.username,
     password: await bcrypt.hash(body.password, 10),
     mail: body.mail,
