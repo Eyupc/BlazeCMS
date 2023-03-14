@@ -70,8 +70,7 @@ export default NextAuth({
         // Add logic here to look up the user from the credentials supplied
 
         if (credentials === undefined) return null;
-        console.log(credentials);
-        const user = await DatabaseManager.GetInstance().GetUser(
+        const user = await DatabaseManager.GetInstance().UserQueries.GetUser(
           credentials.username
         );
         if (user.status == "ERROR") {
@@ -81,10 +80,10 @@ export default NextAuth({
             return Promise.resolve({
               id: user.id!.toString(),
               username: user.username!,
-              password: user.password!,
-              mail: user.mail!,
+              //          password: user.password!,
+              // mail: user.mail!,
               rank: user.rank!,
-              auth_ticket: user.auth_ticket!,
+              //            auth_ticket: user.auth_ticket!,
             });
           }
         }
@@ -152,6 +151,7 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        //@TODO username, rank are not constant!
         token.user = {
           id: user.id,
           username: user.username,
