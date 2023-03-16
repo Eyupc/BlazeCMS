@@ -11,7 +11,6 @@ export default async function handler(
   let data = await DatabaseManager.GetInstance().UserQueries.UsernameExist(
     username
   );
-  console.log(data);
   if (data) {
     res.status(200).json({
       exist: true,
