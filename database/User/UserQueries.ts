@@ -1,8 +1,11 @@
 import DatabaseManager from "database/DatabaseManager";
+import { LoginType } from "database/types/LoginType";
 import {
   RegisterType,
   RegisterUserCurrency,
+  RegisterUserSettings,
 } from "database/types/RegisterTypes";
+import { StatusType } from "database/types/StatusType";
 import { User, UserCurrencies, UserSettings } from "database/types/UserTypes";
 import { Connection } from "mysql";
 
@@ -17,30 +20,33 @@ export class UserQueries {
       let sql = "";
       if (typeof param == "string") {
         sql =
-          "SELECT `id`,`username`,`password`,`mail`,`rank`,`auth_ticket` FROM `users` WHERE `username`=" +
+          "SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `username`=" +
           `"${param}"`;
       } else {
         sql =
-          "SELECT `id`,`username`,`password`,`mail`,`rank`,`auth_ticket` FROM `users` WHERE `id`=" +
+          "SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `id`=" +
           `"${param}"`;
       }
 
       this.connection.query(sql, function (error, results, fields) {
         if (error || results.length == 0) {
-          resolve({ status: "ERROR" });
+          resolve({ status: false });
         } else {
           resolve({
-            status: "OK",
-            id: results[0].id,
-            username: results[0].username,
-            mail: results[0].mail,
-            motto: results[0].motto,
-            look: results[0].look,
-            password: results[0].password,
-            rank: results[0].rank,
-            auth_ticket: results[0].auth_ticket,
-            ip_last: results[0].ip_last,
-            ip_reg: results[0].ip_reg,
+            status: true,
+            data: {
+              id: results[0].id,
+              username: results[0].username,
+              mail: results[0].mail,
+              motto: results[0].motto,
+              look: results[0].look,
+              rank: results[0].rank,
+              ip_register: results[0].ip_register,
+              ip_current: results[0].ip_current,
+              last_login: results[0].last_login,
+              last_online: results[0].last_online,
+              online: !!Number(results[0].online),
+            },
           });
         }
       });
@@ -58,13 +64,15 @@ export class UserQueries {
           id,
         function (_error, results, fields) {
           if (_error || results.length == 0) {
-            resolve({ status: "ERROR" });
+            resolve({ status: false });
           } else {
             resolve({
-              status: "OK",
-              credits: results[0].credits,
-              duckets: results[0].duckets,
-              diamonds: results[0].diamonds,
+              status: true,
+              data: {
+                credits: results[0].credits,
+                duckets: results[0].duckets,
+                diamonds: results[0].diamonds,
+              },
             });
           }
         }
@@ -74,15 +82,28 @@ export class UserQueries {
   //TODO
   public async GetUserSettings(id: number): Promise<UserSettings> {
     return new Promise((resolve, reject) => {
-      this.connection.query("", function (_error, results, fields) {
-        if (_error || results.length == 0) {
-          resolve({ status: "ERROR" });
-        } else {
-          resolve({
-            status: "OK",
-          });
+      this.connection.query(
+        "SELECT `user_id`,`achievement_score`, `repects_given`,`respects_received`,`can_trade`,`block_friendrequest` FROM `users_settings` WHERE `user_id` = " +
+          id +
+          " LIMIT 1",
+        function (_error, results, fields) {
+          if (_error || results.length == 0) {
+            resolve({ status: false });
+          } else {
+            resolve({
+              status: true,
+              data: {
+                user_id: results[0].user_id,
+                achievement_score: results[0].achievement_score,
+                respects_given: results[0].respects_given,
+                respects_received: results[0].respects_received,
+                can_trade: !!Number(results[0].can_trade),
+                block_friendrequest: !!Number(results[0].block_friendrequest),
+              },
+            });
+          }
         }
-      });
+      );
     });
   }
 
@@ -120,13 +141,18 @@ export class UserQueries {
     exec = await this.CreateUserCurrency({
       id: user_id,
       type: 0,
-      amount: user.duckets,
+      amount: user.diamonds,
     });
     if (!exec) return false;
     exec = await this.CreateUserCurrency({
       id: user_id,
       type: 5,
-      amount: user.diamonds,
+      amount: user.duckets,
+    });
+    if (!exec) return false;
+    exec = await this.CreateUserSettings({
+      id: user_id,
+      home_room: 0,
     });
     if (!exec) return false;
     return true;
@@ -150,6 +176,25 @@ export class UserQueries {
       );
     });
   }
+  public async CreateUserSettings(
+    user: RegisterUserSettings
+  ): Promise<boolean> {
+    // return true if statement is executed
+    return await new Promise((resolve, reject) => {
+      this.connection.query(
+        "INSERT INTO `users_settings` (`user_id`,`home_room`) " +
+          `VALUES(${user.id},${user.home_room})`,
+        function (_error, results) {
+          if (_error || results.length == 0) {
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        }
+      );
+    });
+  }
+
   public async UsernameExist(username: string): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
@@ -168,6 +213,28 @@ export class UserQueries {
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);
+        }
+      );
+    });
+  }
+  public async TryLogin(username: string): Promise<LoginType> {
+    return await new Promise((res, rej) => {
+      this.connection.query(
+        "SELECT `id`,`username`,`rank`,`password` FROM `users` WHERE `username`= '" +
+          username +
+          "' LIMIT 1",
+        (_err, results) => {
+          if (_err || results.length == 0) res({ status: false });
+          else
+            res({
+              status: true,
+              data: {
+                id: results[0].id,
+                username: results[0].username,
+                rank: results[0].rank,
+                password: results[0].password,
+              },
+            });
         }
       );
     });
