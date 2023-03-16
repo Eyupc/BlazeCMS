@@ -12,12 +12,12 @@ import {
   useRef,
   useState,
 } from "react";
-import "../app/global.css";
 import router from "next/router";
 import { redirect } from "next/navigation";
 
 import axios from "axios";
 import Head from "next/head";
+import "../app/global.css";
 export default function Index() {
   const usernameRef: LegacyRef<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -44,7 +44,7 @@ export default function Index() {
     async (e: any) => {
       e.preventDefault();
       e.stopPropagation();
-      let signed = await signIn("credentials", {
+      const signed = await signIn("credentials", {
         username: usernameRef.current!.value,
         password: passwordRef.current!.value,
         redirect: false,
@@ -71,7 +71,7 @@ export default function Index() {
       url: `/api/avatar/${usernameRef.current!.value}`,
       responseType: "json",
     }).then(function (response) {
-      if (response.data.status == "OK") {
+      if (response.data.status) {
         avatar.look = response.data.look;
       } else {
         avatar.look = "";
