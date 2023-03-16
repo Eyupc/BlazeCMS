@@ -7,6 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import router from "next/router";
+import "../../app/global.css";
 import {
   BaseSyntheticEvent,
   ChangeEvent,
@@ -43,13 +44,12 @@ export default function Index(ctx: any) {
         gender: genderRef.current?.value,
       },
     }).then(async (resp) => {
-      if (resp.data.status == "OK") {
+      if (resp.data.status) {
         const signed = await signIn("credentials", {
           username: username,
           password: passwordRef.current?.value,
           redirect: false,
         });
-        console.log(signed);
         switch (signed?.ok) {
           case true:
             router.push("/home");
@@ -69,7 +69,6 @@ export default function Index(ctx: any) {
       setUnameValid(false);
       return;
     }
-    //  console.log(regexUsername.test(name));
 
     setUnameValid(
       await axios
