@@ -7,8 +7,9 @@ import { getServerSession, Session } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import { userAgent } from "next/server";
+import { HomeProps } from "./HomeProps";
+import moment, { Moment } from "moment";
 import "../../app/global.css";
-
 export default function Home(data: HomeProps) {
   return (
     <>
@@ -37,7 +38,11 @@ export default function Home(data: HomeProps) {
             <div className="mebox">
               <div className="box-inner">
                 <div className="user-box">
-                  <div className="status online"></div>
+                  <div
+                    className={
+                      "status " + (data.user?.online ? "online" : "offline")
+                    }
+                  ></div>
                   <div className="avatar-inner">
                     <div
                       className="figure"
@@ -56,7 +61,7 @@ export default function Home(data: HomeProps) {
                     <i className="fa fa-quote-right"></i>
                   </div>
                   <div className="user-stats">
-                    <strong>Son giriş: </strong> 19.11.2021
+                    <strong>Son giriş: </strong> <>{data.user?.last_online}</>
                   </div>
                   {
                     ///<div className="user-stats bank">
@@ -64,7 +69,8 @@ export default function Home(data: HomeProps) {
                     // </div>
                   }
                   <div className="user-stats level">
-                    <strong>Başarı puanı:</strong> {data.user?.activity_points}
+                    <strong>Başarı puanı:</strong>{" "}
+                    {data.user?.achievement_score}
                   </div>
                 </div>
                 <div className="hotel-button">
@@ -128,60 +134,38 @@ export default function Home(data: HomeProps) {
   );
 }
 
-type HomeProps = {
-  user?: {
-    username: string;
-    motto: string;
-    look: string;
-    credits: number;
-    duckets: number;
-    diamonds: number;
-    type: number;
-    amount: number;
-    activity_points: number;
-  };
-};
-type QueryProps = {
-  error: boolean;
-  data?: {
-    username: string;
-    motto: string;
-    look: string;
-    credits: number;
-    type: number;
-    amount: number;
-    activity_points: number;
-  }[];
-};
-
-//TODO
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  //@TODO Shitty code lmao
+export async function getServerSideProps(
+  ctx: GetServerSidePropsContext
+): Promise<{ props: HomeProps }> {
   const session = await getSession({ req: ctx.req });
-  if (session) {
-    const data: QueryProps = await DatabaseManager.GetInstance().Query(
-      "SELECT u.username as username , u.motto as motto, u.look as look, u.credits AS credits,uc.type, uc.amount as amount FROM `users` u INNER JOIN `users_currency` uc ON `u`.id = `uc`.user_id WHERE `u`.id = " +
-        `${session.user.id};`
-    );
 
-    console.log(data);
-    if (!data.error)
+  if (session) {
+    const user = await DatabaseManager.GetInstance().UserQueries.GetUser(
+      session.user.id
+    );
+    const currencies =
+      await DatabaseManager.GetInstance().UserQueries.GetUserCurrencies(
+        session.user.id
+      );
+    const achievement_score = await DatabaseManager.GetInstance().Query(
+      "SELECT `achievement_score` FROM `users_settings` WHERE `user_id`= " +
+        session.user.id
+    );
+    if (currencies.status && user.status)
       return {
         props: {
           user: {
-            username: session.user.username,
-            motto: data.data?.[0].motto,
-            look: data.data?.[0].look,
-            activity_points: data.data?.[0].activity_points || 10,
-            credits: data.data?.[0].credits,
-            duckets:
-              data.data?.[0].type == 0
-                ? data.data[0].amount
-                : data.data?.[1].amount,
-            diamonds:
-              data.data?.[0].type == 5
-                ? data.data[0].amount
-                : data.data?.[1].amount,
+            username: user.data!.username,
+            motto: user.data!.motto,
+            look: user.data!.look,
+            achievement_score: achievement_score.data[0].achievement_score,
+            last_online: moment
+              .unix(user.data!.last_online)
+              .format("DD-MM-YYYY"),
+            online: user.data!.online,
+            credits: currencies.data!.credits,
+            duckets: currencies.data!.duckets,
+            diamonds: currencies.data!.diamonds,
           },
         },
       };
