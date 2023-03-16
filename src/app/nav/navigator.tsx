@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import {
   HTMLAttributes,
@@ -8,7 +9,7 @@ import {
   useMemo,
   useState,
 } from "react";
-
+import router from "next/router";
 function Navigator() {
   const [showSub, setShowSub] = useState("n");
   const [showCommunity, setShowCommunity] = useState("n");
@@ -39,6 +40,19 @@ function Navigator() {
             <li className="community" menuname="test">
               <div className="name">Yardım</div>
             </li>
+            <li className="logout">
+              <Link
+                href={"/home"}
+                onClick={async () => {
+                  await signOut({
+                    callbackUrl: "http://localhost:3000/",
+                    redirect: false,
+                  });
+                  router.push("/");
+                }}
+              />
+              <div className="name">Logout</div>
+            </li>
           </ul>
         </div>
       </nav>
@@ -52,7 +66,7 @@ function Navigator() {
           active={showCommunity}
         >
           <div className="submenu-main">
-            <a href="staff.php" className="submenu-href">
+            <Link href={"/staff"} className="submenu-href">
               <div className="submenu-box">
                 <div
                   className="submenu-ico"
@@ -65,7 +79,7 @@ function Navigator() {
                   <div className="submenu-description">Blaze Personelleri</div>
                 </div>
               </div>
-            </a>
+            </Link>
             <a href="citymap.php" className="submenu-href">
               <div className="submenu-box">
                 <div
