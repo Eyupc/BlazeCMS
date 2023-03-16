@@ -25,6 +25,8 @@
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "momentjs": "^2.0.0",
     "mysql": "github:mysqljs/mysql",
     "next": "^13.1.6",
     "next-auth": "^4.19.2",
