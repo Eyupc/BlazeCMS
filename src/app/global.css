@@ -1857,6 +1857,12 @@ nav ul li.community:before {
   height: 40px;
   bottom: calc(50% - 27px);
 }
+nav ul li.logout:before {
+  background-image: url(/assets/images/logout.gif);
+  width: 40px;
+  height: 40px;
+  bottom: calc(50% - 27px);
+}
 
 nav ul li {
   position: relative;
