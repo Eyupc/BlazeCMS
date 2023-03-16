@@ -23,3 +23,8 @@ export type RegisterUserCurrency = {
   type: number;
   amount: number;
 };
+
+export type RegisterUserSettings = {
+  id: number;
+  home_room: number;
+};
