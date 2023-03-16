@@ -13,7 +13,7 @@ type RegisterBody = {
   gender: string;
 };
 type RegisterResponse = {
-  status: "OK" | "ERROR";
+  status: boolean;
   errors?: string[] | null;
 };
 
@@ -28,7 +28,7 @@ export default async function handler(
   const body: RegisterBody = req.body;
   const errors: string[] = [];
 
-  if (req.method != "POST") return res.status(404).json({ status: "ERROR" });
+  if (req.method != "POST") return res.status(404).json({ status: false });
 
   if (
     await DatabaseManager.GetInstance().UserQueries.UsernameExist(body.username)
@@ -53,7 +53,7 @@ export default async function handler(
 
   if (errors.length > 0) {
     return res.status(200).json({
-      status: "ERROR",
+      status: false,
       errors: errors,
     });
   }
@@ -70,10 +70,13 @@ export default async function handler(
     ip_current: req.socket.remoteAddress?.toString() || "",
     last_login: Math.round(+new Date() / 1000),
     account_created: Math.round(+new Date() / 1000),
-    credits: process.env.REGISTER_CREDITS,
-    diamonds: process.env.REGISTER_DIAMONDS,
-    duckets: process.env.REGISTER_DUCKETS,
+    credits:
+      process.env.REGISTER_CREDITS < 0 ? 0 : process.env.REGISTER_CREDITS,
+    diamonds:
+      process.env.REGISTER_DIAMONDS < 0 ? 0 : process.env.REGISTER_DIAMONDS,
+    duckets:
+      process.env.REGISTER_DUCKETS < 0 ? 0 : process.env.REGISTER_DUCKETS,
   });
-  if (insert) return res.status(200).json({ status: "OK" });
-  else return res.status(200).json({ status: "ERROR" });
+  if (insert) return res.status(200).json({ status: true });
+  else return res.status(200).json({ status: false });
 }
