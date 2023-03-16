@@ -12,13 +12,13 @@ export default async function handler(
   );
   if (!data.error) {
     res.status(200).json({
-      status: "OK",
+      status: true,
       username: req.query.username,
       look: data.data[0].look,
     });
   } else {
     res.status(200).json({
-      status: "ERROR",
+      status: false,
     });
   }
 }
