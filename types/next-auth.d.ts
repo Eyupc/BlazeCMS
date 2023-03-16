@@ -1,3 +1,4 @@
+import { TokenUserType } from "@/pages/api/auth/types/TokenType";
 import { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
@@ -7,18 +8,12 @@ declare module "next-auth" {
     token?: any;
 
     user: {
-      id?: string;
-      username?: string;
-      rank?: number;
+      id: number;
     };
   }
 
   interface User {
-    username?: string;
-    mail?: string;
-    password?: string;
-    rank?: number;
-    auth_ticket?: string;
+    id: number;
   }
 }
 
@@ -26,5 +21,6 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     /** This is an example. You can find me in types/next-auth.d.ts */
+    user: TokenUserType;
   }
 }
