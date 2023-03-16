@@ -8,6 +8,7 @@ import CredetentialProvider from "next-auth/providers/credentials";
 import DatabaseManager from "database/DatabaseManager";
 import bcrypt from "bcrypt";
 import { JWT } from "next-auth/jwt";
+import { TokenUserType } from "./types/TokenType";
 // import EmailProvider from "next-auth/providers/email"
 // import AppleProvider from "next-auth/providers/apple"
 
@@ -70,20 +71,17 @@ export default NextAuth({
         // Add logic here to look up the user from the credentials supplied
 
         if (credentials === undefined) return null;
-        const user = await DatabaseManager.GetInstance().UserQueries.GetUser(
+        const user = await DatabaseManager.GetInstance().UserQueries.TryLogin(
           credentials.username
         );
-        if (user.status == "ERROR") {
+        if (!user.status) {
           return null;
         } else {
-          if (await bcrypt.compare(credentials.password, user.password!)) {
+          if (user.data!.password.startsWith("$2y$"))
+            user.data!.password = user.data!.password.replace("$2y$", "$2b$"); //PHP hashed passwords
+          if (await bcrypt.compare(credentials.password, user.data!.password)) {
             return Promise.resolve({
-              id: user.id!.toString(),
-              username: user.username!,
-              //          password: user.password!,
-              // mail: user.mail!,
-              rank: user.rank!,
-              //            auth_ticket: user.auth_ticket!,
+              id: user.data!.id,
             });
           }
         }
@@ -140,7 +138,7 @@ export default NextAuth({
   pages: {
     signIn: "/",
     signOut: "/logout", // Displays form with sign out button
-    // error: '/auth/error', // Error code passed in query string as ?error=
+    error: "/auth/error", // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
     //newUser: "/", // If set, new users will be directed here on first sign in
   },
@@ -151,18 +149,18 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        //@TODO username, rank are not constant!
         token.user = {
-          id: user.id,
-          username: user.username,
-          rank: user.rank,
+          id: Number(user.id),
         };
       }
       return Promise.resolve(token);
     },
     session: async ({ session, token }) => {
       //session.token = token;
-      session.user = token.user!;
+      const user: TokenUserType = token.user;
+      session.user = {
+        id: token.user.id,
+      };
       return session;
     },
   },
