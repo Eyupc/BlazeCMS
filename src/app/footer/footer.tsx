@@ -25,7 +25,11 @@ export function Footer() {
               ></i>{" "}
               Instagram
             </a>
-            <a href="https://discord.gg/blazehotel" target="_blank">
+            <a
+              href="https://discord.gg/blazehotel"
+              target="_blank"
+              rel={"noreferrer"}
+            >
               <i className="fab fa-discord" style={{ marginRight: "5px" }}></i>{" "}
               Discord
             </a>
