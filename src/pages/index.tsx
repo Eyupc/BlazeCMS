@@ -18,6 +18,7 @@ import { redirect } from "next/navigation";
 import axios from "axios";
 import Head from "next/head";
 import "../app/global.css";
+import Image from "next/image";
 export default function Index() {
   const usernameRef: LegacyRef<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -179,7 +180,7 @@ export default function Index() {
             <div className="info-login d-flex">
               <div className="pins"></div>
               <div className="login-text">
-                <div className="login-tittle">BLAZE'YE GİRİŞ YAP</div>
+                <div className="login-title">BLAZE'YE GİRİŞ YAP</div>
                 <div className="login-description">
                   Merhaba, sizleri özledik.. Bizimle oynamak için giriş yapın!
                 </div>
@@ -193,6 +194,7 @@ export default function Index() {
                 <div className="login-user-avatar">
                   <img
                     id="userLook"
+                    alt="Avatar"
                     src={`https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar.look}&head_direction=4&direction=4&size=sml`}
                     className="login-avatar"
                   />
