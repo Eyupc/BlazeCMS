@@ -7,7 +7,7 @@ import { getServerSession, Session } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import { userAgent } from "next/server";
-import { HomeProps } from "./HomeProps";
+import { HomeProps } from "../../Props/HomeProps";
 import moment, { Moment } from "moment";
 import "../../app/global.css";
 export default function Home(data: HomeProps) {
@@ -104,25 +104,6 @@ export default function Home(data: HomeProps) {
                   <div className="icon hyg"></div>{" "}
                   <strong>{data.user?.diamonds}</strong>
                   &nbsp;elmas
-                </div>
-              </div>
-            </div>
-            <div className="meinfo">
-              <div className="infobox workforce-statistics">
-                <div className="meinfo-head">
-                  <strong>Haftanın kullanıcısı</strong>
-                </div>
-                <div className="meinfo-body">
-                  <div className="work-group">
-                    <div
-                      className="workico"
-                      style={{
-                        backgroundImage:
-                          "url(https://www.habbo.com/habbo-imaging/avatarimage?figure=hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-1012-110.hr-828-61&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png)",
-                      }}
-                    ></div>
-                    <div className="work-name">Furkan</div>
-                  </div>
                 </div>
               </div>
             </div>
