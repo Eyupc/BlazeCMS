@@ -1533,14 +1533,14 @@ header .rplogo {
   position: absolute;
   right: 0;
   width: 31px;
-  height: 21px;
-  margin: 17px 18px 17px 0px;
+  height: 30px;
+  margin: 13px 18px 17px 0px;
   -webkit-filter: drop-shadow(2px 4px 6px #0000004d);
   filter: drop-shadow(2px 4px 6px #0000004d);
 }
 
 .content .section .staff-team .staff-list .staffbox .usflag {
-  background-image: url(/assets/images/flag/us.png);
+  background-image: url(/assets/images/staff-small.gif);
 }
 
 .content .section .staff-team .staff-info {
