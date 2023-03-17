@@ -42,10 +42,9 @@ function Navigator() {
             </li>
             <li className="logout">
               <Link
-                href={"/home"}
+                href={"#"}
                 onClick={async () => {
                   await signOut({
-                    callbackUrl: "http://localhost:3000/",
                     redirect: false,
                   });
                   router.push("/");
