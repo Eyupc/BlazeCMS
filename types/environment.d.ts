@@ -27,7 +27,7 @@ namespace NodeJS {
     MYSQL_USER: string;
     MYSQL_PASSWORD: string;
     NEXTAUTH_URL: string;
-    HOTEL_LINK;
+    HOTEL_LINK: string;
     REGISTER_CREDITS: number;
     REGISTER_DUCKETS: number;
     REGISTER_DIAMONDS: number;
