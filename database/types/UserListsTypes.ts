@@ -3,11 +3,7 @@ import { StatusType } from "./StatusType";
 export type StaffLists = {
   status: StatusType["status"];
   data?: {
-    FOUNDERS: StaffUser[];
-    MANAGERS: StaffUser[];
-    MODERATORS: StaffUser[];
-    SILVERS: StaffUser[];
-    EXPERTS: StaffUser[];
+    staffs: StaffUser[];
   };
 };
 export type StaffUser = {

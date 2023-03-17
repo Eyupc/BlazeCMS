@@ -18,11 +18,7 @@ export class UserLists {
           res({
             status: true,
             data: {
-              FOUNDERS: staffs.filter((u) => u.rank == 14),
-              MANAGERS: staffs.filter((u) => u.rank == 13),
-              MODERATORS: staffs.filter((u) => u.rank == 12),
-              SILVERS: staffs.filter((u) => u.rank == 11),
-              EXPERTS: staffs.filter((u) => u.rank == 10),
+              staffs: staffs,
             },
           });
         }
