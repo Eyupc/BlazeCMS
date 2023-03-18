@@ -10,28 +10,21 @@ import { userAgent } from "next/server";
 import { HomeProps } from "../../Props/HomeProps";
 import moment, { Moment } from "moment";
 import "../../app/global.css";
+import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
 export default function Home(data: HomeProps) {
   return (
     <>
       <Head>
         <title>Blaze - Home</title>
       </Head>
-      <Navigator></Navigator>
-      <Header></Header>
-      <div className="announcement-bar">
-        <div className="content">
-          <div className="frank"></div>
-          <div className="announcement-desc">
-            <strong>
-              Blaze Hotel özel kullanıcılarla dolu bir topluluktur.
-            </strong>
-            <p>
-              Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadını
-              çıkar!
-            </p>
-          </div>
-        </div>
-      </div>
+      <Navigator loggedIn={true} />
+      <Header />
+      <AnnouncementBar
+        title={"Blaze Hotel özel kullanıcılarla dolu bir topluluktur."}
+        description={
+          "Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadını çıkar!"
+        }
+      />
       <div className="content mt-2 mb-2">
         <div className="section">
           <div className="home">
