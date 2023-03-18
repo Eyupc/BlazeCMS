@@ -1,4 +1,4 @@
-import { signOut } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import {
   HTMLAttributes,
@@ -10,7 +10,11 @@ import {
   useState,
 } from "react";
 import router from "next/router";
-function Navigator() {
+import { GetServerSidePropsContext } from "next";
+import { Session } from "inspector";
+import { INavigatorProps } from "./INavigatorProps";
+import { ShowLoginForm } from "../Index/methods/ShowLoginForm";
+export default function Navigator({ loggedIn }: INavigatorProps) {
   const [showSub, setShowSub] = useState("n");
   const [showCommunity, setShowCommunity] = useState("n");
 
@@ -19,39 +23,54 @@ function Navigator() {
       <nav>
         <div className="content">
           <ul className="nav">
-            <li className="home">
-              <Link href={"/home"} />
-              <div className="name">Home</div>
-            </li>
-            <li
-              className="community"
-              onMouseEnter={(e) => {
-                setShowSub("y");
-                setShowCommunity("y");
-              }}
-              onMouseLeave={(e) => {
-                setShowSub("n");
-                setShowCommunity("n");
-              }}
-              menuname="communityMenu"
-            >
-              <div className="name">Community</div>
-            </li>
-            <li className="community" menuname="test">
-              <div className="name">Yardım</div>
-            </li>
-            <li className="logout">
-              <Link
-                href={"#"}
-                onClick={async () => {
-                  await signOut({
-                    redirect: false,
-                  });
-                  router.push("/");
-                }}
-              />
-              <div className="name">Logout</div>
-            </li>
+            {loggedIn ? (
+              <>
+                <li className="home">
+                  <Link href={"/home"} />
+                  <div className="name">Home</div>
+                </li>
+                <li
+                  className="community"
+                  onMouseEnter={(e) => {
+                    setShowSub("y");
+                    setShowCommunity("y");
+                  }}
+                  onMouseLeave={(e) => {
+                    setShowSub("n");
+                    setShowCommunity("n");
+                  }}
+                  menuname="communityMenu"
+                >
+                  <div className="name">Community</div>
+                </li>
+                <li className="community" menuname="test">
+                  <div className="name">Yardım</div>
+                </li>
+                <li className="logout">
+                  <Link
+                    href={"#"}
+                    onClick={async () => {
+                      await signOut({
+                        redirect: false,
+                      });
+                      router.push("/");
+                    }}
+                  />
+                  <div className="name">Logout</div>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="login" onClick={() => ShowLoginForm(true)}>
+                  <Link href={"/"} />
+                  <div className="name">Giriş yap</div>
+                </li>
+                <li className="register">
+                  <Link href="/register" />
+                  <div className="name">Hesap oluştur</div>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>
@@ -128,4 +147,3 @@ function Navigator() {
     </>
   );
 }
-export default memo(Navigator);
