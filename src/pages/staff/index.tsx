@@ -1,4 +1,5 @@
 import { Header } from "@/app/header/header";
+import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
 import Navigator from "@/app/nav/navigator";
 import DatabaseManager from "database/DatabaseManager";
 import { StaffUser } from "database/types/UserListsTypes";
@@ -60,20 +61,14 @@ export default function Index(data: StaffProps) {
       <Head>
         <title>Raze - Staff</title>
       </Head>
-      <Navigator></Navigator>
-      <Header></Header>
-      <div className="announcement-bar">
-        <div className="content">
-          <div className="frank"></div>
-          <div className="announcement-desc">
-            <strong>RazeRP is a community full of dedicated users,</strong>
-            <p>
-              join for free, make friends, make enemies and enjoy the
-              experience!
-            </p>
-          </div>
-        </div>
-      </div>
+      <Navigator loggedIn={true} />
+      <Header />
+      <AnnouncementBar
+        title={"Blaze - Staffs"}
+        description={
+          "Hi, this is the staff page. Here can u see our staff team!"
+        }
+      />
       <div className="content mt-2 mb-2">
         <div className="section">
           <div className="staff-menu">
@@ -175,7 +170,6 @@ type StaffProps = {
 export async function getServerSideProps(
   ctx: GetServerSidePropsContext
 ): Promise<{ props: StaffProps }> {
-  const session = await getSession({ req: ctx.req });
   const staffs = await DatabaseManager.GetInstance().UserLists.GetStaffs();
   const ranks = await DatabaseManager.GetInstance().UserLists.GetRankNames();
 
