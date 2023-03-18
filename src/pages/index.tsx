@@ -19,27 +19,15 @@ import axios from "axios";
 import Head from "next/head";
 import "../app/global.css";
 import Image from "next/image";
+import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
+import Navigator from "@/app/nav/navigator";
+import { ShowLoginForm } from "@/app/Index/methods/ShowLoginForm";
 export default function Index() {
   const usernameRef: LegacyRef<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
   const passwordRef: LegacyRef<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
   const [avatar, setAvatar] = useState({ look: "" });
-
-  const ShowLoginForm = useCallback((open: boolean) => {
-    let element = document.getElementsByClassName(
-      "login-modal animate__animated animate__fadeIn"
-    ) as HTMLCollectionOf<HTMLElement>;
-    if (element[0] != null) {
-      if (open) {
-        element[0].style.visibility = "visible";
-        element[0].style.opacity = "1";
-      } else {
-        element[0].style.visibility = "hidden";
-        element[0].style.opacity = "0";
-      }
-    }
-  }, []);
 
   const handleSubmit = useCallback(
     async (e: any) => {
@@ -88,33 +76,14 @@ export default function Index() {
       <Head>
         <title>Blaze - Index</title>
       </Head>
-      <nav>
-        <div className="content">
-          <ul className="nav">
-            <li className="login" onClick={() => ShowLoginForm(true)}>
-              <a href="#login"></a>
-              <div className="name">Giriş yap</div>
-            </li>
-            <li className="register">
-              <Link href="/register" />
-              <div className="name">Hesap oluştur</div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <Header></Header>
-      <div className="announcement-bar">
-        <div className="content">
-          <div className="frank"></div>
-          <div className="announcement-desc">
-            <strong>Blaze özel kullanıcılarla dolu bir topluluktur.</strong>
-            <p>
-              Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadını
-              çıkar!
-            </p>
-          </div>
-        </div>
-      </div>
+      <Navigator loggedIn={false} />
+      <Header />
+      <AnnouncementBar
+        title={"Blaze özel kullanıcılarla dolu bir topluluktur"}
+        description={
+          "Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!"
+        }
+      />
       <div className="content mt-2 mb-2">
         <div className="section">
           <div className="login">
