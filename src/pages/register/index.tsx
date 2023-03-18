@@ -20,6 +20,8 @@ import {
   useState,
 } from "react";
 import "../../app/global.css";
+import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
+import Navigator from "@/app/nav/navigator";
 export default function Index(ctx: any) {
   const regexUsername = new RegExp("(^[a-zA-Z0-9-=?!@:.]{1,19}$)");
   const [username, setUsername] = useState("");
@@ -95,32 +97,14 @@ export default function Index(ctx: any) {
       <Head>
         <title>Blaze - Register</title>
       </Head>
-      <nav>
-        <div className="content">
-          <ul className="nav">
-            <li className="login">
-              <Link href={"/"}></Link>
-              <div className="name">Giriş yap</div>
-            </li>
-            <li className="register">
-              <div className="name">Hesap oluştur</div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <Header></Header>
-      <div className="announcement-bar">
-        <div className="content">
-          <div className="frank"></div>
-          <div className="announcement-desc">
-            <strong>Blaze özel kullanıcılarla dolu bir topluluktur.</strong>
-            <p>
-              Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadını
-              çıkar!
-            </p>
-          </div>
-        </div>
-      </div>
+      <Navigator loggedIn={false} />
+      <Header />
+      <AnnouncementBar
+        title={"Blaze özel kullanıcılarla dolu bir topluluktur"}
+        description={
+          "Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!"
+        }
+      />
       <div className="content mt-2 mb-2">
         <div className="section">
           <div className="register">
