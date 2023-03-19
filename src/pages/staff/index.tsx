@@ -1,6 +1,6 @@
-import { Header } from "@/app/header/header";
+import { Header } from "@/app/static/header/header";
 import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
-import Navigator from "@/app/nav/navigator";
+import Navigator from "@/app/static/nav/navigator";
 import DatabaseManager from "database/DatabaseManager";
 import { StaffUser } from "database/types/UserListsTypes";
 import { GetServerSidePropsContext } from "next";
