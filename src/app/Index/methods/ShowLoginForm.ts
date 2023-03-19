@@ -6,9 +6,9 @@ export const ShowLoginForm = (open: boolean) => {
     if (open) {
       element[0].style.visibility = "visible";
       element[0].style.opacity = "1";
-    } else {
-      element[0].style.visibility = "hidden";
-      element[0].style.opacity = "0";
+      return;
     }
+    element[0].style.visibility = "hidden";
+    element[0].style.opacity = "0";
   }
 };
