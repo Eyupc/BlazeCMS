@@ -1,5 +1,5 @@
-import { Footer } from "@/app/footer/footer";
-import { Header } from "@/app/header/header";
+import { Footer } from "@/app/static/footer/footer";
+import { Header } from "@/app/static/header/header";
 import { Alert } from "@mui/material";
 import axios from "axios";
 import DatabaseManager from "database/DatabaseManager";
@@ -21,7 +21,9 @@ import {
 } from "react";
 import "../../app/global.css";
 import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
-import Navigator from "@/app/nav/navigator";
+import Navigator from "@/app/static/nav/navigator";
+import { Main } from "@/app/static/Main/main";
+import { AlertBox } from "@/app/Register/AlertBox";
 export default function Index(ctx: any) {
   const regexUsername = new RegExp("(^[a-zA-Z0-9-=?!@:.]{1,19}$)");
   const [username, setUsername] = useState("");
@@ -105,8 +107,8 @@ export default function Index(ctx: any) {
           "Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!"
         }
       />
-      <div className="content mt-2 mb-2">
-        <div className="section">
+      <Main
+        child={
           <div className="register">
             <div className="regbox d-flex direction-row bbgreen">
               <div className="box-inner">
@@ -233,32 +235,20 @@ export default function Index(ctx: any) {
                 </form>
               </div>
             </div>
-            <div className="regbox d-flex direction-row bbgreen">
-              <div className="box-inner">
-                <div className="info-register d-flex">
-                  <div className="pins"></div>
-                  <div className="register-text">
-                    <div className="register-tittle">BLAZE'YE KATIL!</div>
-                    <div className="register-description">
-                      Gençler için dünyanın en büyük çevrimiçi topluluğunun bir
-                      parçası olun.
-                    </div>
-                  </div>
-                </div>
-                <p className="inforeg-desc">
-                  Arkadaşlarınızla sohbet etmeyi ve takılmayı sever misiniz?{" "}
-                  <strong>
-                    Blaze Grupları, forumlar ve Rol yapma toplulukları
-                  </strong>{" "}
-                  başlamak için harika bir yerdir. Katılın ve sonsuz rol oynama
-                  olasılıklarını keşfedin!
-                </p>
-              </div>
-            </div>
+            <AlertBox
+              title={"BLAZE'YE KATIL!"}
+              description={
+                "Gençler için dünyanın en büyük çevrimiçi topluluğunun bir parçası olun."
+              }
+              text={
+                "Arkadaşlarınızla sohbet etmeyi ve takılmayı sever misiniz? Blaze Grupları, forumlar ve Rol yapma topluluklarıbaşlamak için harika bir yerdir. Katılın ve sonsuz rol oynamaolasılıklarını keşfedin!"
+              }
+            />
           </div>
-        </div>
-      </div>
-      <Footer></Footer>
+        }
+      />
+
+      <Footer />
     </>
   );
 }
