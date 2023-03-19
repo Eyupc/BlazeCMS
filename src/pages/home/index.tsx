@@ -1,6 +1,6 @@
-import { Footer } from "@/app/footer/footer";
-import { Header } from "@/app/header/header";
-import Navigator from "@/app/nav/navigator";
+import { Footer } from "@/app/static/footer/footer";
+import { Header } from "@/app/static/header/header";
+import Navigator from "@/app/static/nav/navigator";
 import DatabaseManager from "database/DatabaseManager";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerSession, Session } from "next-auth";
