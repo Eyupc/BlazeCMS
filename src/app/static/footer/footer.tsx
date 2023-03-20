@@ -1,4 +1,6 @@
-export function Footer() {
+import { memo } from "react";
+
+export const Footer = memo(() => {
   return (
     <>
       <div className="footermain">
@@ -53,4 +55,4 @@ export function Footer() {
       <div className="footer">© 2023 Blaze Hotel</div>
     </>
   );
-}
+});
