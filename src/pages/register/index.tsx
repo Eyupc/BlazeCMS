@@ -24,6 +24,7 @@ import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
 import Navigator from "@/app/static/nav/navigator";
 import { Main } from "@/app/static/Main/main";
 import { AlertBox } from "@/app/Register/AlertBox";
+import { RegisterBox } from "@/app/Register/RegisterBox";
 export default function Index(ctx: any) {
   const regexUsername = new RegExp("(^[a-zA-Z0-9-=?!@:.]{1,19}$)");
   const [username, setUsername] = useState("");
@@ -110,131 +111,7 @@ export default function Index(ctx: any) {
       <Main
         child={
           <div className="register">
-            <div className="regbox d-flex direction-row bbgreen">
-              <div className="box-inner">
-                <form id="form" onSubmit={handleRegister}>
-                  {errors.length > 0 ? (
-                    <Alert
-                      severity="error"
-                      style={{ margin: ".5rem .5rem .5rem 0" }}
-                    >
-                      {errors.map((e, i) => (
-                        <div key={i}>
-                          {e}
-                          <br />
-                        </div>
-                      ))}
-                    </Alert>
-                  ) : (
-                    <></>
-                  )}
-                  <b>Kullanıcı adı</b>
-                  <em>
-                    Gelecekte Blaze'de oturum açmak için bu kullanıcı adını
-                    kullanmanız gerekecek. Lütfen geçeri bir kullanıcı adı
-                    kullanın.
-                  </em>
-                  <input
-                    className="register-i"
-                    type="text"
-                    name="username"
-                    id="username"
-                    onKeyDown={(e) => {
-                      if (e.code == "Space") e.preventDefault();
-                    }}
-                    style={
-                      unameValid != null
-                        ? unameValid
-                          ? { border: "1px solid green" }
-                          : { border: "1px solid red" }
-                        : {}
-                    }
-                    onChange={(e) => {
-                      onUsernameChange(e);
-                    }}
-                    onBlur={async () => await checkUsername(username)}
-                    autoComplete="on"
-                    required
-                  />
-                  <div className="register-password-main">
-                    <b>Parola</b>
-                    <em>En az 6 karakter kullanın.</em>
-                    <input
-                      className="register-i mb-08"
-                      type="password"
-                      name="password"
-                      ref={passwordRef}
-                      id="password"
-                      autoComplete="on"
-                      required
-                    />
-                    <b className="mb-05">Parolanı tekrarla</b>
-                    <input
-                      className="register-i"
-                      type="password"
-                      name="repeat"
-                      id="repeat"
-                      ref={rePassword}
-                      autoComplete="on"
-                      required
-                    />
-                  </div>
-                  <b>E-posta</b>
-                  <em>
-                    Kendi e-posta adresinizi girerek "parolamı unuttum" işlevini
-                    kullanabilirsiniz.
-                  </em>
-                  <input
-                    className="register-i"
-                    type="email"
-                    ref={emailRef}
-                    name="email"
-                    id="email"
-                    autoComplete="on"
-                    required
-                  />
-                  <hr />
-                  <b>Cinsiyet</b>
-                  <em>Lütfen cinsiyetinizi seçeniz.</em>
-                  <div className="birthday">
-                    <select
-                      name="day"
-                      ref={genderRef}
-                      className="register-i birthday-select"
-                    >
-                      <option value="Boy">Erkek</option>
-                      <option value="Girl">Kiz</option>
-                    </select>
-                  </div>
-                  <hr />
-                  <fieldset className="fieldset">
-                    <div className="field">
-                      <label className="form-label-checkbox">
-                        <input
-                          id="terms-of-service"
-                          type="checkbox"
-                          className="form-checkbox"
-                          ref={checkbox}
-                          required
-                        />
-                        <span>
-                          <strong>
-                            <u>
-                              Kullanım Şart ve Koşulları, Gizlilik ve Çerez
-                              Politikası Şartlarını
-                            </u>
-                          </strong>{" "}
-                          kabul ediyorum.
-                        </span>
-                      </label>
-                    </div>
-                  </fieldset>
-                  <button type="submit" id="submit" className="enterhotel">
-                    Tamamladık! Hadi, bir avatar yapalım!
-                  </button>
-                </form>
-              </div>
-            </div>
+            <RegisterBox />
             <AlertBox
               title={"BLAZE'YE KATIL!"}
               description={
@@ -247,7 +124,6 @@ export default function Index(ctx: any) {
           </div>
         }
       />
-
       <Footer />
     </>
   );
