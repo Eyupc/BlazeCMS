@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { memo } from "react";
 
-export function Header() {
+export const Header = memo(() => {
   return (
     <header>
       <div className="landspace"></div>
@@ -13,4 +14,4 @@ export function Header() {
       ></Link>
     </header>
   );
-}
+});
