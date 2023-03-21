@@ -1,7 +1,7 @@
-import DatabaseManager from "database/DatabaseManager";
-import { setServers } from "dns";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getSession, useSession } from "next-auth/react";
+import DatabaseManager from 'database/DatabaseManager';
+import { setServers } from 'dns';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession, useSession } from 'next-auth/react';
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,11 +14,11 @@ export default async function handler(
     res.status(200).json({
       status: true,
       username: req.query.username,
-      look: data.data[0].look,
+      look: data.data[0].look
     });
   } else {
     res.status(200).json({
-      status: false,
+      status: false
     });
   }
 }
