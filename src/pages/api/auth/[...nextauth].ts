@@ -1,14 +1,14 @@
-import NextAuth, { Session, User } from "next-auth";
-import Auth0Provider from "next-auth/providers/auth0";
-import FacebookProvider from "next-auth/providers/facebook";
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
-import TwitterProvider from "next-auth/providers/twitter";
-import CredetentialProvider from "next-auth/providers/credentials";
-import DatabaseManager from "database/DatabaseManager";
-import bcrypt from "bcrypt";
-import { JWT } from "next-auth/jwt";
-import { TokenUserType } from "./types/TokenType";
+import bcrypt from 'bcrypt';
+import DatabaseManager from 'database/DatabaseManager';
+import NextAuth, { Session, User } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
+import Auth0Provider from 'next-auth/providers/auth0';
+import CredetentialProvider from 'next-auth/providers/credentials';
+import FacebookProvider from 'next-auth/providers/facebook';
+import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
+import TwitterProvider from 'next-auth/providers/twitter';
+import { TokenUserType } from './types/TokenType';
 // import EmailProvider from "next-auth/providers/email"
 // import AppleProvider from "next-auth/providers/apple"
 
@@ -35,37 +35,37 @@ export default NextAuth({
       clientId: process.env.AUTH0_ID,
       clientSecret: process.env.AUTH0_SECRET,
       // @ts-ignore
-      domain: process.env.AUTH0_DOMAIN,
+      domain: process.env.AUTH0_DOMAIN
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET,
+      clientSecret: process.env.FACEBOOK_SECRET
     }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
       // @ts-ignore
-      scope: "read:user",
+      scope: 'read:user'
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientSecret: process.env.GOOGLE_SECRET
     }),
     TwitterProvider({
       clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET,
+      clientSecret: process.env.TWITTER_SECRET
     }),
     CredetentialProvider({
-      id: "credentials",
-      name: "Login",
+      id: 'credentials',
+      name: 'Login',
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
+        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+        password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
@@ -77,17 +77,17 @@ export default NextAuth({
         if (!user.status) {
           return null;
         } else {
-          if (user.data!.password.startsWith("$2y$"))
-            user.data!.password = user.data!.password.replace("$2y$", "$2b$"); //PHP hashed passwords
+          if (user.data!.password.startsWith('$2y$'))
+            user.data!.password = user.data!.password.replace('$2y$', '$2b$'); //PHP hashed passwords
           if (await bcrypt.compare(credentials.password, user.data!.password)) {
             return Promise.resolve({
-              id: user.data!.id,
+              id: user.data!.id
             });
           }
         }
         return null;
-      },
-    }),
+      }
+    })
   ],
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
   // https://next-auth.js.org/configuration/databases
@@ -106,10 +106,10 @@ export default NextAuth({
     // Use JSON Web Tokens for session instead of database sessions.
     // This option can be used with or without a database for users/accounts.
     // Note: `strategy` should be set to 'jwt' if no database is used.
-    strategy: "jwt",
+    strategy: 'jwt',
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 3 * 24 * 60 * 60, // 30 days
+    maxAge: 3 * 24 * 60 * 60 // 30 days
 
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
@@ -136,9 +136,9 @@ export default NextAuth({
   // pages is not specified for that route.
   // https://next-auth.js.org/configuration/pages
   pages: {
-    signIn: "/",
-    signOut: "/logout", // Displays form with sign out button
-    error: "/auth/error", // Error code passed in query string as ?error=
+    signIn: '/',
+    signOut: '/logout', // Displays form with sign out button
+    error: '/auth/error' // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
     //newUser: "/", // If set, new users will be directed here on first sign in
   },
@@ -150,7 +150,7 @@ export default NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.user = {
-          id: Number(user.id),
+          id: Number(user.id)
         };
       }
       return Promise.resolve(token);
@@ -159,10 +159,10 @@ export default NextAuth({
       //session.token = token;
       const user: TokenUserType = token.user;
       session.user = {
-        id: token.user.id,
+        id: token.user.id
       };
       return session;
-    },
+    }
   },
 
   // Events are useful for logging
@@ -170,5 +170,5 @@ export default NextAuth({
   events: {},
 
   // Enable debug messages in the console if you are having problems
-  debug: true,
+  debug: true
 });

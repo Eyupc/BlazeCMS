@@ -1,37 +1,27 @@
-"use client";
-import { Footer } from "@/app/static/footer/footer";
-import { Header } from "@/app/static/header/header";
-import Link from "next/link";
-import { getSession, signIn, useSession } from "next-auth/react";
-
+import { redirect } from 'next/navigation';
+import router from 'next/router';
 import {
   LegacyRef,
   useCallback,
   useEffect,
   useMemo,
   useRef,
-  useState,
-} from "react";
-import router from "next/router";
-import { redirect } from "next/navigation";
+  useState
+} from 'react';
 
-import axios from "axios";
-import Head from "next/head";
-import "../app/global.css";
-import Image from "next/image";
-import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
-import Navigator from "@/app/static/nav/navigator";
-import { ShowLoginForm } from "@/app/Index/methods/ShowLoginForm";
-import { InformationBox } from "@/app/Index/InformationBox";
-import { Main } from "@/app/static/Main/main";
-import { ModalLogin } from "@/app/Index/ModalLogin";
+import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
+import { InformationBox } from '@/Components/Index/InformationBox';
+import { ModalLogin } from '@/Components/Index/ModalLogin';
+import { Footer } from '@/Components/static/footer/footer';
+import { Header } from '@/Components/static/header/header';
+import { Main } from '@/Components/static/Main/main';
+import Navigator from '@/Components/static/nav/navigator';
+import axios from 'axios';
+import Head from 'next/head';
+import Image from 'next/image';
+import '../app/global.css';
+
 export default function Index() {
-  const usernameRef: LegacyRef<HTMLInputElement> =
-    useRef<HTMLInputElement>(null);
-  const passwordRef: LegacyRef<HTMLInputElement> =
-    useRef<HTMLInputElement>(null);
-  const [avatar, setAvatar] = useState({ look: "" });
-
   return (
     <>
       <Head>
@@ -40,37 +30,37 @@ export default function Index() {
       <Navigator loggedIn={false} />
       <Header />
       <AnnouncementBar
-        title={"Blaze özel kullanıcılarla dolu bir topluluktur"}
+        title={'Blaze özel kullanıcılarla dolu bir topluluktur'}
         description={
-          "Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!"
+          'Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!'
         }
       />
       <Main
         child={
           <div className="login">
             <InformationBox
-              alertTitle={"BİLGİLENDİRME"}
-              title={"Arkadaş edin"}
+              alertTitle={'BİLGİLENDİRME'}
+              title={'Arkadaş edin'}
               description={
-                "Bir kullanıcıya tıklayın, arkadaşınız olmalarını isteyen ve beraber etkinlikere katılın, eğlenin odalar yapın ve rol yapın!"
+                'Bir kullanıcıya tıklayın, arkadaşınız olmalarını isteyen ve beraber etkinlikere katılın, eğlenin odalar yapın ve rol yapın!'
               }
-              banner_img={"/assets/images/corps.png"}
+              banner_img={'/assets/images/corps.png'}
             />
             <InformationBox
-              alertTitle={"BİLGİLENDİRME"}
-              title={"Ücretsiz oyna"}
+              alertTitle={'BİLGİLENDİRME'}
+              title={'Ücretsiz oyna'}
               description={
-                "Blaze ücretsiz oynanan bir oyundur, ücretsiz binlerce odayı gezebilir, görevlerini tamamlayabilir, sohbet edebilir ve ödüller kazanabilirsiniz!"
+                'Blaze ücretsiz oynanan bir oyundur, ücretsiz binlerce odayı gezebilir, görevlerini tamamlayabilir, sohbet edebilir ve ödüller kazanabilirsiniz!'
               }
-              banner_img={"/assets/images/crime.png"}
+              banner_img={'/assets/images/crime.png'}
             />
             <InformationBox
-              alertTitle={"BİLGİLENDİRME"}
-              title={"Topluluğunu bul"}
+              alertTitle={'BİLGİLENDİRME'}
+              title={'Topluluğunu bul'}
               description={
-                "Arkadaşlarınla sohbet edip takılmaktan mı hoşlanıyorsun? Blaze grupları, forumları ve rol yapan topluluklar başlangıç için iyi seçenekler."
+                'Arkadaşlarınla sohbet edip takılmaktan mı hoşlanıyorsun? Blaze grupları, forumları ve rol yapan topluluklar başlangıç için iyi seçenekler.'
               }
-              banner_img={"assets/images/community.png"}
+              banner_img={'assets/images/community.png'}
             />
           </div>
         }

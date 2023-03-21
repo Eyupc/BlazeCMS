@@ -1,13 +1,12 @@
-import { Header } from "@/app/static/header/header";
-import { AnnouncementBar } from "@/app/Index/AnnouncementBar";
-import Navigator from "@/app/static/nav/navigator";
-import DatabaseManager from "database/DatabaseManager";
-import { StaffUser } from "database/types/UserListsTypes";
-import { GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/react";
-import Head from "next/head";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import "../../app/global.css";
+import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
+import { Header } from '@/Components/static/header/header';
+import Navigator from '@/Components/static/nav/navigator';
+import DatabaseManager from 'database/DatabaseManager';
+import { StaffUser } from 'database/types/UserListsTypes';
+import { GetServerSidePropsContext } from 'next';
+import Head from 'next/head';
+import { useMemo, useState } from 'react';
+import '../../app/global.css';
 
 export default function Index(data: StaffProps) {
   const [rank, setRank] = useState<number>(14);
@@ -20,8 +19,8 @@ export default function Index(data: StaffProps) {
           <div
             key={i}
             className={
-              "staffbox" +
-              (!!Number(u.online) ? " staff-online" : " staff-offline")
+              'staffbox' +
+              (!!Number(u.online) ? ' staff-online' : ' staff-offline')
             }
           >
             <div className="avatarbox">
@@ -31,18 +30,18 @@ export default function Index(data: StaffProps) {
                   background: `url(https://www.habbo.com/habbo-imaging/avatarimage?figure=${
                     u.look
                   }&action=std,crr=667&gesture=${
-                    !!Number(u.online) ? "std" : "eyb"
-                  }&direction=2&head_direction=2&size=n&img_format=png)`,
+                    !!Number(u.online) ? 'std' : 'eyb'
+                  }&direction=2&head_direction=2&size=n&img_format=png)`
                 }}
               ></div>
             </div>
             <div className="staffinfo">
               <div
                 className={
-                  "s_username " +
+                  's_username ' +
                   (!!Number(u.online)
-                    ? "staffname-online"
-                    : "staffname-offline")
+                    ? 'staffname-online'
+                    : 'staffname-offline')
                 }
               >
                 {u.username}
@@ -64,9 +63,9 @@ export default function Index(data: StaffProps) {
       <Navigator loggedIn={true} />
       <Header />
       <AnnouncementBar
-        title={"Blaze - Staffs"}
+        title={'Blaze - Staffs'}
         description={
-          "Hi, this is the staff page. Here can u see our staff team!"
+          'Hi, this is the staff page. Here can u see our staff team!'
         }
       />
       <div className="content mt-2 mb-2">
@@ -77,7 +76,7 @@ export default function Index(data: StaffProps) {
                 <div
                   onClick={() => setRank(14)}
                   className={
-                    "stable-box bg-red " + (rank == 14 ? "stable-active" : "")
+                    'stable-box bg-red ' + (rank == 14 ? 'stable-active' : '')
                   }
                 >
                   <strong>
@@ -88,7 +87,7 @@ export default function Index(data: StaffProps) {
                 <div
                   onClick={() => setRank(13)}
                   className={
-                    "stable-box bg-blue " + (rank == 13 ? "stable-active" : "")
+                    'stable-box bg-blue ' + (rank == 13 ? 'stable-active' : '')
                   }
                 >
                   <strong>
@@ -99,8 +98,8 @@ export default function Index(data: StaffProps) {
                 <div
                   onClick={() => setRank(12)}
                   className={
-                    "stable-box bg-orange " +
-                    (rank == 12 ? "stable-active" : "")
+                    'stable-box bg-orange ' +
+                    (rank == 12 ? 'stable-active' : '')
                   }
                 >
                   <strong>Moderator</strong>
@@ -111,7 +110,7 @@ export default function Index(data: StaffProps) {
                 <div
                   onClick={() => setRank(11)}
                   className={
-                    "stable-box bg-green " + (rank == 11 ? "stable-active" : "")
+                    'stable-box bg-green ' + (rank == 11 ? 'stable-active' : '')
                   }
                 >
                   <strong>
@@ -122,8 +121,8 @@ export default function Index(data: StaffProps) {
                 <div
                   onClick={() => setRank(10)}
                   className={
-                    "stable-box bg-yellow " +
-                    (rank == 10 ? "stable-active" : "")
+                    'stable-box bg-yellow ' +
+                    (rank == 10 ? 'stable-active' : '')
                   }
                 >
                   <strong>eXpert</strong>
@@ -177,11 +176,11 @@ export async function getServerSideProps(
     return {
       props: {
         staffs: JSON.parse(JSON.stringify(staffs.data?.staffs)),
-        ranks: JSON.parse(JSON.stringify(ranks.data)),
-      },
+        ranks: JSON.parse(JSON.stringify(ranks.data))
+      }
     };
   }
   return {
-    props: {},
+    props: {}
   };
 }
