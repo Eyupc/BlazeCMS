@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 #subnav {
   position: absolute;
   background-color: #ffffff;
@@ -71,7 +71,7 @@
   -webkit-filter: drop-shadow(0px 0px 2px #042033);
   filter: drop-shadow(0px 0px 2px #042033);
   border-left: solid 1px;
-  content: "";
+  content: '';
   padding-left: 10px;
   opacity: 0.2;
   color: #031d2de6;
@@ -88,7 +88,7 @@
   -webkit-filter: drop-shadow(0px 0px 2px #042033);
   filter: drop-shadow(0px 0px 2px #042033);
   border-left: solid 1px;
-  content: "";
+  content: '';
   padding-left: 10px;
   opacity: 0.2;
 }
@@ -117,7 +117,7 @@
   -webkit-filter: drop-shadow(0px 0px 2px #04203370);
   filter: drop-shadow(0px 0px 2px #04203370);
   border-left: solid 1px;
-  content: "";
+  content: '';
   padding-left: 10px;
   opacity: 0.1;
 }
@@ -133,7 +133,7 @@
   -webkit-filter: drop-shadow(0px 0px 2px #04203370);
   filter: drop-shadow(0px 0px 2px #04203370);
   border-left: solid 1px;
-  content: "";
+  content: '';
   padding-left: 10px;
   opacity: 0.1;
 }
@@ -145,7 +145,7 @@
   height: 267px;
 }
 
-#subnav .subItem[active="y"] {
+#subnav .subItem[active='y'] {
   -webkit-transform: translateX(-50%) scale(1);
   transform: translateX(-50%) scale(1);
   top: 0px;
@@ -159,7 +159,7 @@
   height: 267px;
 }
 
-#subnav[active="y"] {
+#subnav[active='y'] {
   height: 267px;
 }
 
@@ -171,7 +171,7 @@
 body {
   height: 100%;
   background: #f6f5f7;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 14px;
   margin: 0px;
   padding: 0px;
@@ -609,7 +609,7 @@ header .rplogo {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0px 50px 0px 10px;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .content .section .register .regbox .box-inner form .error {
@@ -1877,7 +1877,7 @@ nav ul li {
 }
 
 nav ul li::before {
-  content: "";
+  content: '';
   float: left;
   position: absolute;
   bottom: 50%;
@@ -2078,7 +2078,7 @@ nav ul li .name {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0px 50px 0px 10px;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .login-modal .modalbox .userbox form .login-password {
@@ -2114,7 +2114,7 @@ nav ul li .name {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0px 50px 0px 10px;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .login-modal .modalbox .userbox form .login-pincode {
@@ -2150,7 +2150,7 @@ nav ul li .name {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0px 50px 0px 10px;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .login-modal .modalbox .userbox .login-forgot {
@@ -2223,7 +2223,7 @@ nav ul li .name {
 }
 
 .login-modal .modalbox .userbox .login-warning:after {
-  content: "";
+  content: '';
   border-color: #ffffff00 transparent #e22e2e transparent;
   border-style: solid;
   border-width: 10px;
@@ -2321,7 +2321,7 @@ nav ul li .name {
 }
 
 .footermain .footer-url:after {
-  content: "|";
+  content: '|';
   color: rgba(0, 0, 0, 0.2);
   margin: 0px 10px;
 }

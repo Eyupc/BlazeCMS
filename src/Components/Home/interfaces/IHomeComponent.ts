@@ -1,4 +1,4 @@
-export type HomeProps = {
+export interface IServerSide {
   user?: {
     username: string;
     motto: string;
@@ -11,4 +11,4 @@ export type HomeProps = {
     last_online: string;
     online: boolean;
   };
-};
+}
