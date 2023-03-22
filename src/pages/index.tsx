@@ -1,14 +1,3 @@
-import { redirect } from 'next/navigation';
-import router from 'next/router';
-import {
-  LegacyRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
-
 import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
 import { InformationBox } from '@/Components/Index/InformationBox';
 import { ModalLogin } from '@/Components/Index/ModalLogin';
@@ -16,11 +5,8 @@ import { Footer } from '@/Components/static/footer/footer';
 import { Header } from '@/Components/static/header/header';
 import { Main } from '@/Components/static/Main/main';
 import Navigator from '@/Components/static/nav/navigator';
-import axios from 'axios';
 import Head from 'next/head';
-import Image from 'next/image';
 import '../app/global.css';
-
 export default function Index() {
   return (
     <>
