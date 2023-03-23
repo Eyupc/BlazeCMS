@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import '../global.css';
 import { IAlertBox } from './interfaces/IAlertBox';
 
 export const AlertBox = memo(({ title, description, text }: IAlertBox) => {
