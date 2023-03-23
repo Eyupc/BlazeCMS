@@ -1,11 +1,10 @@
 import { Alert } from '@mui/material';
 import { signIn } from 'next-auth/react';
 import router from 'next/router';
-import { BaseSyntheticEvent, ChangeEvent, useCallback, useState } from 'react';
-import { AlertBox } from './AlertBox';
+import { BaseSyntheticEvent, useState } from 'react';
+import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { ICredentials } from './interfaces/ICredentials';
 import { HandleRegister } from './methods/HandleRegister';
-import { RegisterButton } from './parts/RegisterButton';
 import { RegisterCheckbox } from './parts/RegisterCheckbox';
 import { RegisterInput } from './parts/RegisterInput';
 import { RegisterOption } from './parts/RegisterOption';
@@ -93,7 +92,7 @@ export function RegisterBox() {
               'Kullanım Şart ve Koşulları, Gizlilik ve Çerez Politikası Şartlarını kabul ediyorum.'
             }
           />
-          <RegisterButton text={'Tamamladık! Hadi, bir avatar yapalım!'} />
+          <SubmitButton text={'Tamamladık! Hadi, bir avatar yapalım!'} />
         </form>
       </div>
     </div>

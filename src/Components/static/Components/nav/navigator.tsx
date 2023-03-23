@@ -1,22 +1,13 @@
-import { Session } from 'inspector';
-import { GetServerSidePropsContext } from 'next';
-import { getSession, signOut, useSession } from 'next-auth/react';
+import { ShowLoginForm } from '@/Components/Index/methods/ShowLoginForm';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
-import {
-  HTMLAttributes,
-  HtmlHTMLAttributes,
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
-import { ShowLoginForm } from '../../Index/methods/ShowLoginForm';
+import { useState } from 'react';
 import { INavigator } from './INavigator';
 export default function Navigator({ loggedIn }: INavigator) {
   const [showSub, setShowSub] = useState('n');
   const [showCommunity, setShowCommunity] = useState('n');
+  const [showHome, setShowHome] = useState('n');
 
   return (
     <>
@@ -25,7 +16,18 @@ export default function Navigator({ loggedIn }: INavigator) {
           <ul className="nav">
             {loggedIn ? (
               <>
-                <li className="home">
+                <li
+                  className="home"
+                  menuname="homeMenu"
+                  onMouseEnter={(e) => {
+                    setShowSub('y');
+                    setShowHome('y');
+                  }}
+                  onMouseLeave={(e) => {
+                    setShowSub('n');
+                    setShowHome('n');
+                  }}
+                >
                   <Link href={'/home'} />
                   <div className="name">Home</div>
                 </li>
@@ -141,7 +143,30 @@ export default function Navigator({ loggedIn }: INavigator) {
               </div>
             </a>
           </div>
-          <div className="submenu-main"></div>
+        </div>
+        <div
+          className="subItem homeMenu"
+          onMouseOver={() => setShowSub('y')}
+          onMouseLeave={() => setShowSub('n')}
+          id="communityMenu"
+          active={showHome}
+        >
+          <div className="submenu-main">
+            <Link href={'/settings'} className="submenu-href">
+              <div className="submenu-box">
+                <div
+                  className="submenu-ico"
+                  style={{
+                    backgroundImage: 'url(/assets/images/settings_icon.png)'
+                  }}
+                ></div>
+                <div className="submenu-info">
+                  <div className="submenu-name">Settings</div>
+                  <div className="submenu-description">User settings</div>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </>

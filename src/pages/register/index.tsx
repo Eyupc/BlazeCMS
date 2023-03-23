@@ -1,14 +1,13 @@
-import Head from 'next/head';
-import '../../app/global.css';
-import Navigator from '../../Components/static/nav/navigator';
-
+import '@/app/global.css';
 import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
 import { AlertBox } from '@/Components/Register/AlertBox';
 import { RegisterBox } from '@/Components/Register/RegisterBox';
-import { Footer } from '@/Components/static/footer/footer';
-import { Header } from '@/Components/static/header/header';
-import { Main } from '@/Components/static/Main/main';
-export default function Index(ctx: any) {
+import { Footer } from '@/Components/static/Components/footer/footer';
+import { Header } from '@/Components/static/Components/header/header';
+import { Main } from '@/Components/static/Components/Main/main';
+import Head from 'next/head';
+import Navigator from '../../Components/static/Components/nav/navigator';
+export default function RegisterPage(ctx: any) {
   return (
     <>
       <Head>

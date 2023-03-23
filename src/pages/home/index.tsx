@@ -1,15 +1,15 @@
+import '@/app/global.css';
 import { BoxInner } from '@/Components/Home/BoxInner';
 import { IHomeComponent } from '@/Components/Home/interfaces/IHomeComponent';
 import { MeStatus } from '@/Components/Home/MeStatus';
 import { getServerSideProps } from '@/Components/Home/ServerSide/HomeServerSideProps';
 import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
-import { Footer } from '@/Components/static/footer/footer';
-import { Header } from '@/Components/static/header/header';
-import { Main } from '@/Components/static/Main/main';
-import Navigator from '@/Components/static/nav/navigator';
+import { Footer } from '@/Components/static/Components/footer/footer';
+import { Header } from '@/Components/static/Components/header/header';
+import { Main } from '@/Components/static/Components/Main/main';
+import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
-import '../../app/global.css';
-export default function Home(data: IHomeComponent) {
+export default function HomePage(data: IHomeComponent) {
   return (
     <>
       <Head>

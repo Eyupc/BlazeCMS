@@ -1,9 +1,8 @@
-import { ChangeEvent, memo, useState } from 'react';
+import { ChangeEvent, memo } from 'react';
 import { IRegisterOption } from '../interfaces/IRegisterOption';
 
 export const RegisterOption = memo(
   ({ title, description, getOption }: IRegisterOption) => {
-    console.log('test');
     return (
       <>
         <b>{title}</b>

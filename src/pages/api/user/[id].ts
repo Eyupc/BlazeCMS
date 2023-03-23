@@ -5,17 +5,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
-  const username: string = req.query.username!.toString() || '';
-  const data = await DatabaseManager.GetInstance().UserQueries.UsernameExist(
-    username
+  const data = await DatabaseManager.GetInstance().Query(
+    `SELECT id,username,look FROM users WHERE id = '${req.query.id}' LIMIT 1`
   );
-  if (data) {
+  if (!data.error) {
     res.status(200).json({
-      exist: true
+      status: true,
+      username: data.data[0].username,
+      look: data.data[0].look
     });
     return;
   }
   res.status(200).json({
-    exist: false
+    status: false
   });
 }

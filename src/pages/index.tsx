@@ -1,13 +1,13 @@
+import '@/app/global.css';
 import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
 import { InformationBox } from '@/Components/Index/InformationBox';
 import { ModalLogin } from '@/Components/Index/ModalLogin';
-import { Footer } from '@/Components/static/footer/footer';
-import { Header } from '@/Components/static/header/header';
-import { Main } from '@/Components/static/Main/main';
-import Navigator from '@/Components/static/nav/navigator';
+import { Footer } from '@/Components/static/Components/footer/footer';
+import { Header } from '@/Components/static/Components/header/header';
+import { Main } from '@/Components/static/Components/Main/main';
+import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
-import '../app/global.css';
-export default function Index() {
+export default function IndexPage() {
   return (
     <>
       <Head>
