@@ -1,8 +1,6 @@
 import bcrypt from 'bcrypt';
 import DatabaseManager from 'database/DatabaseManager';
-import { RegisterType } from 'database/types/RegisterTypes';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
 import { SSOGenerator } from 'utils/SSOGenerator';
 type RegisterBody = {
   username: string;
@@ -64,7 +62,7 @@ export default async function handler(
     look: process.env.REGISTER_LOOK,
     motto: process.env.REGISTER_MOTTO,
     auth_ticket: SSOGenerator.Generate(),
-    gender: body.gender == 'Boy' ? 'M' : 'F',
+    gender: body.gender == 'M' ? 'M' : 'F',
     rank: process.env.REGISTER_RANK,
     ip_register: req.socket.remoteAddress?.toString() || '',
     ip_current: req.socket.remoteAddress?.toString() || '',
