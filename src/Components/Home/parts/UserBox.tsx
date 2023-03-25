@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IUserBox } from '../interfaces/IUserBox';
 
-export const UserBox = memo(({ online, avatar }: IUserBox) => {
+const UserBox = memo(({ online, avatar }: IUserBox) => {
   return (
     <div className="user-box">
       <div className={'status ' + (online ? 'online' : 'offline')}></div>
@@ -17,3 +17,4 @@ export const UserBox = memo(({ online, avatar }: IUserBox) => {
     </div>
   );
 });
+export default UserBox;

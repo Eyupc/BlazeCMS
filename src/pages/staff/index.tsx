@@ -1,11 +1,12 @@
 import '@/app/global.css';
-import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
+import AnnouncementBar from '@/Components/Index/AnnouncementBar';
 import { IStaffComponent } from '@/Components/Staff/interfaces/IStaffComponent';
 import { getServerSideProps } from '@/Components/Staff/ServerSide/StaffServerSideProps';
-import { StaffMenu } from '@/Components/Staff/StaffMenu';
+import StaffMenu from '@/Components/Staff/StaffMenu';
 import { StaffTeam } from '@/Components/Staff/StaffTeam';
-import { Header } from '@/Components/static/Components/header/header';
-import { Main } from '@/Components/static/Components/Main/main';
+import { Footer } from '@/Components/static/Components/footer/footer';
+import Header from '@/Components/static/Components/header/header';
+import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -17,7 +18,7 @@ export default function StaffPage(data: IStaffComponent) {
       <Head>
         <title>Raze - Staff</title>
       </Head>
-      <Navigator loggedIn={true} />
+      <Navigator />
       <Header />
       <AnnouncementBar
         title={'Blaze - Staffs'}
@@ -42,6 +43,7 @@ export default function StaffPage(data: IStaffComponent) {
           </>
         }
       />
+      <Footer />
     </>
   );
 }

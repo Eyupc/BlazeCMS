@@ -1,6 +1,7 @@
+import { ILoginHeader } from '../interfaces/ILoginHeader';
 import { ShowLoginForm } from '../methods/ShowLoginForm';
 
-export function LoginHeader({ title, description }) {
+export function LoginHeader({ title, description }: ILoginHeader) {
   return (
     <div className="info-login d-flex">
       <div className="pins"></div>

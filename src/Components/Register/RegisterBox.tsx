@@ -5,10 +5,10 @@ import { BaseSyntheticEvent, useState } from 'react';
 import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { ICredentials } from './interfaces/ICredentials';
 import { HandleRegister } from './methods/HandleRegister';
-import { RegisterCheckbox } from './parts/RegisterCheckbox';
-import { RegisterInput } from './parts/RegisterInput';
-import { RegisterOption } from './parts/RegisterOption';
-import { RegisterPassword } from './parts/RegisterPassword';
+import RegisterCheckbox from './parts/RegisterCheckbox';
+import RegisterInput from './parts/RegisterInput';
+import RegisterOption from './parts/RegisterOption';
+import RegisterPassword from './parts/RegisterPassword';
 
 export function RegisterBox() {
   const [credentials, setCredentials] = useState<ICredentials>({

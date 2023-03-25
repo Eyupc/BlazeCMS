@@ -1,21 +1,11 @@
 import router from 'next/router';
-import {
-  FormEvent,
-  LegacyRef,
-  memo,
-  useCallback,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
-import { ChangeAvatar } from './methods/ChangeAvatar';
-import { ShowLoginForm } from './methods/ShowLoginForm';
+import { FormEvent, memo, useCallback, useState } from 'react';
 import { TryoToLogin } from './methods/TryToLogin';
-import { InputName } from './parts/InputName';
-import { InputPassword } from './parts/InputPassword';
+import InputName from './parts/InputName';
+import InputPassword from './parts/InputPassword';
 import { LoginHeader } from './parts/LoginHeader';
 
-export const ModalLogin = memo(() => {
+const ModalLogin = memo(() => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [avatar, setAvatar] = useState('');
@@ -66,3 +56,4 @@ export const ModalLogin = memo(() => {
     </div>
   );
 });
+export default ModalLogin;

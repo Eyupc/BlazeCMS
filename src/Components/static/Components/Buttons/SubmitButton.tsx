@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { ISubmitButton } from '../../interfaces/ISubmitButton';
+import { ISubmitButton } from './ISubmitButton';
 
 export const SubmitButton = memo(({ text }: ISubmitButton) => {
   return (

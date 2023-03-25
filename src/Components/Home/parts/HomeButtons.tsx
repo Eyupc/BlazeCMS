@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-export const HomeButtons = memo(() => {
+const HomeButtons = memo(() => {
   return (
     <div className="hotel-button">
       <div className="enterhotel">OTELE GİR</div>
@@ -8,3 +8,4 @@ export const HomeButtons = memo(() => {
     </div>
   );
 });
+export default HomeButtons;

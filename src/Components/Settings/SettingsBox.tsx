@@ -5,9 +5,9 @@ import { BaseSyntheticEvent, memo, useState } from 'react';
 import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { ICredentials } from './interfaces/ICredentials';
 import { UpdatePassword } from './methods/UpdatePassword';
-import { InputPassword } from './parts/InputPassword';
+import InputPassword from './parts/InputPassword';
 
-export const SettingsBox = memo(() => {
+const SettingsBox = memo(() => {
   const [credentials, setCredentials] = useState<ICredentials>({
     oldPassword: '',
     newPassword: '',
@@ -86,3 +86,4 @@ export const SettingsBox = memo(() => {
     </div>
   );
 });
+export default SettingsBox;

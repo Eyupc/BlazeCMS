@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IMeStatus } from './interfaces/IMeStatus';
 
-export const MeStatus = memo(({ ...props }: IMeStatus) => {
+const MeStatus = memo(({ ...props }: IMeStatus) => {
   return (
     <div className="me-status">
       <div className="statistics" style={{ borderBottom: 'solid 1px #fe1500' }}>
@@ -19,3 +19,4 @@ export const MeStatus = memo(({ ...props }: IMeStatus) => {
     </div>
   );
 });
+export default MeStatus;
