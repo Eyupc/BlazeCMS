@@ -1,7 +1,7 @@
 import { ChangeEvent, memo } from 'react';
 import { IRegisterOption } from '../interfaces/IRegisterOption';
 
-export const RegisterOption = memo(
+const RegisterOption = memo(
   ({ title, description, getOption }: IRegisterOption) => {
     return (
       <>
@@ -23,3 +23,4 @@ export const RegisterOption = memo(
     );
   }
 );
+export default RegisterOption;

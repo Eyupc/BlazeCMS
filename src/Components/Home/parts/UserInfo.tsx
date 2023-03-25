@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IUserInfo } from '../interfaces/IUserInfo';
 
-export const UserInfo = memo(
+const UserInfo = memo(
   ({ username, motto, last_online, achievement_score }: IUserInfo) => {
     return (
       <div className="user-info">
@@ -26,3 +26,4 @@ export const UserInfo = memo(
     );
   }
 );
+export default UserInfo;

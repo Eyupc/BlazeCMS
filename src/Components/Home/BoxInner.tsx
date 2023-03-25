@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import { IBoxInner } from './interfaces/IBoxInner';
-import { HomeButtons } from './parts/HomeButtons';
-import { UserBox } from './parts/UserBox';
-import { UserInfo } from './parts/UserInfo';
+import HomeButtons from './parts/HomeButtons';
+import UserBox from './parts/UserBox';
+import UserInfo from './parts/UserInfo';
 
-export const BoxInner = memo(({ ...params }: IBoxInner) => {
+const BoxInner = memo(({ ...params }: IBoxInner) => {
   return (
     <div className="box-inner">
       <UserBox online={params.online} avatar={params.avatar} />
@@ -19,3 +19,4 @@ export const BoxInner = memo(({ ...params }: IBoxInner) => {
     </div>
   );
 });
+export default BoxInner;

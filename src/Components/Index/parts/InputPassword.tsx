@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IInput } from '../interfaces/IInput';
 
-export const InputPassword = memo(({ Change }: IInput) => {
+const InputPassword = memo(({ Change }: IInput) => {
   return (
     <div className="login-password">
       <div className="passico"></div>
@@ -12,8 +12,10 @@ export const InputPassword = memo(({ Change }: IInput) => {
         onChange={(e) => Change(e.currentTarget.value)}
         className="login-i"
         placeholder="Parola"
+        autoComplete={'on'}
         required
       />
     </div>
   );
 });
+export default InputPassword;

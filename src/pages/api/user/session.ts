@@ -1,18 +1,24 @@
 import DatabaseManager from 'database/DatabaseManager';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
+  const session = await getSession({ req: req });
+  if (!session) {
+    res.status(404).json({ status: false });
+    return;
+  }
   const data = await DatabaseManager.GetInstance().Query(
-    `SELECT id,username,look FROM users WHERE id = '${req.query.id}' LIMIT 1`
+    `SELECT id,username,look FROM users WHERE id = '${session.user.id}' LIMIT 1`
   );
   if (!data.error) {
     res.status(200).json({
       status: true,
       username: data.data[0].username,
-      look: data.data[0].look
+      avatar: data.data[0].look
     });
     return;
   }

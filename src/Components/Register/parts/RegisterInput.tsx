@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { IRegisterInput } from '../interfaces/IRegisterInput';
 import { Validate } from '../methods/Validate';
 
-export const RegisterInput = memo(
+const RegisterInput = memo(
   ({ title, description, type, Change }: IRegisterInput) => {
     const [valid, setValid] = useState<boolean | null>(null);
 
@@ -12,7 +12,7 @@ export const RegisterInput = memo(
         <em>{description}</em>
         <input
           className="register-i"
-          type="text"
+          type={type == 'email' ? 'email' : 'text'}
           name={type}
           id={type}
           onKeyDown={(e) => {
@@ -36,3 +36,4 @@ export const RegisterInput = memo(
     );
   }
 );
+export default RegisterInput;

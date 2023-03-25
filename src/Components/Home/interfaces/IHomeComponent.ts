@@ -1,4 +1,4 @@
-export interface IServerSide {
+export interface IHomeComponent {
   user?: {
     username: string;
     motto: string;

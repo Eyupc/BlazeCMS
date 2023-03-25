@@ -1,7 +1,7 @@
-import { StatusType } from "./StatusType";
+import { StatusType } from './StatusType';
 
 export type StaffLists = {
-  status: StatusType["status"];
+  status: StatusType['status'];
   data?: {
     staffs: StaffUser[];
   };
@@ -15,6 +15,15 @@ export type StaffUser = {
 };
 
 export type Ranks = {
-  status: StatusType["status"];
+  status: StatusType['status'];
   data?: { id: number; name: string }[];
+};
+
+export type TopList = {
+  status: StatusType['status'];
+  users?: {
+    username: string;
+    avatar: string;
+    amount: number;
+  }[];
 };

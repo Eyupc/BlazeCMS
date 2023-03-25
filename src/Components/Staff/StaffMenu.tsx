@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IStaffMenu } from './interfaces/IStaffMenu';
 
-export const StaffMenu = memo(({ setRank, currentRank, ranks }: IStaffMenu) => {
+const StaffMenu = memo(({ setRank, currentRank, ranks }: IStaffMenu) => {
   return (
     <div className="staff-menu">
       <div className="box-inner">
@@ -61,3 +61,4 @@ export const StaffMenu = memo(({ setRank, currentRank, ranks }: IStaffMenu) => {
     </div>
   );
 });
+export default StaffMenu;

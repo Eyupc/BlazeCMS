@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IRegisterCheckbox } from '../interfaces/IRegisterCheckbox';
 
-export const RegisterCheckbox = memo(({ description }: IRegisterCheckbox) => {
+const RegisterCheckbox = memo(({ description }: IRegisterCheckbox) => {
   return (
     <fieldset className="fieldset">
       <div className="field">
@@ -22,3 +22,4 @@ export const RegisterCheckbox = memo(({ description }: IRegisterCheckbox) => {
     </fieldset>
   );
 });
+export default RegisterCheckbox;

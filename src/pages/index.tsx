@@ -1,10 +1,10 @@
 import '@/app/global.css';
-import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
-import { InformationBox } from '@/Components/Index/InformationBox';
-import { ModalLogin } from '@/Components/Index/ModalLogin';
+import AnnouncementBar from '@/Components/Index/AnnouncementBar';
+import InformationBox from '@/Components/Index/InformationBox';
+import ModalLogin from '@/Components/Index/ModalLogin';
 import { Footer } from '@/Components/static/Components/footer/footer';
-import { Header } from '@/Components/static/Components/header/header';
-import { Main } from '@/Components/static/Components/Main/main';
+import Header from '@/Components/static/Components/header/header';
+import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
 export default function IndexPage() {
@@ -13,7 +13,7 @@ export default function IndexPage() {
       <Head>
         <title>Blaze - Index</title>
       </Head>
-      <Navigator loggedIn={false} />
+      <Navigator />
       <Header />
       <AnnouncementBar
         title={'Blaze özel kullanıcılarla dolu bir topluluktur'}
@@ -52,7 +52,7 @@ export default function IndexPage() {
         }
       />
       <ModalLogin />
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

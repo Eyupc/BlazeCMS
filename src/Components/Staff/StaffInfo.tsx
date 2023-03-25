@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { IStaffInfo } from './interfaces/IStaffInfo';
-export const StaffInfo = memo(({ rankName }: IStaffInfo) => {
+const StaffInfo = memo(({ rankName }: IStaffInfo) => {
   return (
     <div className="staff-info">
       <div className="info-staff d-flex">
@@ -17,3 +17,4 @@ export const StaffInfo = memo(({ rankName }: IStaffInfo) => {
     </div>
   );
 });
+export default StaffInfo;

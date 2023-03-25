@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IInformationBox } from './interfaces/IInformationBox';
 
-export const InformationBox = memo(
+const InformationBox = memo(
   ({ alertTitle, title, description, banner_img }: IInformationBox) => {
     return (
       <div className="rpinfo d-flex direction-row bbgreen">
@@ -19,3 +19,4 @@ export const InformationBox = memo(
     );
   }
 );
+export default InformationBox;

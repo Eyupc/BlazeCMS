@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { IAlertBox } from './interfaces/IAlertBox';
 
-export const AlertBox = memo(({ title, description, text }: IAlertBox) => {
+const AlertBox = memo(({ title, description, text }: IAlertBox) => {
   return (
     <div className="regbox d-flex direction-row bbgreen">
       <div className="box-inner">
@@ -17,3 +17,4 @@ export const AlertBox = memo(({ title, description, text }: IAlertBox) => {
     </div>
   );
 });
+export default AlertBox;

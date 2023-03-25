@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { IInput } from '../interfaces/IInput';
 import { ChangeAvatar } from '../methods/ChangeAvatar';
 
-export const InputName = memo(({ Change }: IInput) => {
+const InputName = memo(({ Change }: IInput) => {
   const [avatar, setAvatar] = useState('');
   return (
     <div className="login-username">
@@ -22,8 +22,10 @@ export const InputName = memo(({ Change }: IInput) => {
         id="username"
         onChange={(e) => Change(e.currentTarget.value)}
         onBlur={async (e) => setAvatar(await ChangeAvatar(e.target.value))}
+        autoComplete={'on'}
         required
       />
     </div>
   );
 });
+export default InputName;

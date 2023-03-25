@@ -1,12 +1,10 @@
 // middleware.ts
-import { getServerSession } from 'next-auth';
 import { getToken } from 'next-auth/jwt';
-import { getSession } from 'next-auth/react';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 // This function can be marked `async` if using `await` inside
-const PROTECTED_ROUTES = ['/home'];
+const PROTECTED_ROUTES = ['/home', '/staff', '/leaderboards', '/settings'];
 const ROUTES = ['/', '/login', '/register'];
 export async function middleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
@@ -28,5 +26,5 @@ export async function middleware(request: NextRequest) {
   }
 }
 export const config = {
-  matcher: ['/', '/login', '/register', '/home', '/staffs']
+  matcher: ['/', '/register', '/home', '/staff', '/leaderboards', '/settings']
 };

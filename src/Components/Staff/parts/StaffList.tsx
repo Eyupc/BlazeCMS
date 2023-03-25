@@ -1,8 +1,8 @@
 import { memo, useMemo } from 'react';
 import { IStaffList } from '../interfaces/IStaffList';
-import { StaffBox } from './StaffBox';
+import StaffBox from './StaffBox';
 
-export const StaffList = memo(({ rank, staffs }: IStaffList) => {
+const StaffList = memo(({ rank, staffs }: IStaffList) => {
   const GetStaffs = useMemo(() => {
     return staffs
       ?.filter((u) => u.rank == rank)
@@ -24,3 +24,4 @@ export const StaffList = memo(({ rank, staffs }: IStaffList) => {
     </div>
   );
 });
+export default StaffList;

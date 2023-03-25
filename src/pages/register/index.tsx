@@ -1,10 +1,10 @@
 import '@/app/global.css';
-import { AnnouncementBar } from '@/Components/Index/AnnouncementBar';
-import { AlertBox } from '@/Components/Register/AlertBox';
+import AnnouncementBar from '@/Components/Index/AnnouncementBar';
+import AlertBox from '@/Components/Register/AlertBox';
 import { RegisterBox } from '@/Components/Register/RegisterBox';
 import { Footer } from '@/Components/static/Components/footer/footer';
-import { Header } from '@/Components/static/Components/header/header';
-import { Main } from '@/Components/static/Components/Main/main';
+import Header from '@/Components/static/Components/header/header';
+import Main from '@/Components/static/Components/Main/main';
 import Head from 'next/head';
 import Navigator from '../../Components/static/Components/nav/navigator';
 export default function RegisterPage(ctx: any) {
@@ -13,7 +13,7 @@ export default function RegisterPage(ctx: any) {
       <Head>
         <title>Blaze - Register</title>
       </Head>
-      <Navigator loggedIn={false} />
+      <Navigator />
       <Header />
       <AnnouncementBar
         title={'Blaze özel kullanıcılarla dolu bir topluluktur'}
