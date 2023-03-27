@@ -1,9 +1,9 @@
 import '@/app/global.css';
-import AnnouncementBar from '@/Components/Index/AnnouncementBar';
 import { IStaffComponent } from '@/Components/Staff/interfaces/IStaffComponent';
 import { getServerSideProps } from '@/Components/Staff/ServerSide/StaffServerSideProps';
 import StaffMenu from '@/Components/Staff/StaffMenu';
 import { StaffTeam } from '@/Components/Staff/StaffTeam';
+import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';

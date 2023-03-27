@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { IAnnouncementBar } from './interfaces/IAnnouncementBar';
+import { IAnnouncementBar } from './IAnnouncementBar';
 const AnnouncementBar = memo(({ title, description }: IAnnouncementBar) => {
   return (
     <div className="announcement-bar">
