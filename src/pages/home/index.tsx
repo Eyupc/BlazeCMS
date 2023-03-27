@@ -3,7 +3,7 @@ import BoxInner from '@/Components/Home/BoxInner';
 import { IHomeComponent } from '@/Components/Home/interfaces/IHomeComponent';
 import MeStatus from '@/Components/Home/MeStatus';
 import { getServerSideProps } from '@/Components/Home/ServerSide/HomeServerSideProps';
-import AnnouncementBar from '@/Components/Index/AnnouncementBar';
+import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';

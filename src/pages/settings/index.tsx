@@ -1,7 +1,7 @@
 import '@/app/global.css';
-import AnnouncementBar from '@/Components/Index/AnnouncementBar';
 import AlertBox from '@/Components/Register/AlertBox';
 import SettingsBox from '@/Components/Settings/SettingsBox';
+import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';

@@ -1,8 +1,8 @@
 import '@/app/global.css';
-import AnnouncementBar from '@/Components/Index/AnnouncementBar';
 import { ILeaderboardsComponent } from '@/Components/Leaderboards/interfaces/ILeaderboardsComponent';
 import LeaderBoardsBox from '@/Components/Leaderboards/LeaderboardsBox';
 import { getServerSideProps } from '@/Components/Leaderboards/ServerSide/LeaderServerSideProps';
+import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
