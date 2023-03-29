@@ -31,13 +31,13 @@ export const MainNavigator = memo(
               title={'Log in'}
               menuName={'LogIn'}
               Click={() => ShowLoginForm(true)}
-              href={'/'}
+              goTo={'/'}
             />
             <ListItem
               name={'register'}
               title={'Register'}
               menuName={'register'}
-              href={'/register'}
+              goTo={'/register'}
             />
           </>
         )}

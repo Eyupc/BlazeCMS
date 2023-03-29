@@ -4,5 +4,5 @@ export interface IListItem {
   title: string;
   Update?: (val: 'y' | 'n') => void;
   Click?: () => void;
-  Link?: string;
+  goTo?: string;
 }
