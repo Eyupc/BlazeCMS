@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import AlertBox from '@/Components/Register/AlertBox';
 import SettingsBox from '@/Components/Settings/SettingsBox';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
@@ -8,6 +7,7 @@ import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
 import { useState } from 'react';
+import '/styles/styles.css';
 
 export default function SettingsPage() {
   const [credentials, setCredentials] = useState('');

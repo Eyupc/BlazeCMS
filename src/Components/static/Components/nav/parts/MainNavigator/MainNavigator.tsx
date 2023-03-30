@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import { ShowLoginForm } from '@/Components/Index/methods/ShowLoginForm';
 import { memo } from 'react';
 import { IMainNavigator } from './interfaces/IMainNavigator';

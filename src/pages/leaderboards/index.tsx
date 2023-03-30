@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import { ILeaderboardsComponent } from '@/Components/Leaderboards/interfaces/ILeaderboardsComponent';
 import LeaderBoardsBox from '@/Components/Leaderboards/LeaderboardsBox';
 import { getServerSideProps } from '@/Components/Leaderboards/ServerSide/LeaderServerSideProps';
@@ -6,9 +5,9 @@ import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/Anno
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
-
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
+import '/styles/styles.css';
 
 export default function LeaderBoards(data: ILeaderboardsComponent) {
   return (
