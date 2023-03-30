@@ -1,13 +1,11 @@
-import DatabaseManager from "database/DatabaseManager";
-import { LoginType } from "database/types/LoginType";
+import { LoginType } from 'database/types/LoginType';
 import {
   RegisterType,
   RegisterUserCurrency,
-  RegisterUserSettings,
-} from "database/types/RegisterTypes";
-import { StatusType } from "database/types/StatusType";
-import { User, UserCurrencies, UserSettings } from "database/types/UserTypes";
-import { Connection } from "mysql";
+  RegisterUserSettings
+} from 'database/types/RegisterTypes';
+import { User, UserCurrencies, UserSettings } from 'database/types/UserTypes';
+import { Connection } from 'mysql';
 
 export class UserQueries {
   private connection: Connection;
@@ -17,14 +15,14 @@ export class UserQueries {
   }
   public async GetUser(param: string | number): Promise<User> {
     return new Promise((resolve, reject) => {
-      let sql = "";
-      if (typeof param == "string") {
+      let sql = '';
+      if (typeof param == 'string') {
         sql =
-          "SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `username`=" +
+          'SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `username`=' +
           `"${param}"`;
       } else {
         sql =
-          "SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `id`=" +
+          'SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `id`=' +
           `"${param}"`;
       }
 
@@ -45,8 +43,8 @@ export class UserQueries {
               ip_current: results[0].ip_current,
               last_login: results[0].last_login,
               last_online: results[0].last_online,
-              online: !!Number(results[0].online),
-            },
+              online: !!Number(results[0].online)
+            }
           });
         }
       });
@@ -55,12 +53,12 @@ export class UserQueries {
   public async GetUserCurrencies(id: number): Promise<UserCurrencies> {
     return new Promise((resolve, reject) => {
       this.connection.query(
-        "SELECT `credits`,(SELECT `amount` FROM `users_currency` WHERE `user_id`=" +
+        'SELECT `credits`,(SELECT `amount` FROM `users_currency` WHERE `user_id`=' +
           id +
-          " && `type`=5) AS duckets," +
-          "(SELECT `amount` FROM `users_currency` WHERE `user_id`=" +
+          ' && `type`=5) AS duckets,' +
+          '(SELECT `amount` FROM `users_currency` WHERE `user_id`=' +
           id +
-          " && `type`= 0) AS diamonds FROM `users` WHERE `id`=" +
+          ' && `type`= 0) AS diamonds FROM `users` WHERE `id`=' +
           id,
         function (_error, results, fields) {
           if (_error || results.length == 0) {
@@ -71,21 +69,20 @@ export class UserQueries {
               data: {
                 credits: results[0].credits,
                 duckets: results[0].duckets,
-                diamonds: results[0].diamonds,
-              },
+                diamonds: results[0].diamonds
+              }
             });
           }
         }
       );
     });
   }
-  //TODO
   public async GetUserSettings(id: number): Promise<UserSettings> {
     return new Promise((resolve, reject) => {
       this.connection.query(
-        "SELECT `user_id`,`achievement_score`, `repects_given`,`respects_received`,`can_trade`,`block_friendrequest` FROM `users_settings` WHERE `user_id` = " +
+        'SELECT `user_id`,`achievement_score`, `repects_given`,`respects_received`,`can_trade`,`block_friendrequest` FROM `users_settings` WHERE `user_id` = ' +
           id +
-          " LIMIT 1",
+          ' LIMIT 1',
         function (_error, results, fields) {
           if (_error || results.length == 0) {
             resolve({ status: false });
@@ -98,8 +95,8 @@ export class UserQueries {
                 respects_given: results[0].respects_given,
                 respects_received: results[0].respects_received,
                 can_trade: !!Number(results[0].can_trade),
-                block_friendrequest: !!Number(results[0].block_friendrequest),
-              },
+                block_friendrequest: !!Number(results[0].block_friendrequest)
+              }
             });
           }
         }
@@ -107,11 +104,28 @@ export class UserQueries {
     });
   }
 
+  public async CreateSubscription(userId: number): Promise<boolean> {
+    return await new Promise((resolve, reject) => {
+      this.connection.query(
+        'INSERT INTO `users_subscriptions`(`user_id`,`subscription_type`,`timestamp_start`,`duration`,`active`)' +
+          `VALUES(${userId},"HABBO_CLUB",${Math.round(
+            +new Date() / 1000
+          )},"56246400",1)`,
+        function (_error, results) {
+          if (_error || results.length == 0) {
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        }
+      );
+    });
+  }
   public async CreateUser(user: RegisterType): Promise<boolean> {
     let exec = false;
     exec = await new Promise((resolve, reject) => {
       this.connection.query(
-        "INSERT INTO `users` (`username`, `password`, `rank`, `motto`, `gender`,`account_created`, `last_login`, `mail`, `look`, `ip_current`, `ip_register`, `credits`) " +
+        'INSERT INTO `users` (`username`, `password`, `rank`, `motto`, `gender`,`account_created`, `last_login`, `mail`, `look`, `ip_current`, `ip_register`, `credits`) ' +
           `VALUES("${user.username}","${user.password}",${user.rank},"${user.motto}","${user.gender}","${user.account_created}","${user.last_login}","${user.mail}","${user.look}","${user.ip_current}","${user.ip_register}",${user.credits})`,
         function (_error, results) {
           if (_error || results.length == 0) {
@@ -141,20 +155,24 @@ export class UserQueries {
     exec = await this.CreateUserCurrency({
       id: user_id,
       type: 0,
-      amount: user.diamonds,
+      amount: user.diamonds
     });
     if (!exec) return false;
     exec = await this.CreateUserCurrency({
       id: user_id,
       type: 5,
-      amount: user.duckets,
+      amount: user.duckets
     });
     if (!exec) return false;
     exec = await this.CreateUserSettings({
       id: user_id,
-      home_room: 0,
+      home_room: 0
     });
     if (!exec) return false;
+
+    exec = await this.CreateSubscription(user_id);
+    if (!exec) return false;
+
     return true;
   }
 
@@ -164,7 +182,7 @@ export class UserQueries {
     // return true if statement is executed
     return await new Promise((resolve, reject) => {
       this.connection.query(
-        "INSERT INTO `users_currency` (`user_id`,`type`,`amount`) " +
+        'INSERT INTO `users_currency` (`user_id`,`type`,`amount`) ' +
           `VALUES(${user.id},${user.type},${user.amount})`,
         function (_error, results) {
           if (_error || results.length == 0) {
@@ -182,7 +200,7 @@ export class UserQueries {
     // return true if statement is executed
     return await new Promise((resolve, reject) => {
       this.connection.query(
-        "INSERT INTO `users_settings` (`user_id`,`home_room`) " +
+        'INSERT INTO `users_settings` (`user_id`,`home_room`) ' +
           `VALUES(${user.id},${user.home_room})`,
         function (_error, results) {
           if (_error || results.length == 0) {
@@ -232,8 +250,8 @@ export class UserQueries {
                 id: results[0].id,
                 username: results[0].username,
                 rank: results[0].rank,
-                password: results[0].password,
-              },
+                password: results[0].password
+              }
             });
         }
       );
