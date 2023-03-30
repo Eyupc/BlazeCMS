@@ -30,8 +30,12 @@ export default async function handler(
     `SELECT password FROM users WHERE id = '${session!.user.id}' LIMIT 1`
   );
 
+  const password = (data.data[0].password as string).startsWith('$2y$')
+    ? (data.data[0].password as string).replace('$2y$', '$2b$')
+    : (data.data[0].password as string);
+
   if (!data.error) {
-    if (!(await bcrypt.compare(body.oldPassword, data.data[0].password))) {
+    if (!(await bcrypt.compare(body.oldPassword, password))) {
       errors.push('Wrong old password!');
       res.status(200).json({ status: false, errors: errors });
       return;
