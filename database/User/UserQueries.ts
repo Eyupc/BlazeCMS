@@ -122,8 +122,7 @@ export class UserQueries {
     });
   }
   public async CreateUser(user: RegisterType): Promise<boolean> {
-    let exec = false;
-    exec = await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       this.connection.query(
         'INSERT INTO `users` (`username`, `password`, `rank`, `motto`, `gender`,`account_created`, `last_login`, `mail`, `look`, `ip_current`, `ip_register`, `credits`) ' +
           `VALUES("${user.username}","${user.password}",${user.rank},"${user.motto}","${user.gender}","${user.account_created}","${user.last_login}","${user.mail}","${user.look}","${user.ip_current}","${user.ip_register}",${user.credits})`,
@@ -136,7 +135,7 @@ export class UserQueries {
         }
       );
     });
-    if (!exec) return false;
+
     const user_id: number = await new Promise((resolve, reject) => {
       this.connection.query(
         "SELECT `id` FROM `users` WHERE `username`='" +
@@ -151,27 +150,25 @@ export class UserQueries {
         }
       );
     });
-    if (user_id == 0) return false;
-    exec = await this.CreateUserCurrency({
+
+    await this.CreateUserCurrency({
       id: user_id,
       type: 0,
       amount: user.diamonds
     });
-    if (!exec) return false;
-    exec = await this.CreateUserCurrency({
+
+    await this.CreateUserCurrency({
       id: user_id,
       type: 5,
       amount: user.duckets
     });
-    if (!exec) return false;
-    exec = await this.CreateUserSettings({
+
+    await this.CreateUserSettings({
       id: user_id,
       home_room: 0
     });
-    if (!exec) return false;
 
-    exec = await this.CreateSubscription(user_id);
-    if (!exec) return false;
+    await this.CreateSubscription(user_id);
 
     return true;
   }
