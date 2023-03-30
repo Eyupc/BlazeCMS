@@ -2,7 +2,8 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-  },
+    optimizeCss: true
+  }
 };
 
 module.exports = nextConfig;
