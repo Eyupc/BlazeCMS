@@ -36,5 +36,6 @@ namespace NodeJS {
     REGISTER_RANK: number;
     NITRO_URL: string;
     DISCORD_URL: string;
+    IMAGER_URL: string;
   }
 }
