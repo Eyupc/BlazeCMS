@@ -1,3 +1,4 @@
+import config from 'config.json';
 import { memo } from 'react';
 import { IStaffBox } from '../interfaces/IStaffBox';
 
@@ -12,7 +13,9 @@ const StaffBox = memo(({ username, online, avatar, motto }: IStaffBox) => {
         <div
           className="figure"
           style={{
-            background: `url(https://www.habbo.com/habbo-imaging/avatarimage?figure=${avatar}&action=std,crr=667&gesture=${
+            background: `url(${
+              config.IMAGER_URL
+            }?figure=${avatar}&action=std,crr=667&gesture=${
               !!Number(online) ? 'std' : 'eyb'
             }&direction=2&head_direction=2&size=n&img_format=png)`
           }}

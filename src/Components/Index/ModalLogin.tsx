@@ -8,7 +8,6 @@ import { LoginHeader } from './parts/LoginHeader';
 const ModalLogin = memo(() => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [avatar, setAvatar] = useState('');
   const [error, setError] = useState('');
 
   const HandleSubmit = useCallback(

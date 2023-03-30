@@ -1,8 +1,10 @@
+import config from 'config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import { SSOGenerator } from 'utils/SSOGenerator';
+
 export default function IndexPage({ sso }: ClientProps) {
   return (
     <>
@@ -23,7 +25,7 @@ export default function IndexPage({ sso }: ClientProps) {
           overflow: 'hidden',
           zIndex: 1
         }}
-        src={`${process.env.NITRO_URL}?=${sso}`}
+        src={`${config.NITRO_URL}?=${sso}`}
       ></iframe>
     </>
   );

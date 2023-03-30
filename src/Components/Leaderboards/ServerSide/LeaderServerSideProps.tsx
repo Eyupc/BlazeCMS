@@ -8,6 +8,7 @@ export async function getServerSideProps(
   const credits = await DatabaseManager.GetInstance().UserLists.getTopList(
     'credits'
   );
+  console.log(credits);
   const duckets = await DatabaseManager.GetInstance().UserLists.getTopList(
     'duckets'
   );

@@ -1,5 +1,5 @@
+import config from 'config.json';
 import { memo } from 'react';
-
 export const Footer = memo(() => {
   return (
     <>
@@ -27,11 +27,7 @@ export const Footer = memo(() => {
               ></i>{' '}
               Instagram
             </a>
-            <a
-              href="https://discord.gg/blazehotel"
-              target="_blank"
-              rel={'noreferrer'}
-            >
+            <a href={config.DISCORD_URL} target="_blank" rel={'noreferrer'}>
               <i className="fab fa-discord" style={{ marginRight: '5px' }}></i>{' '}
               Discord
             </a>

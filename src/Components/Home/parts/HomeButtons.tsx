@@ -1,3 +1,4 @@
+import config from 'config.json';
 import Link from 'next/link';
 import { memo } from 'react';
 
@@ -13,7 +14,7 @@ const HomeButtons = memo(() => {
       </Link>
       <Link
         style={{ textDecoration: 'none' }}
-        href={`${process.env.DISCORD_URL}`}
+        href={`${config.DISCORD_URL}`}
         target={'_blank'}
       >
         <div className="razewiki">DISCORD</div>

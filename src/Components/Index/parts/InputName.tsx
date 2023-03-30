@@ -1,3 +1,4 @@
+import config from 'config.json';
 import { memo, useState } from 'react';
 import { IInput } from '../interfaces/IInput';
 import { ChangeAvatar } from '../methods/ChangeAvatar';
@@ -10,7 +11,7 @@ const InputName = memo(({ Change }: IInput) => {
         <img
           id="userLook"
           alt="Avatar"
-          src={`https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar}&head_direction=4&direction=4&size=sml`}
+          src={`${config.IMAGER_URL}?figure=${avatar}&head_direction=4&direction=4&size=sml`}
           className="login-avatar"
         />
       </div>

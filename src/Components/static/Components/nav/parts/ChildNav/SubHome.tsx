@@ -1,3 +1,4 @@
+import config from 'config.json';
 import { signOut } from 'next-auth/react';
 import router from 'next/router';
 import { memo } from 'react';
@@ -17,7 +18,7 @@ export const SubHome = memo(
         <div className="submenu-main">
           <SubItem
             href={'/home'}
-            iconImg={`https://www.leet.ws/leet-imaging/avatarimage?figure=${avatar}&head_direction=2&direction=2&size=sml`}
+            iconImg={`${config.IMAGER_URL}?figure=${avatar}&head_direction=2&direction=2&size=sml`}
             menuTitle={username}
             menuDesc={'Home page'}
           />
