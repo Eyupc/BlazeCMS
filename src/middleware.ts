@@ -4,7 +4,13 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 // This function can be marked `async` if using `await` inside
-const PROTECTED_ROUTES = ['/home', '/staff', '/leaderboards', '/settings'];
+const PROTECTED_ROUTES = [
+  '/home',
+  '/staff',
+  '/leaderboards',
+  '/settings',
+  '/client'
+];
 const ROUTES = ['/', '/login', '/register'];
 export async function middleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
@@ -26,5 +32,13 @@ export async function middleware(request: NextRequest) {
   }
 }
 export const config = {
-  matcher: ['/', '/register', '/home', '/staff', '/leaderboards', '/settings']
+  matcher: [
+    '/',
+    '/register',
+    '/home',
+    '/staff',
+    '/leaderboards',
+    '/settings',
+    '/client'
+  ]
 };
