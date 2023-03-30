@@ -1,7 +1,7 @@
+import config from 'config.json';
 import { memo } from 'react';
 import { ILeaderUserBox } from '../interfaces/ILeaderUserBox';
 import { GetType } from '../methods/GetType';
-
 const LeaderUserBox = memo(({ ...props }: ILeaderUserBox) => {
   return (
     <div className="leader-box">
@@ -9,7 +9,7 @@ const LeaderUserBox = memo(({ ...props }: ILeaderUserBox) => {
         <div
           className="figure"
           style={{
-            background: `url(https://www.habbo.com/habbo-imaging/avatarimage?figure=${props.avatar}&amp;action=std,crr=667&amp;gesture=sml&amp;direction=2&amp;head_direction=2&amp;size=n&amp;headonly=1&amp;img_format=png)`
+            background: `url(${config.IMAGER_URL}?figure=${props.avatar}&amp;action=std,crr=667&amp;gesture=sml&amp;direction=2&amp;head_direction=2&amp;size=n&amp;headonly=1&amp;img_format=png)`
           }}
         ></div>
       </div>

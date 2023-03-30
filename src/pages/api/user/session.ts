@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   const session = await getSession({ req: req });
   if (!session) {
-    res.status(404).json({ status: false });
+    res.status(200).json({ status: false });
     return;
   }
   const data = await DatabaseManager.GetInstance().Query(

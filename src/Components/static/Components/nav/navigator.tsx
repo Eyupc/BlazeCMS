@@ -20,10 +20,9 @@ export default function Navigator() {
         .then((resp) => {
           if (resp.data.status as Boolean)
             setUser({ username: resp.data.username, avatar: resp.data.avatar });
+          else setUser(null);
         })
-        .catch((err) => {
-          setUser(null);
-        });
+        .catch((err) => {});
     });
   }, []);
 

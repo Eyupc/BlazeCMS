@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import { memo } from 'react';
 import { IMain } from './IMain';
 const Main = memo(({ child }: IMain) => {

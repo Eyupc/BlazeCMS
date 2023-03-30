@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import InformationBox from '@/Components/Index/InformationBox';
 import ModalLogin from '@/Components/Index/ModalLogin';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
@@ -7,6 +6,7 @@ import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
+import '/styles/styles.css';
 export default function IndexPage() {
   return (
     <>

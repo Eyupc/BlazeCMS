@@ -1,13 +1,7 @@
 import bcrypt from 'bcrypt';
 import DatabaseManager from 'database/DatabaseManager';
-import NextAuth, { Session, User } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
-import Auth0Provider from 'next-auth/providers/auth0';
+import NextAuth from 'next-auth';
 import CredetentialProvider from 'next-auth/providers/credentials';
-import FacebookProvider from 'next-auth/providers/facebook';
-import GithubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
-import TwitterProvider from 'next-auth/providers/twitter';
 import { TokenUserType } from './types/TokenType';
 // import EmailProvider from "next-auth/providers/email"
 // import AppleProvider from "next-auth/providers/apple"
@@ -31,31 +25,31 @@ export default NextAuth({
     //     keyId: process.env.APPLE_KEY_ID,
     //   },
     // }),
-    Auth0Provider({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
-      // @ts-ignore
-      domain: process.env.AUTH0_DOMAIN
-    }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET
-    }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-      // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
-      // @ts-ignore
-      scope: 'read:user'
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
-    }),
-    TwitterProvider({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET
-    }),
+    //Auth0Provider({
+    //  clientId: process.env.AUTH0_ID,
+    //  clientSecret: process.env.AUTH0_SECRET,
+    //  // @ts-ignore
+    //  domain: process.env.AUTH0_DOMAIN
+    //}),
+    //FacebookProvider({
+    //  clientId: process.env.FACEBOOK_ID,
+    //  clientSecret: process.env.FACEBOOK_SECRET
+    //}),
+    //GithubProvider({
+    //  clientId: process.env.GITHUB_ID,
+    //  clientSecret: process.env.GITHUB_SECRET,
+    //  // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+    //  // @ts-ignore
+    //  scope: 'read:user'
+    //}),
+    //GoogleProvider({
+    //  clientId: process.env.GOOGLE_ID,
+    //  clientSecret: process.env.GOOGLE_SECRET
+    //}),
+    //TwitterProvider({
+    //  clientId: process.env.TWITTER_ID,
+    //  clientSecret: process.env.TWITTER_SECRET
+    //}),
     CredetentialProvider({
       id: 'credentials',
       name: 'Login',
@@ -100,7 +94,7 @@ export default NextAuth({
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
   // a separate secret is defined explicitly for encrypting the JWT.
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
@@ -120,15 +114,15 @@ export default NextAuth({
   // JSON Web tokens are only used for sessions if the `strategy: 'jwt'` session
   // option is set - or by default if no database is specified.
   // https://next-auth.js.org/configuration/options#jwt
-  jwt: {
-    // A secret to use for key generation (you should set this explicitly)
-    //secret: process.env.SECRET,
-    // Set to true to use encryption (default: false)
-    // You can define your own encode/decode functions for signing and encryption
-    // if you want to override the default behaviour.
-    // encode: async ({ secret, token, maxAge }) => {},
-    // decode: async ({ secret, token, maxAge }) => {},
-  },
+  //jwt: {
+  //  // A secret to use for key generation (you should set this explicitly)
+  //  secret: process.env.SECRET
+  //  // Set to true to use encryption (default: false)
+  //  // You can define your own encode/decode functions for signing and encryption
+  //  // if you want to override the default behaviour.
+  //  // encode: async ({ secret, token, maxAge }) => {},
+  //  // decode: async ({ secret, token, maxAge }) => {},
+  //},
 
   // You can define custom pages to override the built-in ones. These will be regular Next.js pages
   // so ensure that they are placed outside of the '/api' folder, e.g. signIn: '/auth/mycustom-signin'
@@ -136,9 +130,9 @@ export default NextAuth({
   // pages is not specified for that route.
   // https://next-auth.js.org/configuration/pages
   pages: {
-    signIn: '/',
-    signOut: '/logout', // Displays form with sign out button
-    error: '/auth/error' // Error code passed in query string as ?error=
+    signIn: '/'
+    //signOut: '/logout', // Displays form with sign out button
+    //error: '/auth/error' // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
     //newUser: "/", // If set, new users will be directed here on first sign in
   },

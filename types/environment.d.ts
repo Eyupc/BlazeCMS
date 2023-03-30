@@ -34,5 +34,8 @@ namespace NodeJS {
     REGISTER_MOTTO: string;
     REGISTER_LOOK: string;
     REGISTER_RANK: number;
+    NITRO_URL: string;
+    DISCORD_URL: string;
+    IMAGER_URL: string;
   }
 }

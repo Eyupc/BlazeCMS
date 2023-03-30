@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { IListItem } from '../interfaces/IListItem';
 
 export const ListItem = memo(
-  ({ name, menuName, title, href, Update, Click }: IListItem) => {
+  ({ name, menuName, title, goTo, Update, Click }: IListItem) => {
     return (
       <li
         className={name}
@@ -18,7 +18,7 @@ export const ListItem = memo(
           if (Click != undefined) Click();
         }}
       >
-        {href != undefined ? <Link href={href} /> : <></>}
+        {goTo != undefined ? <Link href={goTo} /> : <></>}
         <div className="name">{title}</div>
       </li>
     );

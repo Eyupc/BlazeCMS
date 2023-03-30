@@ -1,6 +1,6 @@
+import config from 'config.json';
 import { memo } from 'react';
 import { IUserBox } from '../interfaces/IUserBox';
-
 const UserBox = memo(({ online, avatar }: IUserBox) => {
   return (
     <div className="user-box">
@@ -9,7 +9,7 @@ const UserBox = memo(({ online, avatar }: IUserBox) => {
         <div
           className="figure"
           style={{
-            backgroundImage: `url("https://habbo.com/habbo-imaging/avatarimage?figure=${avatar}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png")`
+            backgroundImage: `url("${config.IMAGER_URL}?figure=${avatar}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png")`
           }}
         ></div>
         <div className="plate"></div>

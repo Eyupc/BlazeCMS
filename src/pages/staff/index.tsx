@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import { IStaffComponent } from '@/Components/Staff/interfaces/IStaffComponent';
 import { getServerSideProps } from '@/Components/Staff/ServerSide/StaffServerSideProps';
 import StaffMenu from '@/Components/Staff/StaffMenu';
@@ -10,6 +9,8 @@ import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
 import { useState } from 'react';
+import '/styles/styles.css';
+
 export default function StaffPage(data: IStaffComponent) {
   const [rank, setRank] = useState<number>(14);
 

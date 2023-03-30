@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import BoxInner from '@/Components/Home/BoxInner';
 import { IHomeComponent } from '@/Components/Home/interfaces/IHomeComponent';
 import MeStatus from '@/Components/Home/MeStatus';
@@ -7,9 +6,10 @@ import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/Anno
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
-
 import Navigator from '@/Components/static/Components/nav/navigator';
 import Head from 'next/head';
+import '/styles/styles.css';
+
 export default function HomePage(data: IHomeComponent) {
   return (
     <>

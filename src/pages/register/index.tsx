@@ -1,4 +1,3 @@
-import '@/app/global.css';
 import AlertBox from '@/Components/Register/AlertBox';
 import { RegisterBox } from '@/Components/Register/RegisterBox';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
@@ -7,6 +6,8 @@ import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Head from 'next/head';
 import Navigator from '../../Components/static/Components/nav/navigator';
+import '/styles/styles.css';
+
 export default function RegisterPage(ctx: any) {
   return (
     <>
