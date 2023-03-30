@@ -2058,8 +2058,8 @@ nav ul li .name {
   .login-user-avatar
   .login-avatar {
   position: relative;
-  top: -30px;
-  right: 20px;
+  top: -20px;
+  right: 0px;
   -webkit-filter: drop-shadow(-2px 0px 0px #cfcfcf);
   filter: drop-shadow(-2px 0px 0px #cfcfcf);
 }
