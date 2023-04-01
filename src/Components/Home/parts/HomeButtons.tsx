@@ -1,7 +1,6 @@
-import config from 'config.json';
+import cnf from 'cms-config.json';
 import Link from 'next/link';
 import { memo } from 'react';
-
 const HomeButtons = memo(() => {
   return (
     <div className="hotel-button">
@@ -10,14 +9,14 @@ const HomeButtons = memo(() => {
         href={'/client'}
         target={'_blank'}
       >
-        <div className="enterhotel">OTELE GİR</div>
+        <div className="enterhotel">{cnf.texts.HOME_ENTER_BTN}</div>
       </Link>
       <Link
         style={{ textDecoration: 'none' }}
-        href={`${config.DISCORD_URL}`}
+        href={`${cnf.links.DISCORD_URL}`}
         target={'_blank'}
       >
-        <div className="razewiki">DISCORD</div>
+        <div className="razewiki">{cnf.texts.HOME_DISCORD_BTN}</div>
       </Link>
     </div>
   );

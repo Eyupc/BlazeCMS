@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const REGEX_USERNAME = new RegExp('(^[a-zA-Z0-9-=?!@:.]{1,19}$)');
+const REGEX_USERNAME = new RegExp('(^[a-zA-Z0-9-=?!@:.]{1,16}$)');
 export const Validate = async (
   type: 'username' | 'email',
   name: string
 ): Promise<boolean | null> => {
   if (!REGEX_USERNAME.test(name) && type == 'username') {
-    // is max 18 characters long, is an allowed username
+    // is max 15 characters long, is an allowed username
     return false;
   }
 

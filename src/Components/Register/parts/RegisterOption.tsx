@@ -1,6 +1,6 @@
+import cnf from 'cms-config.json';
 import { ChangeEvent, memo } from 'react';
 import { IRegisterOption } from '../interfaces/IRegisterOption';
-
 const RegisterOption = memo(
   ({ title, description, getOption }: IRegisterOption) => {
     return (
@@ -15,8 +15,8 @@ const RegisterOption = memo(
             }
             className="register-i birthday-select"
           >
-            <option value="M">Erkek</option>
-            <option value="F">Kiz</option>é
+            <option value="M">{cnf.texts.REGISTER_GENDER_MALE}</option>
+            <option value="F">{cnf.texts.REGISTER_GENDER_FEMALE}</option>
           </select>
         </div>
       </>

@@ -1,6 +1,6 @@
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IUserInfo } from '../interfaces/IUserInfo';
-
 const UserInfo = memo(
   ({ username, motto, last_online, achievement_score }: IUserInfo) => {
     return (
@@ -12,7 +12,7 @@ const UserInfo = memo(
           <i className="fa fa-quote-right"></i>
         </div>
         <div className="user-stats">
-          <strong>Son giriş: </strong> <>{last_online}</>
+          <strong>{cnf.texts.HOME_LAST_ONLINE} </strong> <>{last_online}</>
         </div>
         {
           ///<div className="user-stats bank">
@@ -20,7 +20,8 @@ const UserInfo = memo(
           // </div>
         }
         <div className="user-stats level">
-          <strong>Başarı puanı:</strong> {achievement_score}
+          <strong>{cnf.texts.HOME_ACHIEVEMENT_SCORE}</strong>{' '}
+          {achievement_score}
         </div>
       </div>
     );

@@ -6,44 +6,42 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import '/styles/styles.css';
-
 export default function LeaderBoards(data: ILeaderboardsComponent) {
   return (
     <>
       <Head>
-        <title>Blaze - Leaderboards</title>
+        <title>{cnf.texts.LEADER_TITLE}</title>
       </Head>
       <Navigator />
       <Header />
       <AnnouncementBar
-        title={'Blaze - Leaderboards'}
-        description={
-          'Hi, this is the leaderboards page! On this page you can consult our top list who has the most credits, diamonds, duckets and achievement points.'
-        }
+        title={cnf.texts.LEADER_AB_TITLE}
+        description={cnf.texts.LEADER_AB_DESC}
       />
       <Main
         child={
           <div className="leaderboards">
             <LeaderBoardsBox
-              title={'Credits top list'}
-              type={'credits'}
+              title={cnf.texts.LEADER_CREDITS_TITLE}
+              type={cnf.texts.LEADER_CREDITS}
               data={data.cr_topList}
             />
             <LeaderBoardsBox
-              title={'Duckets top list'}
-              type={'duckets'}
+              title={cnf.texts.LEADER_DUCKETS_TITLE}
+              type={cnf.texts.LEADER_DUCKETS}
               data={data.du_topList}
             />
             <LeaderBoardsBox
-              title={'Diamonds top list'}
-              type={'diamonds'}
+              title={cnf.texts.LEADER_DIAMONDS_TITLE}
+              type={cnf.texts.LEADER_DIAMONDS}
               data={data.di_topList}
             />
             <LeaderBoardsBox
-              title={'Achievement score top list'}
-              type={'achievement_score'}
+              title={cnf.texts.LEADER_ACHIEVEMENT_TITLE}
+              type={cnf.texts.LEADER_ACHIEVEMENT_SCORE}
               data={data.as_topList}
             />
           </div>

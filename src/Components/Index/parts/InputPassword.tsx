@@ -1,6 +1,6 @@
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IInput } from '../interfaces/IInput';
-
 const InputPassword = memo(({ Change }: IInput) => {
   return (
     <div className="login-password">
@@ -11,7 +11,7 @@ const InputPassword = memo(({ Change }: IInput) => {
         id="password"
         onChange={(e) => Change(e.currentTarget.value)}
         className="login-i"
-        placeholder="Parola"
+        placeholder={cnf.texts.LOGIN_PASSWORD_PLACEHOLDER}
         autoComplete={'on'}
         required
       />

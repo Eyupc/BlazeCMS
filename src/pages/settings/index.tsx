@@ -5,33 +5,30 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
-import { useState } from 'react';
 import '/styles/styles.css';
 
 export default function SettingsPage() {
-  const [credentials, setCredentials] = useState('');
   return (
     <>
       <Head>
-        <title>Blaze - Settings</title>
+        <title>{cnf.texts.SETTINGS_TITLE}</title>
       </Head>
       <Navigator />
       <Header />
       <AnnouncementBar
-        title={'Blaze settings page'}
-        description={
-          'Welcome back, this is the settings page of our hotel. Here, u can change some private information of yourself!'
-        }
+        title={cnf.texts.SETTINGS_AB_TITLE}
+        description={cnf.texts.SETTINGS_AB_DESC}
       />
       <Main
         child={
           <div className="register">
             <SettingsBox />
             <AlertBox
-              title={'Blaze - Settings'}
-              description={'Change your user settings'}
-              text={''}
+              title={cnf.texts.SETTINGS_ALERTBOX_TITLE}
+              description={cnf.texts.SETTINGS_ALERTBOX_DESCRIPTION}
+              text={cnf.texts.SETTINGS_ALERTBOX_TEXT}
             />
           </div>
         }

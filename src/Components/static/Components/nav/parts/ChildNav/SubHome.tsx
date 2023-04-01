@@ -1,4 +1,4 @@
-import config from 'config.json';
+import cnf from 'cms-config.json';
 import { signOut } from 'next-auth/react';
 import router from 'next/router';
 import { memo } from 'react';
@@ -18,15 +18,15 @@ export const SubHome = memo(
         <div className="submenu-main">
           <SubItem
             href={'/home'}
-            iconImg={`${config.IMAGER_URL}?figure=${avatar}&head_direction=2&direction=2&size=sml`}
+            iconImg={`${cnf.links.IMAGER_URL}?figure=${avatar}&head_direction=2&direction=2&size=sml`}
             menuTitle={username}
-            menuDesc={'Home page'}
+            menuDesc={cnf.texts.NAVIGATOR_HOME_DESC}
           />
           <SubItem
             href={'/settings'}
             iconImg={'/assets/images/settings_icon.png'}
-            menuTitle={'Settings'}
-            menuDesc={'User settings'}
+            menuTitle={cnf.texts.NAVIGATOR_HOME_SETTINGS_TITLE}
+            menuDesc={cnf.texts.NAVIGATOR_HOME_SETTINGS_DESC}
           />
 
           <SubItem
@@ -38,8 +38,8 @@ export const SubHome = memo(
               });
               router.push('/');
             }}
-            menuTitle={'Logout'}
-            menuDesc={'End session'}
+            menuTitle={cnf.texts.NAVIGATOR_HOME_LOGOUT_TITLE}
+            menuDesc={cnf.texts.NAVIGATOR_HOME_LOGOUT_DESC}
           />
         </div>
       </div>

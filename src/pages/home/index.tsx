@@ -7,6 +7,7 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import '/styles/styles.css';
 
@@ -14,15 +15,13 @@ export default function HomePage(data: IHomeComponent) {
   return (
     <>
       <Head>
-        <title>Blaze - Home</title>
+        <title>{cnf.texts.HOME_TITLE}</title>
       </Head>
       <Navigator />
       <Header />
       <AnnouncementBar
-        title={'Blaze Hotel özel kullanıcılarla dolu bir topluluktur.'}
-        description={
-          'Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadını çıkar!'
-        }
+        title={cnf.texts.HOME_AB_TITLE}
+        description={cnf.texts.HOME_AB_DESC}
       />
       <Main
         child={
