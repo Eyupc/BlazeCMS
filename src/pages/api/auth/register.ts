@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SSOGenerator } from 'utils/SSOGenerator';
@@ -22,7 +23,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<RegisterResponse>
 ) {
-  const regexUsername = new RegExp('(^[a-zA-Z0-9-=?!@:.]{1,19}$)');
+  const regexUsername = new RegExp('(^[a-zA-Z0-9-=?!@:.]{1,16}$)');
   const body: RegisterBody = req.body;
   const errors: string[] = [];
 
@@ -31,22 +32,20 @@ export default async function handler(
   if (
     await DatabaseManager.GetInstance().UserQueries.UsernameExist(body.username)
   ) {
-    errors.push('This username is already taken!');
+    errors.push(cnf.texts.REGISTER_ERROR_USERNAME);
   }
   if (!regexUsername.test(body.username)) {
-    errors.push(
-      'This username is not allowed! It may contain disallow characters OR is too long (max 15. char.)'
-    );
+    errors.push(cnf.texts.REGISTER_ERROR_USERNAME_NVALID);
   }
   if (await DatabaseManager.GetInstance().UserQueries.MailExist(body.mail)) {
-    errors.push('This email does already exist!');
+    errors.push(cnf.texts.REGISTER_ERROR_EMAIL_EXIST);
   }
 
   if (body.password.length < 6) {
-    errors.push('Password must contain minimum 6 characters.');
+    errors.push(cnf.texts.REGISTER_ERROR_PASSWORD_LENGTH);
   }
   if (body.password != body.rePassword) {
-    errors.push('The 2 passwords doesnt match!');
+    errors.push(cnf.texts.REGISTER_ERROR_PASSWORD_MATCH);
   }
 
   if (errors.length > 0) {
@@ -64,8 +63,14 @@ export default async function handler(
     auth_ticket: SSOGenerator.Generate(),
     gender: body.gender == 'M' ? 'M' : 'F',
     rank: process.env.REGISTER_RANK,
-    ip_register: req.socket.remoteAddress?.toString() || '',
-    ip_current: req.socket.remoteAddress?.toString() || '',
+    ip_register:
+      ((process.env.CLOUDFLARE_ENABLED as Boolean) == true
+        ? req.headers['cf-connecting-ip']!.toString()
+        : req.socket.remoteAddress!.toString()) || '',
+    ip_current:
+      ((process.env.CLOUDFLARE_ENABLED as Boolean) == true
+        ? req.headers['cf-connecting-ip']!.toString()
+        : req.socket.remoteAddress!.toString()) || '',
     last_login: Math.round(+new Date() / 1000),
     account_created: Math.round(+new Date() / 1000),
     credits:
