@@ -130,6 +130,7 @@
 "SETTINGS_ERROR_PASSWORD_LENGTH":"Yeni sifreniz en az 6 karakter olmasi gerekiyor",
 "SETTINGS_ERROR_PASSWORD_MATCH":"Sifreler uyusmuyor!",
 
+"STAFFS_TITLE":"Blaze - Personeller",
 "STAFFS_AB_TITLE":"Blaze - Personeller",
 "STAFFS_AB_DESC":"Personeller sayfasi",
 "STAFFS_MOTTO":"Motto:",
