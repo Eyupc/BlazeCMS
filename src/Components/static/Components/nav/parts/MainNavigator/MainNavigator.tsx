@@ -1,4 +1,5 @@
 import { ShowLoginForm } from '@/Components/Index/methods/ShowLoginForm';
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IMainNavigator } from './interfaces/IMainNavigator';
 import { ListItem } from './parts/ListItem';
@@ -10,31 +11,35 @@ export const MainNavigator = memo(
           <>
             <ListItem
               name={'home'}
-              title={'Home'}
+              title={cnf.texts.NAVIGATOR_HOME_TITLE}
               menuName={'homeMenu'}
               Update={(e) => showHome(e)}
             />
             <ListItem
               name={'community'}
-              title={'Community'}
+              title={cnf.texts.NAVIGATOR_COMMUNITY_TITLE}
               menuName={'communityMenu'}
               Update={(e) => showCommunity(e)}
             />
 
-            <ListItem name={'community'} title={'Help'} menuName={'test'} />
+            <ListItem
+              name={'community'}
+              title={cnf.texts.NAVIGATOR_HELP_TITLE}
+              menuName={'test'}
+            />
           </>
         ) : (
           <>
             <ListItem
               name={'login'}
-              title={'Log in'}
+              title={cnf.texts.NAVIGATOR_LOGIN_TITLE}
               menuName={'LogIn'}
               Click={() => ShowLoginForm(true)}
               goTo={'/'}
             />
             <ListItem
               name={'register'}
-              title={'Register'}
+              title={cnf.texts.NAVIGATOR_REGISTER_TITLE}
               menuName={'register'}
               goTo={'/register'}
             />

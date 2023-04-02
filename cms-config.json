@@ -1,0 +1,150 @@
+{
+"links":{
+"DISCORD_URL":"https://discord.gg/blaze",
+"TWITTER_URL":"#",
+"INSTAGRAM_URL":"#",
+"HOTEL_LINK":"http://localhost:3000",
+"NITRO_URL":"http://localhost:3000/staff",
+"IMAGER_URL":"https://habbo.com.tr/habbo-imaging/avatarimage"
+},
+"texts":{
+"SUBMIT_BUTTON":"KAYDET!",
+"FOOTER_TITLE":"Blaze Hotel",
+"FOOTER_TITLE_V":"v0.1",
+"FOOTER_DESCRIPTION":"Blaze Hotel, kendi karakterinizi ve odalarınızı tasarlayabileceğiniz, gençler için sanal bir dünyadır. Ayrıca yeni arkadaşlarla tanışabilir, sohbet edebilir, parti yapabilir, evcil hayvanlara bakabilir, oyun tasarlayabilir ve oynayabilir ve görevlerden geçebilirsiniz.",
+"FOOTER_RULES":"KURALLAR",
+"FOOTER_TERMS":"Kullanım ve şart koşulları",
+"FOOTER_PRIVACY":"Gizlilik politikası",
+"FOOTER_COOKIES":"Çerez politikası",
+"FOOTER_COPYRIGHT":"© 2023 Blaze Hotel",
+
+
+
+"NAVIGATOR_LOGIN_TITLE":"Log in",
+"NAVIGATOR_REGISTER_TITLE":"Register",
+"NAVIGATOR_HOME_TITLE":"Home",
+"NAVIGATOR_COMMUNITY_TITLE":"Community",
+"NAVIGATOR_HELP_TITLE":"Help",
+
+"NAVIGATOR_HOME_DESC":"Home page",
+"NAVIGATOR_HOME_SETTINGS_TITLE":"Settings",
+"NAVIGATOR_HOME_SETTINGS_DESC":"User settings",
+"NAVIGATOR_HOME_LOGOUT_TITLE":"Logout",
+"NAVIGATOR_HOME_LOGOUT_DESC":"End session",
+
+"NAVIGATOR_COMMUNITY_STAFF_TITLE":"Blaze Staff",
+"NAVIGATOR_COMMUNITY_STAFF_DESC":"Personel ekibi",
+"NAVIGATOR_COMMUNITY_LEADER_TITLE":"En iyiler",
+"NAVIGATOR_COMMUNITY_LEADER_DESC":"En iyi kullanicilar",
+"NAVIGATOR_COMMUNITY_NEWS_TITLE":"Haberler",
+"NAVIGATOR_COMMUNITY_NEWS_DESC":"Haberler'e bir göz at!",
+
+
+
+"INDEX_TITLE":"Blaze - Index",
+"INDEX_AB_TITLE":"Blaze özel kullanıcılarla dolu bir topluluktur",
+"INDEX_AB_DESC":"Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!",
+
+"INDEX_IB1_ALERT":"BİLGİLENDİRME",
+"INDEX_IB1_TITLE":"Arkadaş edin",
+"INDEX_IB1_DESC":"Bir kullanıcıya tıklayın, arkadaşınız olmalarını isteyen ve beraber etkinlikere katılın, eğlenin odalar yapın ve rol yapın!",
+"INDEX_IB1_IMG":"/assets/images/corps.png",
+
+"INDEX_IB2_ALERT":"BİLGİLENDİRME",
+"INDEX_IB2_TITLE":"Ücretsiz oyna",
+"INDEX_IB2_DESC":"Blaze ücretsiz oynanan bir oyundur, ücretsiz binlerce odayı gezebilir, görevlerini tamamlayabilir, sohbet edebilir ve ödüller kazanabilirsiniz!",
+"INDEX_IB2_IMG":"/assets/images/crime.png",
+
+"INDEX_IB3_ALERT":"BİLGİLENDİRME",
+"INDEX_IB3_TITLE":"Topluluğunu bul",
+"INDEX_IB3_DESC":"Arkadaşlarınla sohbet edip takılmaktan mı hoşlanıyorsun? Blaze grupları, forumları ve rol yapan topluluklar başlangıç için iyi seçenekler.",
+"INDEX_IB3_IMG":"/assets/images/community.png",
+
+
+
+"LOGIN_TITLE":"BLAZE'YE GİRİŞ YAP",
+"LOGIN_DESC":"Merhaba, sizleri özledik.. Bizimle oynamak için giriş yapın!",
+"LOGIN_FORGOT_PASSWORD":"Parolamı unuttums",
+"LOGIN_SUBMIT_BTN":"GİRİŞ YAP",
+"LOGIN_ERROR":"Yanlis nick/sifre kombinasyonu",
+"LOGIN_UN_PLACEHOLDER":"Kullanıcı adı",
+"LOGIN_PASSWORD_PLACEHOLDER":"Parola",
+
+
+
+"REGISTER_TITLE":"Blaze - Register",
+"REGISTER_AB_TITLE":"Blaze özel kullanıcılarla dolu bir topluluktur",
+"REGISTER_AB_DESC":"Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!",
+
+"REGISTER_ALERTBOX_TITLE":"BLAZE'YE KATIL!",
+"REGISTER_ALERTBOX_DESC": "Gençler için dünyanın en büyük çevrimiçi topluluğunun bir parçası olun.",
+"REGISTER_ALERTBOX_TEXT":"Arkadaşlarınızla sohbet etmeyi ve takılmayı sever misiniz? Blaze Grupları, forumlar ve Rol yapma topluluklarıbaşlamak için harika bir yerdir. Katılın ve sonsuz rol oynamaolasılıklarını keşfedin!",
+
+"REGISTER_USERNAME_TITLE":"Kullanıcı adı",
+"REGISTER_USERNAME_DESC":"Gelecekte Blaze'de oturum açmak için bu kullanıcı adını kullanmanız gerekecek. Lütfen geçeri bir kullanıcı adı kullanın.",
+"REGISTER_PASSOWRD_TITLE":"Parola",
+"REGISTER_PASSWORD_DESC":"En az 6 karakter kullanın.",
+"REGISTER_REPASSWORD_TITLE":"Parolanı tekrarla",
+"REGISTER_EMAIL_TTLE":"E-posta",
+"REGISTER_EMAIL_DESC":"Kendi e-posta adresinizi girerek 'parolamı unuttum' işlevini kullanabilirsiniz.",
+"REGISTER_GENDER_TITLE":"Cinsiyet",
+"REGISTER_GENDER_DESC":"Lütfen cinsiyetinizi seçeniz.",
+"REGISTER_GENDER_MALE":"Erkek",
+"REGISTER_GENDER_FEMALE":"Kiz",
+"REGISTER_CHECKBOX_DESC":"Kullanım Şart ve Koşulları, Gizlilik ve Çerez Politikası Şartlarını kabul ediyorum.",
+"REGISTER_SUBMIT_BTN":"Tamamladık! Hadi, bir avatar yapalım!",
+"REGISTER_ERROR_USERNAME":"Bu kullanici ismi baskasi tarafindan kullaniliyor!",
+"REGISTER_ERROR_USERNAME_NVALID":"Bu kullanici ismini kullanamazsin. En fazla 15 karakter içerebilir, ve yasak harfler kullandiniz.",
+"REGISTER_ERROR_EMAIL_EXIST":"Bu eposta baskasi tarafindan kullaniliyor",
+"REGISTER_ERROR_PASSWORD_LENGTH":"Sifre en az 6 karakterden olusmasi gerekiyor",
+"REGISTER_ERROR_PASSWORD_MATCH":"Sifreler uyusmuyor",
+
+
+"HOME_TITLE":"Blaze - Ev",
+"HOME_AB_TITLE":"Blaze Hotel özel kullanıcılarla dolu bir topluluktur.",
+"HOME_AB_DESC":"Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadını çıkar!",
+"HOME_LAST_ONLINE":"Son giriş:",
+"HOME_ACHIEVEMENT_SCORE":"Başarı puanı:",
+"HOME_CREDITS":"kredi",
+"HOME_DUCKETS":"ördek",
+"HOME_DIAMONDS":"elmas",
+"HOME_ENTER_BTN":"OTELE GİR",
+"HOME_DISCORD_BTN":"DISCORD",
+
+"SETTINGS_TITLE":"Blaze - Ayarlar",
+"SETTINGS_AB_TITLE":"Blaze ayarlar sayfasi",
+"SETTINGS_AB_DESC":"Welcome back, this is the settings page of our hotel. Here, u can change some private information of yourself!",
+
+"SETTINGS_ALERTBOX_TITLE":"Blaze - Ayarlar",
+"SETTINGS_ALERTBOX_DESCRIPTION":"Change your user settings",
+"SETTINGS_ALERTBOX_TEXT":"Auctor eu augue ut lectus arcu. Tristique nulla aliquet enim tortor at auctor. Pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Rhoncus urna neque viverra justo nec. Interdum posuere lorem ipsum dolor. Ultrices in iaculis nunc sed augue lacus viverra.",
+
+"SETTINGS_OLDPASSWORD_TITLE":"Suanki sifre",
+"SETTINGS_OLDPASSWORD_DESC":"Suanki sifrenizi giriniz",
+"SETTINGS_NEWPASSWORD_TITLE":"Yeni sifre",
+"SETTINGS_NEWPASSWORD_DESC":"Yeni sifrenizi giriniz",
+"SETTINGS_RE_NEWPASSWORD_TITLE":"Yeniden yeni sifrenizi giriniz",
+"SETTINGS_SUBMIT_BTN":"Degistir!",
+
+"SETTINGS_ERROR_PASSWORD":"Suanki sifreniz yanlis!",
+"SETTINGS_ERROR_PASSWORD_LENGTH":"Yeni sifreniz en az 6 karakter olmasi gerekiyor",
+"SETTINGS_ERROR_PASSWORD_MATCH":"Sifreler uyusmuyor!",
+
+"STAFFS_AB_TITLE":"Blaze - Personeller",
+"STAFFS_AB_DESC":"Personeller sayfasi",
+"STAFFS_MOTTO":"Motto:",
+"STAFFS_INFO_TEXT":"Raze staffs are people that trying to keep the hotel safe, friendly, fun. These people are here to support you, if u got some problems you can directly go to a staff for sue any problem or anything.",
+
+"LEADER_TITLE":"Blaze - Liderler",
+"LEADER_AB_TITLE":"Blaze - Liderler",
+"LEADER_AB_DESC":"Hi, this is the leaderboards page! On this page you can consult our top list who has the most credits, diamonds, duckets and achievement points.",
+"LEADER_CREDITS_TITLE":"En fazla kredi",
+"LEADER_DUCKETS_TITLE":"En fazla ördek",
+"LEADER_DIAMONDS_TITLE":"En fazla elmas",
+"LEADER_ACHIEVEMENT_TITLE":"En fazla basari puani",
+"LEADER_CREDITS":"kredi",
+"LEADER_DUCKETS":"ördek",
+"LEADER_DIAMONDS":"elmas",
+"LEADER_ACHIEVEMENT_SCORE":"basari puani"
+}
+}

@@ -1,4 +1,5 @@
-import config from 'config.json';
+import cnf from 'cms-config.json';
+import Link from 'next/link';
 import { memo } from 'react';
 export const Footer = memo(() => {
   return (
@@ -6,49 +7,52 @@ export const Footer = memo(() => {
       <div className="footermain">
         <div className="fbox">
           <div className="footer-title">
-            Blaze Hotel <small>(v0.1)</small>
+            {cnf.texts.FOOTER_TITLE}
+            <small> ({cnf.texts.FOOTER_TITLE_V})</small>
           </div>
-          <p className="footer-desc">
-            Blaze Hotel, kendi karakterinizi ve odalarınızı
-            tasarlayabileceğiniz, gençler için sanal bir dünyadır. Ayrıca yeni
-            arkadaşlarla tanışabilir, sohbet edebilir, parti yapabilir, evcil
-            hayvanlara bakabilir, oyun tasarlayabilir ve oynayabilir ve
-            görevlerden geçebilirsiniz.
-          </p>
+          <p className="footer-desc">{cnf.texts.FOOTER_DESCRIPTION}</p>
           <div className="footer-social">
-            <a href="#" style={{ marginRight: '20px' }} target="_blank">
-              <i className="fab fa-twitter" style={{ marginRight: '5px' }}></i>{' '}
+            <Link
+              href={cnf.links.TWITTER_URL}
+              style={{ marginRight: '20px' }}
+              target="_blank"
+            >
+              <i className="fab fa-twitter" style={{ marginRight: '5px' }}></i>
               Twitter
-            </a>
-            <a href="#" style={{ marginRight: '20px' }} target="_blank">
+            </Link>
+            <Link
+              href={cnf.links.INSTAGRAM_URL}
+              style={{ marginRight: '20px' }}
+              target="_blank"
+            >
               <i
                 className="fab fa-instagram"
                 style={{ marginRight: '5px' }}
               ></i>{' '}
               Instagram
-            </a>
-            <a href={config.DISCORD_URL} target="_blank" rel={'noreferrer'}>
+            </Link>
+            <a href={cnf.links.DISCORD_URL} target="_blank" rel={'noreferrer'}>
               <i className="fab fa-discord" style={{ marginRight: '5px' }}></i>{' '}
               Discord
             </a>
           </div>
           <div className="raze-info">
             <a href="#" className="footer-url">
-              Kurallar
+              {cnf.texts.FOOTER_RULES}
             </a>
             <a href="#" className="footer-url">
-              Kullanım ve şart koşulları
+              {cnf.texts.FOOTER_TERMS}
             </a>
             <a href="#" className="footer-url">
-              Gizlilik politikası
+              {cnf.texts.FOOTER_PRIVACY}
             </a>
             <a href="#" className="footer-url">
-              Çerez politikası
+              {cnf.texts.FOOTER_COOKIES}
             </a>
           </div>
         </div>
       </div>
-      <div className="footer">© 2023 Blaze Hotel</div>
+      <div className="footer">{cnf.texts.FOOTER_COPYRIGHT}</div>
     </>
   );
 });

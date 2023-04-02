@@ -5,48 +5,41 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import '/styles/styles.css';
 export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>Blaze - Index</title>
+        <title>{cnf.texts.INDEX_TITLE}</title>
       </Head>
       <Navigator />
       <Header />
       <AnnouncementBar
-        title={'Blaze özel kullanıcılarla dolu bir topluluktur'}
-        description={
-          'Ücretsiz katıl, arkadaş edin, odanı tasarla ve deneyimin tadınıçıkar!'
-        }
+        title={cnf.texts.INDEX_AB_TITLE}
+        description={cnf.texts.INDEX_AB_DESC}
       />
       <Main
         child={
           <div className="login">
             <InformationBox
-              alertTitle={'BİLGİLENDİRME'}
-              title={'Arkadaş edin'}
-              description={
-                'Bir kullanıcıya tıklayın, arkadaşınız olmalarını isteyen ve beraber etkinlikere katılın, eğlenin odalar yapın ve rol yapın!'
-              }
-              banner_img={'/assets/images/corps.png'}
+              alertTitle={cnf.texts.INDEX_IB1_ALERT}
+              title={cnf.texts.INDEX_IB1_TITLE}
+              description={cnf.texts.INDEX_IB1_DESC}
+              banner_img={cnf.texts.INDEX_IB1_IMG}
             />
             <InformationBox
-              alertTitle={'BİLGİLENDİRME'}
-              title={'Ücretsiz oyna'}
-              description={
-                'Blaze ücretsiz oynanan bir oyundur, ücretsiz binlerce odayı gezebilir, görevlerini tamamlayabilir, sohbet edebilir ve ödüller kazanabilirsiniz!'
-              }
-              banner_img={'/assets/images/crime.png'}
+              alertTitle={cnf.texts.INDEX_IB2_ALERT}
+              title={cnf.texts.INDEX_IB2_TITLE}
+              description={cnf.texts.INDEX_IB2_DESC}
+              banner_img={cnf.texts.INDEX_IB2_IMG}
             />
             <InformationBox
-              alertTitle={'BİLGİLENDİRME'}
-              title={'Topluluğunu bul'}
-              description={
-                'Arkadaşlarınla sohbet edip takılmaktan mı hoşlanıyorsun? Blaze grupları, forumları ve rol yapan topluluklar başlangıç için iyi seçenekler.'
-              }
-              banner_img={'assets/images/community.png'}
+              alertTitle={cnf.texts.INDEX_IB3_ALERT}
+              title={cnf.texts.INDEX_IB3_TITLE}
+              description={cnf.texts.INDEX_IB3_DESC}
+              banner_img={cnf.texts.INDEX_IB3_IMG}
             />
           </div>
         }

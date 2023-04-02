@@ -27,15 +27,15 @@ namespace NodeJS {
     MYSQL_USER: string;
     MYSQL_PASSWORD: string;
     NEXTAUTH_URL: string;
-    HOTEL_LINK: string;
     REGISTER_CREDITS: number;
     REGISTER_DUCKETS: number;
     REGISTER_DIAMONDS: number;
     REGISTER_MOTTO: string;
     REGISTER_LOOK: string;
     REGISTER_RANK: number;
-    NITRO_URL: string;
-    DISCORD_URL: string;
-    IMAGER_URL: string;
+
+    CLOUDFLARE_ENABLED: boolean;
+    SERVER_HOST: string;
+    SERVER_PORT: number;
   }
 }

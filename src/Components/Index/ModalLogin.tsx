@@ -1,10 +1,11 @@
+import cnf from 'cms-config.json';
+import Link from 'next/link';
 import router from 'next/router';
 import { FormEvent, memo, useCallback, useState } from 'react';
 import { TryoToLogin } from './methods/TryToLogin';
 import InputName from './parts/InputName';
 import InputPassword from './parts/InputPassword';
 import { LoginHeader } from './parts/LoginHeader';
-
 const ModalLogin = memo(() => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +21,7 @@ const ModalLogin = memo(() => {
           router.push('/home');
           break;
         default:
-          setError('Wrong username/password combination.');
+          setError(cnf.texts.LOGIN_ERROR);
           break;
       }
     },
@@ -34,20 +35,18 @@ const ModalLogin = memo(() => {
       <div className="modalbox">
         <div className="userbox d-flex direction-row">
           <LoginHeader
-            title={"BLAZE'YE GİRİŞ YAP"}
-            description={
-              'Merhaba, sizleri özledik.. Bizimle oynamak için giriş yapın!'
-            }
+            title={cnf.texts.LOGIN_TITLE}
+            description={cnf.texts.LOGIN_DESC}
           />
           <form id="form" onSubmit={HandleSubmit}>
             <InputName Change={(uname) => setUsername(uname)} />
             <InputPassword Change={(password) => setPassword(password)} />
             <div className="error">{error}</div>
-            <a href="#" target="_blank" className="login-forgot">
-              Parolamı unuttums
-            </a>
+            <Link href="#" target="_blank" className="login-forgot">
+              {cnf.texts.LOGIN_FORGOT_PASSWORD}
+            </Link>
             <button type="submit" id="submit" className="enterhotel">
-              GİRİŞ YAP
+              {cnf.texts.LOGIN_SUBMIT_BTN}
             </button>
           </form>
         </div>

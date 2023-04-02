@@ -1,11 +1,11 @@
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IRegisterPassword } from '../interfaces/IRegisterPassword';
-
 const RegisterPassword = memo(({ password, rePassword }: IRegisterPassword) => {
   return (
     <div className="register-password-main">
-      <b>Parola</b>
-      <em>En az 6 karakter kullanın.</em>
+      <b>{cnf.texts.REGISTER_PASSOWRD_TITLE}</b>
+      <em>{cnf.texts.REGISTER_PASSWORD_DESC}</em>
       <input
         className="register-i mb-08"
         type="password"
@@ -15,7 +15,7 @@ const RegisterPassword = memo(({ password, rePassword }: IRegisterPassword) => {
         onChange={(e) => password(e.target.value)}
         required
       />
-      <b className="mb-05">Parolanı tekrarla</b>
+      <b className="mb-05">{cnf.texts.REGISTER_REPASSWORD_TITLE}</b>
       <input
         className="register-i"
         type="password"

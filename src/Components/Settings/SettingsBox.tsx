@@ -1,4 +1,5 @@
 import { Alert } from '@mui/material';
+import cnf from 'cms-config.json';
 import { signOut } from 'next-auth/react';
 import router from 'next/router';
 import { BaseSyntheticEvent, memo, useState } from 'react';
@@ -6,7 +7,6 @@ import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { ICredentials } from './interfaces/ICredentials';
 import { UpdatePassword } from './methods/UpdatePassword';
 import InputPassword from './parts/InputPassword';
-
 const SettingsBox = memo(() => {
   const [credentials, setCredentials] = useState<ICredentials>({
     oldPassword: '',
@@ -58,14 +58,14 @@ const SettingsBox = memo(() => {
               onUpdate={(val) =>
                 setCredentials({ ...credentials, oldPassword: val })
               }
-              title={'Old password'}
-              description={'Enter your old password.'}
+              title={cnf.texts.SETTINGS_OLDPASSWORD_TITLE}
+              description={cnf.texts.SETTINGS_OLDPASSWORD_DESC}
               name={'oldPassword'}
             />
             <br />
             <InputPassword
-              title={'New password'}
-              description={'Enter your new password.'}
+              title={cnf.texts.SETTINGS_NEWPASSWORD_TITLE}
+              description={cnf.texts.SETTINGS_NEWPASSWORD_DESC}
               name={'newPassword'}
               onUpdate={(val) =>
                 setCredentials({ ...credentials, newPassword: val })
@@ -73,14 +73,14 @@ const SettingsBox = memo(() => {
             />
             <br />
             <InputPassword
-              title={'Repeat old password'}
+              title={cnf.texts.SETTINGS_RE_NEWPASSWORD_TITLE}
               name={'rePassword'}
               onUpdate={(val) =>
                 setCredentials({ ...credentials, rePassword: val })
               }
             />
           </div>{' '}
-          <SubmitButton text={'Submit!'} />
+          <SubmitButton text={cnf.texts.SETTINGS_SUBMIT_BTN} />
         </form>
       </div>
     </div>

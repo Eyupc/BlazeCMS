@@ -254,4 +254,18 @@ export class UserQueries {
       );
     });
   }
+
+  public async UpdateLastLogin(id: number, ip: string): Promise<boolean> {
+    return await new Promise((res, rej) => {
+      this.connection.query(
+        'UPDATE `users` SET `last_login` = {login},`ip_current`= "{ip}"'
+          .replace('{login}', Math.round(+new Date() / 1000).toString())
+          .replace('{ip}', ip),
+        (_err, results) => {
+          if (_err || results.length == 0) res(false);
+          else res(true);
+        }
+      );
+    });
+  }
 }

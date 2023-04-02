@@ -1,5 +1,5 @@
 export interface ILeaderboardsBox {
   title: string;
-  type: 'duckets' | 'credits' | 'diamonds' | 'achievement_score';
+  type: string;
   data: { username: string; avatar: string; amount: number }[];
 }

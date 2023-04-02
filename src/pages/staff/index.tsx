@@ -7,10 +7,10 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import { useState } from 'react';
 import '/styles/styles.css';
-
 export default function StaffPage(data: IStaffComponent) {
   const [rank, setRank] = useState<number>(14);
 
@@ -22,10 +22,8 @@ export default function StaffPage(data: IStaffComponent) {
       <Navigator />
       <Header />
       <AnnouncementBar
-        title={'Blaze - Staffs'}
-        description={
-          'Hi, this is the staff page. Here can u see our staff team!'
-        }
+        title={cnf.texts.STAFFS_AB_TITLE}
+        description={cnf.texts.STAFFS_AB_DESC}
       />
 
       <Main

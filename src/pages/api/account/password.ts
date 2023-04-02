@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
+import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
-
 type Body = {
   newPassword: string;
   rePassword: string;
@@ -36,17 +36,17 @@ export default async function handler(
 
   if (!data.error) {
     if (!(await bcrypt.compare(body.oldPassword, password))) {
-      errors.push('Wrong old password!');
+      errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD);
       res.status(200).json({ status: false, errors: errors });
       return;
     }
     if (body.newPassword.length < 6 || body.rePassword.length < 6) {
-      errors.push('Password length must be minimum 6 characters!');
+      errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD_LENGTH);
       res.status(200).json({ status: false, errors: errors });
       return;
     }
     if (body.newPassword != body.rePassword) {
-      errors.push("The 2 passwords doesn't match! (new)");
+      errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD_MATCH);
       res.status(200).json({ status: false, errors: errors });
       return;
     }

@@ -1,3 +1,4 @@
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IStaffInfo } from './interfaces/IStaffInfo';
 const StaffInfo = memo(({ rankName }: IStaffInfo) => {
@@ -7,11 +8,7 @@ const StaffInfo = memo(({ rankName }: IStaffInfo) => {
         <div className="staffico"></div>
         <div className="staff-text">
           <div className="staff-tittle">{rankName}</div>
-          <div className="staff-description">
-            Raze staffs are people that trying to keep the hotel safe, friendly,
-            fun. These people are here to support you, if u got some problems
-            you can directly go to a staff for sue any problem or anything.
-          </div>
+          <div className="staff-description">{cnf.texts.STAFFS_INFO_TEXT}</div>
         </div>
       </div>
     </div>

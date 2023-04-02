@@ -1,4 +1,4 @@
-import config from 'config.json';
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IStaffBox } from '../interfaces/IStaffBox';
 
@@ -14,7 +14,7 @@ const StaffBox = memo(({ username, online, avatar, motto }: IStaffBox) => {
           className="figure"
           style={{
             background: `url(${
-              config.IMAGER_URL
+              cnf.links.IMAGER_URL
             }?figure=${avatar}&action=std,crr=667&gesture=${
               !!Number(online) ? 'std' : 'eyb'
             }&direction=2&head_direction=2&size=n&img_format=png)`
@@ -31,7 +31,7 @@ const StaffBox = memo(({ username, online, avatar, motto }: IStaffBox) => {
           {username}
         </div>
         <div className="user-stats">
-          <strong>Motto: </strong> {motto}
+          <strong>{cnf.texts.STAFFS_MOTTO} </strong> {motto}
         </div>
       </div>
       <div className="staff-flag usflag"></div>

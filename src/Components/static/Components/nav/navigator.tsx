@@ -7,6 +7,8 @@ export default function Navigator() {
   const [showSub, setShowSub] = useState<'y' | 'n'>('n');
   const [showCommunity, setShowCommunity] = useState<'y' | 'n'>('n');
   const [showHome, setShowHome] = useState<'y' | 'n'>('n');
+  const [isLoading, setIsLoading] = useState(true);
+
   const [user, setUser] = useState<{
     avatar: string;
     username: string;
@@ -21,6 +23,8 @@ export default function Navigator() {
           if (resp.data.status as Boolean)
             setUser({ username: resp.data.username, avatar: resp.data.avatar });
           else setUser(null);
+
+          setIsLoading(false);
         })
         .catch((err) => {});
     });
@@ -31,17 +35,21 @@ export default function Navigator() {
       <nav>
         <div className="content">
           <ul className="nav">
-            <MainNavigator
-              loggedIn={user != null ? true : false}
-              showHome={(e) => {
-                setShowHome(e);
-                setShowSub(e);
-              }}
-              showCommunity={(e) => {
-                setShowCommunity(e);
-                setShowSub(e);
-              }}
-            />
+            {!isLoading ? (
+              <MainNavigator
+                loggedIn={user != null ? true : false}
+                showHome={(e) => {
+                  setShowHome(e);
+                  setShowSub(e);
+                }}
+                showCommunity={(e) => {
+                  setShowCommunity(e);
+                  setShowSub(e);
+                }}
+              />
+            ) : (
+              <></>
+            )}
           </ul>
         </div>
       </nav>

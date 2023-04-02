@@ -1,4 +1,5 @@
 import { Alert } from '@mui/material';
+import cnf from 'cms-config.json';
 import { signIn } from 'next-auth/react';
 import router from 'next/router';
 import { BaseSyntheticEvent, useState } from 'react';
@@ -9,7 +10,6 @@ import RegisterCheckbox from './parts/RegisterCheckbox';
 import RegisterInput from './parts/RegisterInput';
 import RegisterOption from './parts/RegisterOption';
 import RegisterPassword from './parts/RegisterPassword';
-
 export function RegisterBox() {
   const [credentials, setCredentials] = useState<ICredentials>({
     username: '',
@@ -58,10 +58,8 @@ export function RegisterBox() {
           )}
 
           <RegisterInput
-            title={'Kullanıcı adı'}
-            description={
-              "Gelecekte Blaze'de oturum açmak için bu kullanıcı adını kullanmanız gerekecek. Lütfen geçeri bir kullanıcı adı kullanın."
-            }
+            title={cnf.texts.REGISTER_USERNAME_TITLE}
+            description={cnf.texts.REGISTER_USERNAME_DESC}
             type={'username'}
             Change={(val) => setCredentials({ ...credentials, username: val })}
           />
@@ -73,26 +71,20 @@ export function RegisterBox() {
             }
           />
           <RegisterInput
-            title={'E-posta'}
-            description={
-              "Kendi e-posta adresinizi girerek 'parolamı unuttum' işlevini kullanabilirsiniz."
-            }
+            title={cnf.texts.REGISTER_EMAIL_TTLE}
+            description={cnf.texts.REGISTER_EMAIL_DESC}
             type={'email'}
             Change={(val) => setCredentials({ ...credentials, email: val })}
           />
           <hr />
           <RegisterOption
-            title={'Cinsiyet'}
-            description={'Lütfen cinsiyetinizi seçeniz.'}
+            title={cnf.texts.REGISTER_GENDER_TITLE}
+            description={cnf.texts.REGISTER_GENDER_DESC}
             getOption={(e) => setCredentials({ ...credentials, gender: e })}
           />
           <hr />
-          <RegisterCheckbox
-            description={
-              'Kullanım Şart ve Koşulları, Gizlilik ve Çerez Politikası Şartlarını kabul ediyorum.'
-            }
-          />
-          <SubmitButton text={'Tamamladık! Hadi, bir avatar yapalım!'} />
+          <RegisterCheckbox description={cnf.texts.REGISTER_CHECKBOX_DESC} />
+          <SubmitButton text={cnf.texts.REGISTER_SUBMIT_BTN} />
         </form>
       </div>
     </div>
