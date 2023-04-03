@@ -2338,3 +2338,171 @@ nav ul li .name {
   line-height: 45px;
   text-align: center;
 }
+
+/* NEWS */
+/* Articles Page */
+
+.articlesPages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 15px;
+}
+
+.leftArticle {
+  width: 23rem;
+  background-color: white;
+  box-shadow: 0 0 8px 2px #00000014;
+  color: #22333bc7;
+  border-radius: 4px;
+  border: 1px solid #d9dddf;
+}
+
+.infoHead {
+  background: #f8f8f8;
+  padding: 0px 18px;
+  border-bottom: 1px solid #d9dddf;
+  font-size: 11px;
+  opacity: 0.9;
+  font-weight: 500;
+  position: relative;
+  top: -14px;
+  border-radius: 4px 4px 0 0;
+}
+
+h2#lastArt {
+  position: relative;
+  top: 7px;
+}
+
+.leftBoxs {
+  padding: 1rem;
+}
+
+.leftBox {
+  background: #fff;
+  box-shadow: 0 0 8px 2px #00000014;
+  border: 1px solid #d9dddf;
+  height: 90px;
+  margin: 15px 0px;
+  border-radius: 4px;
+}
+
+.leftBoxs a {
+  color: #000000c9;
+  text-decoration: none;
+  background: white;
+  padding: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  border: 1px solid #d9dddf;
+  margin-top: 30px;
+}
+
+.leftBoxs a:hover {
+  background: #3a90b1;
+  transition: 0.1s;
+  color: #fff !important;
+}
+
+.leftBoxs a:hover strong {
+  color: #fff;
+}
+
+.leftBox img {
+  width: 90px;
+  height: 90px;
+  float: left;
+  padding-right: 15px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+#artİcon {
+  filter: grayscale(100%) brightness(0%);
+  position: absolute;
+}
+
+.boxContentt p {
+  position: relative;
+  bottom: 10px;
+  font-size: 13px;
+}
+
+.boxContentt {
+  position: relative;
+  bottom: 8px;
+}
+
+.rightArticle {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 2px #00000014;
+  border: 1px solid #d9dddf;
+  color: #22333bc7;
+}
+
+.whoPosted {
+  display: flex;
+  background: #3a90b1;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 150px;
+  margin-top: 47px;
+}
+
+#postOwner {
+  height: 110px;
+  position: relative;
+  top: -23px;
+  overflow: hidden;
+}
+
+.whoPosted h4 {
+  position: relative;
+  bottom: 7px;
+  left: 10px;
+  color: #ffffffc9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+#imgArtic {
+  width: 45rem;
+  height: 15rem;
+  border-radius: 4px;
+}
+
+.userStats {
+  float: right;
+  margin-top: -20px;
+}
+
+@media (max-width: 1190px) {
+  .articlesPages {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leftArticle {
+    width: 78.5%;
+    margin: 0 auto;
+  }
+
+  .rightArticle {
+    width: 78.5%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  img#imgArtic {
+    width: 100% !important;
+  }
+}
