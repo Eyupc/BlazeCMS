@@ -2,6 +2,10 @@ import { StatusType } from './StatusType';
 
 export type INews = {
   status: StatusType['status'];
+  news?: NewsType;
+};
+export type ILatestNews = {
+  status: StatusType['status'];
   news?: NewsType[];
 };
 
