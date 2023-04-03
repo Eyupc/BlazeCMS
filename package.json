@@ -31,6 +31,7 @@
     "eslint-config-next": "13.1.6",
     "eslint-plugin-import": "^2.27.5",
     "express": "^4.18.2",
+    "html-react-parser": "^3.0.15",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "momentjs": "^2.0.0",
