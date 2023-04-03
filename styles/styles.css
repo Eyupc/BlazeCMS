@@ -2343,13 +2343,14 @@ nav ul li .name {
 /* Articles Page */
 
 .articlesPages {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 15px;
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 2rem;
 }
 
 .leftArticle {
-  width: 23rem;
+  width: 30%;
   background-color: white;
   box-shadow: 0 0 8px 2px #00000014;
   color: #22333bc7;
@@ -2375,7 +2376,7 @@ h2#lastArt {
 }
 
 .leftBoxs {
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 .leftBox {
@@ -2383,13 +2384,14 @@ h2#lastArt {
   box-shadow: 0 0 8px 2px #00000014;
   border: 1px solid #d9dddf;
   height: 90px;
-  margin: 15px 0px;
+  margin: 5px 0px;
   border-radius: 4px;
 }
 
-.leftBoxs a {
+.leftBoxs .btnMore {
   color: #000000c9;
   text-decoration: none;
+  cursor: pointer;
   background: white;
   padding: 10px 0;
   border-radius: 5px;
@@ -2397,16 +2399,16 @@ h2#lastArt {
   width: 100%;
   display: block;
   border: 1px solid #d9dddf;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
-.leftBoxs a:hover {
+.leftBoxs .btnMore:hover {
   background: #3a90b1;
   transition: 0.1s;
   color: #fff !important;
 }
 
-.leftBoxs a:hover strong {
+.leftBoxs .btnMore:hover strong {
   color: #fff;
 }
 
@@ -2436,6 +2438,7 @@ h2#lastArt {
 }
 
 .rightArticle {
+  width: 70%;
   background-color: #fff;
   padding: 15px;
   border-radius: 4px;
@@ -2451,7 +2454,6 @@ h2#lastArt {
   border-radius: 4px;
   overflow: hidden;
   width: 150px;
-  margin-top: 47px;
 }
 
 #postOwner {
@@ -2475,16 +2477,28 @@ h2#lastArt {
 }
 
 #imgArtic {
-  width: 45rem;
+  width: 100%;
   height: 15rem;
   border-radius: 4px;
 }
 
 .userStats {
-  float: right;
-  margin-top: -20px;
+  display: flex;
+  flex: auto;
+  align-self: center;
+  justify-content: end;
 }
-
+.infoFooter {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.userStats strong {
+  display: block;
+}
 @media (max-width: 1190px) {
   .articlesPages {
     display: flex;
