@@ -27,7 +27,7 @@ export const SubCommunity = memo(
           />
 
           <SubItem
-            href={'#'}
+            href={'/news'}
             iconImg={'/assets/images/map.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_NEWS_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_NEWS_DESC}
