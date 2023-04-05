@@ -1,3 +1,6 @@
+import { NewsType } from 'database/types/NewsTypes';
+import { MostActiveUsers } from 'database/types/UserListsTypes';
+
 export interface IHomeComponent {
   user?: {
     username: string;
@@ -11,4 +14,6 @@ export interface IHomeComponent {
     last_online: string;
     online: boolean;
   };
+  news?: NewsType[];
+  topUsers?: MostActiveUsers['users'] | null;
 }
