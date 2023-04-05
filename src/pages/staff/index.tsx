@@ -17,7 +17,7 @@ export default function StaffPage(data: IStaffComponent) {
   return (
     <>
       <Head>
-        <title>Raze - Staff</title>
+        <title>{cnf.texts.STAFFS_TITLE}</title>
       </Head>
       <Navigator />
       <Header />

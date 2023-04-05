@@ -21,6 +21,12 @@ export async function getServerSideProps(
       'SELECT `achievement_score` FROM `users_settings` WHERE `user_id`= ' +
         session.user.id
     );
+    const newsList =
+      await DatabaseManager.GetInstance().NewsQueries.getLatestNews(3);
+
+    const topUsers =
+      await DatabaseManager.GetInstance().UserLists.getMostActiveUsers(3);
+
     if (currencies.status && user.status)
       return {
         props: {
@@ -36,7 +42,13 @@ export async function getServerSideProps(
             credits: currencies.data!.credits,
             duckets: currencies.data!.duckets,
             diamonds: currencies.data!.diamonds
-          }
+          },
+          news: !newsList.status
+            ? null
+            : JSON.parse(JSON.stringify(newsList.news)),
+          topUsers: !topUsers.status
+            ? null
+            : JSON.parse(JSON.stringify(topUsers.users))
         }
       };
   }

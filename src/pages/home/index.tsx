@@ -1,7 +1,9 @@
 import BoxInner from '@/Components/Home/BoxInner';
 import { IHomeComponent } from '@/Components/Home/interfaces/IHomeComponent';
 import MeStatus from '@/Components/Home/MeStatus';
+import { NewsBox } from '@/Components/Home/NewsBox';
 import { getServerSideProps } from '@/Components/Home/ServerSide/HomeServerSideProps';
+import { TopUsersBox } from '@/Components/Home/TopUsersBox';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
@@ -12,6 +14,7 @@ import Head from 'next/head';
 import '/styles/styles.css';
 
 export default function HomePage(data: IHomeComponent) {
+  if (data.user == undefined) return <>Error</>;
   return (
     <>
       <Head>
@@ -41,6 +44,8 @@ export default function HomePage(data: IHomeComponent) {
                 diamonds={data.user!.diamonds}
               />
             </div>
+            <TopUsersBox users={data.topUsers!} />
+            {data.news != null ? <NewsBox news={data.news!} /> : <></>}
           </div>
         }
       />

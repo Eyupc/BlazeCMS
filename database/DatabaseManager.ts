@@ -1,20 +1,18 @@
-import { Connection } from "mysql";
-import { resolve } from "path";
-import { Type } from "typescript";
-import DatabaseServer from "./DatabaseServer";
-import { RegisterType, RegisterUserCurrency } from "./types/RegisterTypes";
-import { User, UserCurrencies } from "./types/UserTypes";
-import { UserLists } from "./User/UserLists";
-import { UserQueries } from "./User/UserQueries";
+import DatabaseServer from './DatabaseServer';
+import { NewsQueries } from './News/NewsQueries';
+import { UserLists } from './User/UserLists';
+import { UserQueries } from './User/UserQueries';
 
 export default class DatabaseManager extends DatabaseServer {
   private static DatabaseManager: DatabaseManager | null = null;
   private _UserQueries: UserQueries;
   private _UserLists: UserLists;
+  private _NewsQueries: NewsQueries;
   constructor() {
     super();
     this._UserQueries = new UserQueries(this.Connection);
     this._UserLists = new UserLists(this.Connection);
+    this._NewsQueries = new NewsQueries(this.Connection);
   }
 
   public static GetInstance() {
@@ -28,6 +26,9 @@ export default class DatabaseManager extends DatabaseServer {
   }
   public get UserLists(): UserLists {
     return this._UserLists;
+  }
+  public get NewsQueries(): NewsQueries {
+    return this._NewsQueries;
   }
   public async Query(st: string): Promise<{ error: boolean; data?: any }> {
     return new Promise((resolve, reject) => {

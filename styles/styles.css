@@ -1048,7 +1048,7 @@ header .rplogo {
 
 .content .section .home .meinfo .infobox .meinfo-body .work-group {
   width: 100%;
-  height: 50px;
+  height: 47px;
   background: #0000000a;
   margin: 5px 0px;
   border-radius: 5px;
@@ -2337,4 +2337,256 @@ nav ul li .name {
   height: 45px;
   line-height: 45px;
   text-align: center;
+}
+
+/* NEWS */
+/* Articles Page */
+
+.articlesPages {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 2rem;
+}
+
+.leftArticle {
+  width: 30%;
+  background-color: white;
+  box-shadow: 0 0 8px 2px #00000014;
+  color: #22333bc7;
+  border-radius: 4px;
+  border: 1px solid #d9dddf;
+}
+
+.infoHead {
+  background: #f8f8f8;
+  padding: 0px 18px;
+  border-bottom: 1px solid #d9dddf;
+  font-size: 11px;
+  opacity: 0.9;
+  font-weight: 500;
+  position: relative;
+  top: -14px;
+  border-radius: 4px 4px 0 0;
+}
+
+h2#lastArt {
+  position: relative;
+  top: 7px;
+}
+
+.leftBoxs {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.leftBox {
+  background: #fff;
+  box-shadow: 0 0 8px 2px #00000014;
+  border: 1px solid #d9dddf;
+  height: 90px;
+  margin: 5px 0px;
+  border-radius: 4px;
+}
+
+.leftBoxs .btnMore {
+  color: #000000c9;
+  text-decoration: none;
+  cursor: pointer;
+  background: white;
+  padding: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  border: 1px solid #d9dddf;
+  margin-top: 25px;
+}
+
+.leftBoxs .btnMore:hover {
+  background: #3a90b1;
+  transition: 0.1s;
+  color: #fff !important;
+}
+
+.leftBoxs .btnMore:hover strong {
+  color: #fff;
+}
+
+.leftBox img {
+  width: 90px;
+  height: 90px;
+  float: left;
+  padding-right: 15px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+#artİcon {
+  filter: grayscale(100%) brightness(0%);
+  position: absolute;
+}
+
+.boxContentt p {
+  position: relative;
+  bottom: 10px;
+  font-size: 13px;
+}
+
+.boxContentt {
+  position: relative;
+  bottom: 8px;
+}
+
+.rightArticle {
+  width: 70%;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 2px #00000014;
+  border: 1px solid #d9dddf;
+  color: #22333bc7;
+}
+
+.whoPosted {
+  display: flex;
+  background: #3a90b1;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 150px;
+}
+
+#postOwner {
+  height: 110px;
+  position: relative;
+  top: -23px;
+  overflow: hidden;
+}
+
+.whoPosted h4 {
+  position: relative;
+  bottom: 7px;
+  left: 10px;
+  color: #ffffffc9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+#imgArtic {
+  width: 100%;
+  height: 15rem;
+  border-radius: 4px;
+}
+
+.userStats {
+  display: flex;
+  flex: auto;
+  align-self: center;
+  justify-content: end;
+}
+.infoFooter {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.userStats strong {
+  display: block;
+}
+@media (max-width: 1190px) {
+  .articlesPages {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leftArticle {
+    width: 78.5%;
+    margin: 0 auto;
+  }
+
+  .rightArticle {
+    width: 78.5%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  img#imgArtic {
+    width: 100% !important;
+  }
+}
+/* Home news box */
+.home .newsBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  grid-row: 2/3;
+  grid-column: 1/3;
+  width: 100%;
+}
+.home .newsBox .newsItem {
+  display: grid;
+  grid-template-rows: 1fr 0.8fr 0.4fr;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 2px #00000014;
+  background-color: #fff;
+  border: 1px solid #d9dddf;
+  height: 30vh;
+  padding: 0.8rem;
+  flex: 1 1 0;
+}
+.newsItem .newsHeader {
+  grid-row: 1/2;
+  border-radius: 4px;
+  background-position: center;
+}
+.newsItem .newsDetails {
+  grid-row: 2/3;
+  padding-top: 1rem;
+}
+.newsItem .newsTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.newsItem .newsDesc {
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.newsItem .newsFooter {
+  display: flex;
+  grid-row: 3/4;
+  padding: 0 1rem;
+  background-color: #f8f8f8;
+  align-items: center;
+  position: relative;
+}
+.newsFooter .newsAvatar {
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+.newsFooter .newsAuthor {
+  flex: auto;
+  font-weight: 800;
+}
+.newsFooter .newsDate {
+  flex: auto;
+  text-align: right;
+}
+@media (max-width: 700px) {
+  .home .newsBox {
+    flex-direction: column;
+  }
 }

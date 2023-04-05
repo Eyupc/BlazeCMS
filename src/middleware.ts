@@ -9,9 +9,10 @@ const PROTECTED_ROUTES = [
   '/staff',
   '/leaderboards',
   '/settings',
-  '/client'
+  '/client',
+  '/news'
 ];
-const ROUTES = ['/', '/login', '/register'];
+const ROUTES = ['/', '/register'];
 export async function middleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
 
@@ -39,6 +40,7 @@ export const config = {
     '/staff',
     '/leaderboards',
     '/settings',
-    '/client'
+    '/client',
+    '/news'
   ]
 };
