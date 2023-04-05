@@ -1,4 +1,5 @@
 import {
+  MostActiveUsers,
   Ranks,
   StaffLists,
   StaffUser,
@@ -74,6 +75,19 @@ export class UserLists {
           users: results
         });
       });
+    });
+  }
+
+  public async getMostActiveUsers(limit: number): Promise<MostActiveUsers> {
+    return new Promise((res, rej) => {
+      this.connection.query(
+        'SELECT u.`username`,u.`look` as avatar, s.`online_time` as time FROM `users` u INNER JOIN `users_settings` s ON u.`id` = s.`user_id` ORDER BY s.`online_time` DESC LIMIT ' +
+          limit,
+        (_err, results) => {
+          if (_err || results.length == 0) res({ status: false });
+          res({ status: true, users: results });
+        }
+      );
     });
   }
 }
