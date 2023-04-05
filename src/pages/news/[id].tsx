@@ -1,18 +1,18 @@
 import { ArticleBox } from '@/Components/News/ArticleBox';
+import { INewsPage } from '@/Components/News/interfaces/INewsPage';
 import { LeftArticleBox } from '@/Components/News/LeftArticleBox';
+import { getServerSideProps } from '@/Components/News/ServerSide/NewsIdServerSideProps';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import DatabaseManager from 'database/DatabaseManager';
-import { NewsType } from 'database/types/NewsTypes';
-import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
-
+import { useState } from 'react';
 import '/styles/styles.css';
 
 export default function NewsPage(props: INewsPage) {
+  const [news, setNews] = useState(props.news!);
   return (
     <>
       <Head>
@@ -24,8 +24,8 @@ export default function NewsPage(props: INewsPage) {
       <Main
         child={
           <div className="articlesPages">
-            <LeftArticleBox />
-            <ArticleBox data={props.news} />
+            <LeftArticleBox changeNews={(ns) => setNews(ns)} />
+            <ArticleBox key={news.id} data={news} />
           </div>
         }
       />
@@ -34,24 +34,4 @@ export default function NewsPage(props: INewsPage) {
   );
 }
 
-type INewsPage = {
-  news: NewsType;
-};
-export async function getServerSideProps(
-  ctx: GetServerSidePropsContext
-): Promise<{ props: INewsPage } | { notFound: boolean }> {
-  const news = await DatabaseManager.GetInstance().NewsQueries.getNews(
-    Number(ctx.query.id)
-  );
-
-  if (!news.status)
-    return {
-      notFound: true
-    };
-
-  return {
-    props: {
-      news: JSON.parse(JSON.stringify(news.news))
-    }
-  };
-}
+export { getServerSideProps };
