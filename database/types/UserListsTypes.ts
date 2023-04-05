@@ -27,3 +27,11 @@ export type TopList = {
     amount: number;
   }[];
 };
+export type MostActiveUsers = {
+  status: StatusType['status'];
+  users?: {
+    username: string;
+    avatar: string;
+    time: number;
+  }[];
+};
