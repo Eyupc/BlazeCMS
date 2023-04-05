@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { NewsType } from 'database/types/NewsTypes';
-import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { ILeftArticleBox } from './interfaces/ILeftArticleBox';
 
-export const LeftArticleBox = () => {
+export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
   const [news, setNews] = useState<JSX.Element[]>([]);
   const [update, setUpdate] = useState(false); //just toggle
   const [items, setItems] = useState<NewsType[]>([]);
@@ -13,15 +13,16 @@ export const LeftArticleBox = () => {
       await axios(`http://localhost:3000/api/news/latest`, {
         method: 'GET'
       }).then((res) => {
-        (res.data.news as Array<any>).forEach((e, i) => {
-          setItems((oldArr) => [...oldArr, e]);
-        });
+        if (res.data.status)
+          (res.data.news as Array<any>).forEach((e, i) => {
+            setItems((oldArr) => [...oldArr, e]);
+          });
       });
     })();
   }, []);
 
   useMemo(async () => {
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i <= 2; i++) {
       if (items[news.length + i] == undefined) break;
       setNews((oldArr) => [
         ...oldArr,
@@ -30,12 +31,16 @@ export const LeftArticleBox = () => {
           <div className="boxContentt">
             <strong className="showMore">
               <h3>
-                <Link
-                  style={{ textDecoration: 'none', color: '#000000c9' }}
-                  href={`/news/${items[news.length + i].id}`}
+                <div
+                  style={{
+                    textDecoration: 'none',
+                    color: '#000000c9',
+                    cursor: 'pointer'
+                  }}
+                  onClick={() => changeNews(items[news.length + i])}
                 >
                   {items[news.length + i].title}
-                </Link>
+                </div>
               </h3>
             </strong>
             <p>{items[news.length + i].description}</p>
@@ -48,12 +53,17 @@ export const LeftArticleBox = () => {
   return (
     <div className="leftArticle">
       <div className="infoHead">
-        <h2 id="lastArt">Son Haberler</h2>
+        <h2 id="lastArt">Latest news</h2>
       </div>
       <div className="leftBoxs">
         {news}
-        <div className="btnMore" onClick={() => setUpdate(!update)}>
-          <strong>Daha fazla haber</strong>
+        <div
+          className="btnMore"
+          onClick={() =>
+            items.length != news.length ? setUpdate(!update) : ''
+          }
+        >
+          <strong>Show more</strong>
         </div>
       </div>
     </div>
