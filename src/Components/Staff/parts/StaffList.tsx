@@ -4,6 +4,7 @@ import StaffBox from './StaffBox';
 
 const StaffList = memo(({ rank, staffs }: IStaffList) => {
   const GetStaffs = useMemo(() => {
+    if (staffs == null) return <></>;
     return staffs
       ?.filter((u) => u.rank == rank)
       .map((u, i) => {
