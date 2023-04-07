@@ -1006,16 +1006,16 @@ header .rplogo {
   background-repeat: no-repeat;
 }
 
-.content .section .home .mebox .me-status .statistics .health {
-  background-image: url(/assets/images/heart.png);
+.content .section .home .mebox .me-status .statistics .credits {
+  background-image: url(/assets/images/credits.gif);
 }
 
-.content .section .home .mebox .me-status .statistics .energy {
-  background-image: url(/assets/images/energy.gif);
+.content .section .home .mebox .me-status .statistics .duckets {
+  background-image: url(/assets/images/duckets.png);
 }
 
-.content .section .home .mebox .me-status .statistics .hyg {
-  background-image: url(/assets/images/hyg.png);
+.content .section .home .mebox .me-status .statistics .diamonds {
+  background-image: url(/assets/images/diamonds.png);
 }
 
 .content .section .home .meinfo .infobox {
@@ -2157,7 +2157,6 @@ nav ul li .name {
 .login-modal .modalbox .userbox .login-forgot {
   color: #2980b9;
   margin-top: 8px;
-  width: 100%;
   float: left;
 }
 
@@ -2190,6 +2189,12 @@ nav ul li .name {
 
 .login-modal .modalbox .userbox .error {
   color: red;
+  font-size: 13px;
+  margin: 3px 0px -4px 0px;
+}
+
+.login-modal .modalbox .userbox .success {
+  color: #27ae60;
   font-size: 13px;
   margin: 3px 0px -4px 0px;
 }
