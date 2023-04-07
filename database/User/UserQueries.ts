@@ -55,10 +55,10 @@ export class UserQueries {
       this.connection.query(
         'SELECT `credits`,(SELECT `amount` FROM `users_currency` WHERE `user_id`=' +
           id +
-          ' && `type`=5) AS duckets,' +
+          ' && `type`=0) AS duckets,' +
           '(SELECT `amount` FROM `users_currency` WHERE `user_id`=' +
           id +
-          ' && `type`= 0) AS diamonds FROM `users` WHERE `id`=' +
+          ' && `type`= 5) AS diamonds FROM `users` WHERE `id`=' +
           id,
         function (_error, results, fields) {
           if (_error || results.length == 0) {
@@ -255,12 +255,47 @@ export class UserQueries {
     });
   }
 
+  public async CheckUsernameMail(
+    username: string,
+    mail: string
+  ): Promise<boolean> {
+    return await new Promise((res, rej) => {
+      this.connection.query(
+        "SELECT id FROM `users` WHERE `mail`= '" +
+          mail +
+          "' AND `username`= '" +
+          username +
+          "'",
+        (_err, results) => {
+          if (_err || results.length == 0) res(false);
+          else res(true);
+        }
+      );
+    });
+  }
+
   public async UpdateLastLogin(id: number, ip: string): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
         'UPDATE `users` SET `last_login` = {login},`ip_current`= "{ip}"'
           .replace('{login}', Math.round(+new Date() / 1000).toString())
           .replace('{ip}', ip),
+        (_err, results) => {
+          if (_err || results.length == 0) res(false);
+          else res(true);
+        }
+      );
+    });
+  }
+  public async UpdatePassword(
+    username: string,
+    password: string
+  ): Promise<boolean> {
+    return await new Promise((res, rej) => {
+      this.connection.query(
+        'UPDATE `users` SET `password` = "{password}" WHERE `username` = "{username}"'
+          .replace('{password}', password)
+          .replace('{username}', username),
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);

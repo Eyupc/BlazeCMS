@@ -1,8 +1,8 @@
 import axios from 'axios';
+import cnf from 'cms-config.json';
 import { NewsType } from 'database/types/NewsTypes';
 import { useEffect, useMemo, useState } from 'react';
 import { ILeftArticleBox } from './interfaces/ILeftArticleBox';
-
 export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
   const [news, setNews] = useState<JSX.Element[]>([]);
   const [update, setUpdate] = useState(false); //just toggle
@@ -10,7 +10,7 @@ export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
 
   useEffect(() => {
     (async () => {
-      await axios(`http://localhost:3000/api/news/latest`, {
+      await axios(`/api/news/latest`, {
         method: 'GET'
       }).then((res) => {
         if (res.data.status)
@@ -53,7 +53,7 @@ export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
   return (
     <div className="leftArticle">
       <div className="infoHead">
-        <h2 id="lastArt">Latest news</h2>
+        <h2 id="lastArt">{cnf.texts.NEWS_LATEST_NEWS_TITLE}</h2>
       </div>
       <div className="leftBoxs">
         {news}
@@ -63,7 +63,7 @@ export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
             items.length != news.length ? setUpdate(!update) : ''
           }
         >
-          <strong>Show more</strong>
+          <strong>{cnf.texts.NEWS_LATEST_NEWS_BTN}</strong>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import InformationBox from '@/Components/Index/InformationBox';
-import ModalLogin from '@/Components/Index/ModalLogin';
+import ModalBox from '@/Components/Index/ModalBox';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
@@ -44,7 +44,7 @@ export default function IndexPage() {
           </div>
         }
       />
-      <ModalLogin />
+      <ModalBox />
       <Footer />
     </>
   );

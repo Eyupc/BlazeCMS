@@ -1,7 +1,7 @@
+import cnf from 'cms-config.json';
 import parse from 'html-react-parser';
 import { memo } from 'react';
 import { IArticleBox } from './interfaces/IArticleBox';
-
 export const ArticleBox = memo(({ data }: IArticleBox) => {
   return (
     <div className="rightArticle">
@@ -16,14 +16,14 @@ export const ArticleBox = memo(({ data }: IArticleBox) => {
             <div className="whoPosted">
               <img
                 id="postOwner"
-                src={`https://www.habbo.com/habbo-imaging/avatarimage?figure=${data.avatar}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png`}
+                src={`${cnf.links.IMAGER_URL}?figure=${data.avatar}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png`}
                 alt="Post Owner"
               />
               <h4>{data.username}</h4>
             </div>
             <div className="userStats">
               <p>
-                <strong>Date: </strong>
+                <strong>{cnf.texts.NEwS_DATE_TEXT} </strong>
                 {new Date(data.timestamp).toLocaleDateString('nl-NL', {
                   day: '2-digit',
                   month: '2-digit',

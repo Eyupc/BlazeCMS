@@ -7,20 +7,25 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import { useState } from 'react';
 import '/styles/styles.css';
-
 export default function NewsPage(props: INewsPage) {
   const [news, setNews] = useState(props.news!);
   return (
     <>
       <Head>
-        <title>{'Blaze news'}</title>
+        <title>
+          {cnf.texts.HOTEL_NAME} - {news.title}
+        </title>
       </Head>
       <Navigator />
       <Header />
-      <AnnouncementBar title={'test'} description={'test2'} />
+      <AnnouncementBar
+        title={cnf.texts.NEWS_AB_TITLE}
+        description={cnf.texts.NEWS_AB_DESC}
+      />
       <Main
         child={
           <div className="articlesPages">

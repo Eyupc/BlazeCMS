@@ -1,13 +1,13 @@
+import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { ITopUserBox } from './interfaces/ITopUserBox';
 import { TopUser } from './parts/TopUser';
-
 export const TopUsersBox = memo(({ users }: ITopUserBox) => {
   return (
     <div className="meinfo">
       <div className="infobox workforce-statistics">
         <div className="meinfo-head">
-          <strong>Most active users:</strong>
+          <strong>{cnf.texts.HOME_MOST_ACITVE_TITLE}</strong>
         </div>
         <div className="meinfo-body">
           {users != null ? (

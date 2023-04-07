@@ -27,6 +27,7 @@ namespace NodeJS {
     MYSQL_USER: string;
     MYSQL_PASSWORD: string;
     NEXTAUTH_URL: string;
+    NEXTAUTH_SECRET: string;
     REGISTER_CREDITS: number;
     REGISTER_DUCKETS: number;
     REGISTER_DIAMONDS: number;
@@ -37,5 +38,11 @@ namespace NodeJS {
     CLOUDFLARE_ENABLED: boolean;
     SERVER_HOST: string;
     SERVER_PORT: number;
+
+    EMAIL_SERVER_USER: string;
+    EMAIL_SERVER_PASSWORD: string;
+    EMAIL_SERVER_HOST: string;
+    EMAIL_SERVER_PORT: number;
+    EMAIL_FROM: string;
   }
 }

@@ -6,6 +6,7 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -20,7 +21,7 @@ export default function NewsPageHome(props: INewsPage) {
   return (
     <>
       <Head>
-        <title>{'Blaze news'}</title>
+        <title>{cnf.texts.NEWS_TITLE}</title>
       </Head>
       <Navigator />
       <Header />
