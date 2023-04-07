@@ -53,19 +53,19 @@ export class UserLists {
     switch (type) {
       case 'credits':
         sql =
-          'SELECT username,look as avatar,credits as amount FROM users WHERE `rank` < 10 ORDER BY credits DESC LIMIT 5';
+          'SELECT `username`,`look` as avatar,`credits` as amount FROM `users` WHERE `rank` < 10 ORDER BY `credits` DESC LIMIT 5';
         break;
       case 'diamonds':
         sql =
-          'SELECT u.username,u.look as avatar, uc.amount FROM users u INNER JOIN users_currency uc ON u.id = uc.user_id WHERE (uc.type = 0 AND u.`rank` < 10) ORDER BY amount DESC LIMIT 5;';
+          'SELECT u.`username`,u.`look` as avatar, uc.`amount` FROM `users` u INNER JOIN `users_currency` uc ON u.`id` = uc.`user_id` WHERE (uc.`type` = 5 AND u.`rank` < 10) ORDER BY uc.`amount` DESC LIMIT 5;';
         break;
       case 'duckets':
         sql =
-          'SELECT u.username,u.look as avatar,uc.amount FROM users u INNER JOIN users_currency uc ON u.id = uc.user_id WHERE (uc.type = 5 AND u.`rank` < 10) ORDER BY amount DESC LIMIT 5;';
+          'SELECT u.`username`,u.`look` as avatar,uc.`amount` FROM `users` u INNER JOIN `users_currency` uc ON u.`id` = uc.`user_id` WHERE (uc.`type` = 0 AND u.`rank` < 10) ORDER BY uc.`amount` DESC LIMIT 5;';
         break;
       case 'achievement_score':
         sql =
-          'SELECT u.username,u.look as avatar, us.achievement_score as amount FROM users u INNER JOIN users_settings us ON u.id = us.user_id WHERE u.`rank` < 10 ORDER BY us.achievement_score DESC LIMIT 5';
+          'SELECT u.`username`,u.`look` as avatar, us.`achievement_score` as amount FROM `users` u INNER JOIN `users_settings` us ON u.`id` = us.`user_id` WHERE u.`rank` < 10 ORDER BY us.`achievement_score` DESC LIMIT 5';
     }
     return new Promise((res, rej) => {
       this.connection.query(sql, (_err, results) => {
