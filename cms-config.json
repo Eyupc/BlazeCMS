@@ -8,6 +8,7 @@
 "IMAGER_URL":"https://habbo.com.tr/habbo-imaging/avatarimage"
 },
 "texts":{
+    "HOTEL_NAME":"Blaze",
 "SUBMIT_BUTTON":"KAYDET!",
 "FOOTER_TITLE":"Blaze Hotel",
 "FOOTER_TITLE_V":"v0.1",
@@ -110,7 +111,7 @@
 "HOME_DIAMONDS":"elmas",
 "HOME_ENTER_BTN":"OTELE GİR",
 "HOME_DISCORD_BTN":"DISCORD",
-
+"HOME_MOST_ACITVE_TITLE":"Most active users:",
 "SETTINGS_TITLE":"Blaze - Ayarlar",
 "SETTINGS_AB_TITLE":"Blaze ayarlar sayfasi",
 "SETTINGS_AB_DESC":"Welcome back, this is the settings page of our hotel. Here, u can change some private information of yourself!",
@@ -146,6 +147,14 @@
 "LEADER_CREDITS":"kredi",
 "LEADER_DUCKETS":"ördek",
 "LEADER_DIAMONDS":"elmas",
-"LEADER_ACHIEVEMENT_SCORE":"basari puani"
+"LEADER_ACHIEVEMENT_SCORE":"basari puani",
+
+
+"NEWS_TITLE":"Blaze - News",
+"NEWS_AB_TITLE":"Blaze - News",
+"NEWS_AB_DESC":"This is our news page! Here, u can find the latest news of our hotel!",
+"NEWS_LATEST_NEWS_TITLE":"Latest news",
+"NEWS_LATEST_NEWS_BTN":"Show more",
+"NEwS_DATE_TEXT":"Date:"
 }
 }
