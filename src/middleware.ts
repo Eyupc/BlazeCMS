@@ -3,7 +3,6 @@ import { getToken } from 'next-auth/jwt';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-// This function can be marked `async` if using `await` inside
 const PROTECTED_ROUTES = [
   '/home',
   '/staff',

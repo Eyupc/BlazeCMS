@@ -28,7 +28,7 @@
   grid-row-gap: 0px;
   -webkit-box-align: start;
   -ms-flex-align: start;
-  align-items: start;
+  align-items: flex-start;
   display: -ms-grid;
   display: grid;
   padding: 10px;
@@ -2157,7 +2157,7 @@ nav ul li .name {
 .login-modal .modalbox .userbox .login-forgot {
   color: #2980b9;
   margin-top: 8px;
-  float: left;
+  left: 0;
 }
 
 .login-modal .modalbox .userbox .login-forgot:hover {
@@ -2491,7 +2491,7 @@ h2#lastArt {
   display: flex;
   flex: auto;
   align-self: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .infoFooter {
   display: flex;
@@ -2594,4 +2594,7 @@ h2#lastArt {
   .home .newsBox {
     flex-direction: column;
   }
+}
+.grecaptcha-badge {
+  visibility: hidden;
 }

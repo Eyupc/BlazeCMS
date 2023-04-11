@@ -1,12 +1,12 @@
 import cnf from 'cms-config.json';
 import router from 'next/router';
 import { FormEvent, memo, useCallback, useState } from 'react';
-import { IModalBox } from './interfaces/IModalBox';
+import { IModalLogin } from './interfaces/IModalLogin';
 import { TryoToLogin } from './methods/TryToLogin';
 import InputName from './parts/InputName';
 import InputPassword from './parts/InputPassword';
 import { LoginHeader } from './parts/LoginHeader';
-const ModalLogin = memo(({ changePage }: IModalBox) => {
+const ModalLogin = memo(({ changePage }: IModalLogin) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

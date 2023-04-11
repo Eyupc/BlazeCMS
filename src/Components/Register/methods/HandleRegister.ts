@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { signIn } from 'next-auth/react';
-import router from 'next/router';
 import { IHandleRegister } from '../interfaces/IHandleRegister';
 
 export const HandleRegister = async (credentials: IHandleRegister) => {
@@ -12,7 +10,8 @@ export const HandleRegister = async (credentials: IHandleRegister) => {
       password: credentials.password,
       rePassword: credentials.rePassword,
       mail: credentials.email,
-      gender: credentials.gender
+      gender: credentials.gender,
+      captcha: credentials.captcha
     }
   })
     .then(async (resp) => {

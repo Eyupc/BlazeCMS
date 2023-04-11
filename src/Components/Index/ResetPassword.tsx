@@ -1,20 +1,28 @@
 import axios from 'axios';
 import cnf from 'cms-config.json';
+import { useReCaptcha } from 'next-recaptcha-v3';
+
 import { FormEvent, memo, useCallback, useState } from 'react';
-import { IModalBox } from './interfaces/IModalBox';
+import { IModalLogin } from './interfaces/IModalLogin';
 import { LoginHeader } from './parts/LoginHeader';
-const ResetPassword = memo(({ changePage }: IModalBox) => {
+
+const ResetPassword = memo(({ changePage }: IModalLogin) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [result, setResult] = useState<{ status: boolean; text: string }>();
+
+  const { executeRecaptcha } = useReCaptcha();
+
   const HandleSubmit = useCallback(
     async (e: FormEvent) => {
       e.preventDefault();
+      const token = await executeRecaptcha('form_submit');
       await axios('/api/reset/request', {
         method: 'POST',
         data: {
           username: username,
-          email: email
+          email: email,
+          captcha: token
         }
       }).then((resp) => {
         if (resp.data.status as Boolean)
@@ -27,6 +35,7 @@ const ResetPassword = memo(({ changePage }: IModalBox) => {
     },
     [username, email]
   );
+
   return (
     <>
       <LoginHeader
@@ -58,11 +67,13 @@ const ResetPassword = memo(({ changePage }: IModalBox) => {
             required
           />
         </div>
+
         {!result?.status ? (
           <div className="error">{result?.text}</div>
         ) : (
           <div className="success">{result.text}</div>
         )}
+
         <div
           onClick={() => changePage()}
           style={{ cursor: 'pointer' }}
@@ -70,6 +81,7 @@ const ResetPassword = memo(({ changePage }: IModalBox) => {
         >
           {'Go back'}
         </div>
+
         <button type="submit" id="submit" className="enterhotel">
           {'Send mail'}
         </button>

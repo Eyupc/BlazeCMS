@@ -29,7 +29,6 @@ export class SMTPServer {
       process.env.NEXTAUTH_SECRET,
       { expiresIn: 60 * 10 }
     );
-    console.log(token);
     /*
     this.server.sendMail(
       {
