@@ -44,5 +44,7 @@ namespace NodeJS {
     EMAIL_SERVER_HOST: string;
     EMAIL_SERVER_PORT: number;
     EMAIL_FROM: string;
+
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: string;
   }
 }
