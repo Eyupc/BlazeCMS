@@ -4,4 +4,5 @@ export interface IHandleRegister {
   rePassword: string;
   email: string;
   gender: 'M' | 'F';
+  captcha: string;
 }
