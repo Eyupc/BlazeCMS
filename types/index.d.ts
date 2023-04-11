@@ -7,3 +7,4 @@ declare namespace React {
     active?: string;
   }
 }
+declare module 'next-csrf';
