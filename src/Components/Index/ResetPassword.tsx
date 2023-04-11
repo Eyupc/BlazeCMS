@@ -1,5 +1,7 @@
 import axios from 'axios';
 import cnf from 'cms-config.json';
+import { useReCaptcha } from 'next-recaptcha-v3';
+
 import { FormEvent, memo, useCallback, useState } from 'react';
 import { IModalLogin } from './interfaces/IModalLogin';
 import { LoginHeader } from './parts/LoginHeader';
@@ -9,15 +11,18 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
   const [email, setEmail] = useState('');
   const [result, setResult] = useState<{ status: boolean; text: string }>();
 
+  const { executeRecaptcha } = useReCaptcha();
+
   const HandleSubmit = useCallback(
     async (e: FormEvent) => {
       e.preventDefault();
-
+      const token = await executeRecaptcha('form_submit');
       await axios('/api/reset/request', {
         method: 'POST',
         data: {
           username: username,
-          email: email
+          email: email,
+          captcha: token
         }
       }).then((resp) => {
         if (resp.data.status as Boolean)
@@ -68,7 +73,6 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
         ) : (
           <div className="success">{result.text}</div>
         )}
-        <br />
 
         <div
           onClick={() => changePage()}
