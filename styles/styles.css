@@ -2595,3 +2595,6 @@ h2#lastArt {
     flex-direction: column;
   }
 }
+.grecaptcha-badge {
+  visibility: hidden;
+}
