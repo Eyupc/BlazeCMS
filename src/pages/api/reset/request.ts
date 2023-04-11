@@ -1,12 +1,13 @@
 import DatabaseManager from 'database/DatabaseManager';
+import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SMTPServer } from 'SMTPServer/SMTPServer';
-
 type NextBody = {
   username: string;
   email: string;
 };
-export default async function handler(
+
+export default csrf(async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
@@ -26,4 +27,4 @@ export default async function handler(
     return res.status(200).json({ status: true });
   }
   return res.status(200).json({ status: false });
-}
+});
