@@ -1,5 +1,7 @@
 import InformationBox from '@/Components/Index/InformationBox';
+import { IIndexPage } from '@/Components/Index/interfaces/IIndePage';
 import ModalBox from '@/Components/Index/ModalBox';
+import { getServerSideProps } from '@/Components/Index/ServerSide/IndexServerSideProps';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
@@ -8,7 +10,7 @@ import Navigator from '@/Components/static/Components/nav/navigator';
 import cnf from 'cms-config.json';
 import Head from 'next/head';
 import '/styles/styles.css';
-export default function IndexPage() {
+export default function IndexPage({ csrfToken }: IIndexPage) {
   return (
     <>
       <Head>
@@ -49,3 +51,4 @@ export default function IndexPage() {
     </>
   );
 }
+export { getServerSideProps };
