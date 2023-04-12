@@ -79,7 +79,7 @@ export default (request: NextApiRequest, res: NextApiResponse) =>
             ) {
               await DatabaseManager.GetInstance().UserQueries.UpdateLastLogin(
                 user.data!.id,
-                ((process.env.CLOUDFLARE_ENABLED as Boolean) == true
+                ((process.env.CLOUDFLARE_ENABLED as boolean) == true
                   ? request.headers['cf-connecting-ip']!.toString()
                   : request.socket.remoteAddress!.toString()) || ''
               );
