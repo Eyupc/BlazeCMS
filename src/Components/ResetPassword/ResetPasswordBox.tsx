@@ -22,7 +22,7 @@ export const ResetPasswordBox = memo(({ username, token }: IResetPassword) => {
       credentials.rePassword,
       token
     );
-    if (result as Boolean) router.push('/');
+    if (result as boolean) router.push('/');
     else setErrors(result);
   };
 
