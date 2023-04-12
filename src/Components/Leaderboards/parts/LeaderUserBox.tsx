@@ -1,4 +1,3 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { ILeaderUserBox } from '../interfaces/ILeaderUserBox';
 const LeaderUserBox = memo(({ ...props }: ILeaderUserBox) => {
@@ -8,7 +7,7 @@ const LeaderUserBox = memo(({ ...props }: ILeaderUserBox) => {
         <div
           className="figure"
           style={{
-            background: `url(${cnf.links.IMAGER_URL}?figure=${props.avatar}&amp;action=std,crr=667&amp;gesture=sml&amp;direction=2&amp;head_direction=2&amp;size=n&amp;headonly=1&amp;img_format=png)`
+            background: `url(${process.env.NEXT_PUBLIC_IMAGER_URL}?figure=${props.avatar}&amp;action=std,crr=667&amp;gesture=sml&amp;direction=2&amp;head_direction=2&amp;size=n&amp;headonly=1&amp;img_format=png)`
           }}
         ></div>
       </div>

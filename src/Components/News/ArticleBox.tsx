@@ -16,7 +16,7 @@ export const ArticleBox = memo(({ data }: IArticleBox) => {
             <div className="whoPosted">
               <img
                 id="postOwner"
-                src={`${cnf.links.IMAGER_URL}?figure=${data.avatar}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGER_URL}?figure=${data.avatar}&action=wlk,wav,crr=667&gesture=sml&direction=2&head_direction=2&size=n&frame=wlk=1&img_format=png`}
                 alt="Post Owner"
               />
               <h4>{data.username}</h4>

@@ -3,7 +3,7 @@ import axios from 'axios';
 export const ChangeAvatar = async (username: string) => {
   return await axios({
     method: 'GET',
-    url: `/api/utils/avatar/${username}`,
+    url: `${process.env.NEXT_PUBLIC_HOTEL_URL}/api/utils/avatar/${username}`,
     responseType: 'json'
   })
     .then(function (response) {

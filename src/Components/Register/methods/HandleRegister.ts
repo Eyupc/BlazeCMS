@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IHandleRegister } from '../interfaces/IHandleRegister';
 
 export const HandleRegister = async (credentials: IHandleRegister) => {
-  return await axios('/api/auth/register', {
+  return await axios(`${process.env.NEXT_PUBLIC_HOTEL_URL}/api/auth/register`, {
     method: 'POST',
     withCredentials: true,
     data: {
