@@ -36,6 +36,9 @@ namespace NodeJS {
     REGISTER_RANK: number;
 
     CLOUDFLARE_ENABLED: boolean;
+    NEXT_PUBLIC_HOTEL_URL: string;
+    NEXT_PUBLIC_NITRO_URL: string;
+    NEXT_PUBLIC_IMAGER_URL: string;
     SERVER_HOST: string;
     SERVER_PORT: number;
 
