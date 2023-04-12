@@ -1,4 +1,3 @@
-import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
@@ -25,7 +24,7 @@ export default function IndexPage({ sso }: ClientProps) {
           overflow: 'hidden',
           zIndex: 1
         }}
-        src={`${cnf.links.NITRO_URL}?sso=${sso}`}
+        src={`${process.env.NEXT_PUBLIC_NITRO_URL}?sso=${sso}`}
       ></iframe>
     </>
   );
