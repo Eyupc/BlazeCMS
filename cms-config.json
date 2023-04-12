@@ -2,13 +2,10 @@
 "links":{
 "DISCORD_URL":"https://discord.gg/blaze",
 "TWITTER_URL":"#",
-"INSTAGRAM_URL":"#",
-"HOTEL_LINK":"http://localhost:3000",
-"NITRO_URL":"http://localhost:3000/staff",
-"IMAGER_URL":"https://habbo.com.tr/habbo-imaging/avatarimage"
+"INSTAGRAM_URL":"#"
 },
 "texts":{
-    "HOTEL_NAME":"Blaze",
+"HOTEL_NAME":"Blaze",
 "SUBMIT_BUTTON":"KAYDET!",
 "FOOTER_TITLE":"Blaze Hotel",
 "FOOTER_TITLE_V":"v0.1",
@@ -71,6 +68,10 @@
 "LOGIN_UN_PLACEHOLDER":"Kullanıcı adı",
 "LOGIN_PASSWORD_PLACEHOLDER":"Parola",
 
+"FORGOT_PASSWORD_TITLE":"Forgot password",
+"FORGOT_PASSWORD_DESC":"If u did forget your password, u can receive an email to reset your password.",
+"FORGOT_PASSWORD_GOTO_LOGIN":"Go back to login",
+"FORGOT_PASSWORD_SUBMIT_BTN":"Send email!",
 
 
 "REGISTER_TITLE":"Blaze - Register",
