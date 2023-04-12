@@ -16,11 +16,11 @@ export default function Navigator() {
 
   useEffect(() => {
     new Promise(async (res, rej) => {
-      await axios('/api/user/session', {
+      await axios(`${process.env.NEXT_PUBLIC_HOTEL_URL}/api/user/session`, {
         method: 'GET'
       })
         .then((resp) => {
-          if (resp.data.status as Boolean)
+          if (resp.data.status as boolean)
             setUser({ username: resp.data.username, avatar: resp.data.avatar });
           else setUser(null);
 
