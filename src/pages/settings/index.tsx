@@ -1,4 +1,5 @@
 import AlertBox from '@/Components/Register/AlertBox';
+import { getServerSideProps } from '@/Components/Settings/ServerSide/SettingsServerSideProps';
 import SettingsBox from '@/Components/Settings/SettingsBox';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
@@ -8,7 +9,6 @@ import Navigator from '@/Components/static/Components/nav/navigator';
 import cnf from 'cms-config.json';
 import Head from 'next/head';
 import '/styles/styles.css';
-
 export default function SettingsPage() {
   return (
     <>
@@ -37,3 +37,4 @@ export default function SettingsPage() {
     </>
   );
 }
+export { getServerSideProps };
