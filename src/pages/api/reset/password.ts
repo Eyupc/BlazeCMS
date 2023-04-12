@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import DatabaseManager from 'database/DatabaseManager';
 import jwt from 'jsonwebtoken';
+import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 type Body = {
   username: string;
@@ -8,11 +9,11 @@ type Body = {
   rePassword: string;
   token: string;
 };
-export default async function handler(
+export default csrf(async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
-  if (req.method != 'POST') return res.status(200).json({ status: false });
+  if (req.method != 'POST') return res.status(403).json({ status: false });
 
   const body: Body = req.body;
   const errors: string[] = [];
@@ -37,4 +38,4 @@ export default async function handler(
     return res.status(200).json({ status: true });
   }
   return res.status(200).json({ status: false, errors: errors });
-}
+});
