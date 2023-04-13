@@ -40,6 +40,7 @@ export const config = {
     '/leaderboards',
     '/settings',
     '/client',
-    '/news'
+    '/news',
+    '/help'
   ]
 };

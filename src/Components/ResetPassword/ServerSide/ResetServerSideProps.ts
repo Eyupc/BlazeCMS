@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { setup } from 'lib/csrf';
 import { GetServerSidePropsContext } from 'next';
 import { IResetPassword } from '../interfaces/IResetPassword';
 export async function getServerSideProps(
@@ -21,3 +22,4 @@ export async function getServerSideProps(
     }
   };
 }
+export default setup(getServerSideProps);

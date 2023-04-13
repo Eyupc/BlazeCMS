@@ -14,7 +14,7 @@ const StaffBox = memo(({ username, online, avatar, motto }: IStaffBox) => {
           className="figure"
           style={{
             background: `url(${
-              cnf.links.IMAGER_URL
+              process.env.NEXT_PUBLIC_IMAGER_URL
             }?figure=${avatar}&action=std,crr=667&gesture=${
               !!Number(online) ? 'std' : 'eyb'
             }&direction=2&head_direction=2&size=n&img_format=png)`

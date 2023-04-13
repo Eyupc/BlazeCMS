@@ -2,13 +2,10 @@
 "links":{
 "DISCORD_URL":"https://discord.gg/blaze",
 "TWITTER_URL":"#",
-"INSTAGRAM_URL":"#",
-"HOTEL_LINK":"http://localhost:3000",
-"NITRO_URL":"http://localhost:3000/staff",
-"IMAGER_URL":"https://habbo.com.tr/habbo-imaging/avatarimage"
+"INSTAGRAM_URL":"#"
 },
 "texts":{
-    "HOTEL_NAME":"Blaze",
+"HOTEL_NAME":"Blaze",
 "SUBMIT_BUTTON":"KAYDET!",
 "FOOTER_TITLE":"Blaze Hotel",
 "FOOTER_TITLE_V":"v0.1",
@@ -71,7 +68,12 @@
 "LOGIN_UN_PLACEHOLDER":"Kullanıcı adı",
 "LOGIN_PASSWORD_PLACEHOLDER":"Parola",
 
-
+"FORGOT_PASSWORD_TITLE":"Forgot password",
+"FORGOT_PASSWORD_DESC":"If u did forget your password, u can receive an email to reset your password.",
+"FORGOT_PASSWORD_GOTO_LOGIN":"Go back to login",
+"FORGOT_PASSWORD_SUBMIT_BTN":"Send email!",
+"FORGOT_PASSWORD_ERROR":"Wrong username or email",
+"FORGOT_PASSWORD_SUCCESS":"we have successfully sent you an email",
 
 "REGISTER_TITLE":"Blaze - Register",
 "REGISTER_AB_TITLE":"Blaze özel kullanıcılarla dolu bir topluluktur",
@@ -135,7 +137,7 @@
 "STAFFS_AB_TITLE":"Blaze - Personeller",
 "STAFFS_AB_DESC":"Personeller sayfasi",
 "STAFFS_MOTTO":"Motto:",
-"STAFFS_INFO_TEXT":"Raze staffs are people that trying to keep the hotel safe, friendly, fun. These people are here to support you, if u got some problems you can directly go to a staff for sue any problem or anything.",
+"STAFFS_INFO_TEXT":"Blaze staffs are people that trying to keep the hotel safe, friendly, fun. These people are here to support you, if u got some problems you can directly go to a staff for sue any problem or anything.",
 
 "LEADER_TITLE":"Blaze - Liderler",
 "LEADER_AB_TITLE":"Blaze - Liderler",
@@ -155,6 +157,26 @@
 "NEWS_AB_DESC":"This is our news page! Here, u can find the latest news of our hotel!",
 "NEWS_LATEST_NEWS_TITLE":"Latest news",
 "NEWS_LATEST_NEWS_BTN":"Show more",
-"NEwS_DATE_TEXT":"Date:"
+"NEwS_DATE_TEXT":"Date:",
+
+"HELP_TITLE":"Blaze - Help",
+"HELP_AB_TITLE":"Blaze - Help",
+"HELP_AB_DESC":"This page tells you more about the hotel, and what Blaze Hotel exactly is. ",
+"//comment_HELP":"The rest, u need to edit it manually. Go to 'src/Components/Help/'",
+
+"RESET_TITLE":"Blaze - Reset password",
+"RESET_AB_TITLE":"Blaze - Reset user password",
+"RESET_AB_DESC":"On this page, you can easily change your user's password.",
+"RESET_ALERT_TITLE":"Reset password",
+"RESET_ALERT_DESC":"Reset your user's password",
+"RESET_ALERT_TEXT":"Did u forget your user's password? That happens, on this page u can easily change your user's password! After changing your password, u will be redirected to the login page.",
+"RESET_FORM_TITLE":"Reset password of user:",
+"RESET_FORM_NEWPASS_TITLE":"New password",
+"RESET_FORM_NEWPASS_DESC":"Your user's new password",
+"RESET_FORM_REPASS_TITLE":"Re-enter new password",
+"RESET_FORM_REPASS_DESC":"Re-enter your user's new password",
+"RESET_FORM_SUBMIT_BTN":"Change password!",
+"RESET_ERROR_PASSWORD_LENGTH":"Password must contain minimum 6 characters",
+"RESET_ERROR_PASSWORD_MATCH":"The passwords doesn't match!"
 }
 }

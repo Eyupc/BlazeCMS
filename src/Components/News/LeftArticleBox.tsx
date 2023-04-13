@@ -10,7 +10,7 @@ export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
 
   useEffect(() => {
     (async () => {
-      await axios(`/api/news/latest`, {
+      await axios(`${process.env.NEXT_PUBLIC_HOTEL_URL}/api/news/latest`, {
         method: 'GET'
       }).then((res) => {
         if (res.data.status)

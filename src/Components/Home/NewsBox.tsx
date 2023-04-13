@@ -1,4 +1,3 @@
-import cnf from 'cms-config.json';
 import Link from 'next/link';
 import { memo } from 'react';
 import { INewsBox } from './interfaces/INewsBox';
@@ -26,7 +25,7 @@ export const NewsBox = memo((props: INewsBox) => {
             <div
               className={'newsAvatar'}
               style={{
-                backgroundImage: `url(${cnf.links.IMAGER_URL}?figure=${u.avatar}&head_direction=3&headonly=true&img_format=png)`
+                backgroundImage: `url(${process.env.NEXT_PUBLIC_IMAGER_URL}?figure=${u.avatar}&head_direction=3&headonly=true&img_format=png)`
               }}
             />
             <div className={'newsAuthor'}>- {u.username}</div>

@@ -6,16 +6,19 @@ export async function TryChangePassword(
   rePassword: string,
   token: string
 ) {
-  return await axios('/api/reset/password', {
-    method: 'POST',
-    data: {
-      username: username,
-      password: password,
-      rePassword: rePassword,
-      token: token
+  return await axios(
+    `${process.env.NEXT_PUBLIC_HOTEL_URL}/api/reset/password`,
+    {
+      method: 'POST',
+      data: {
+        username: username,
+        password: password,
+        rePassword: rePassword,
+        token: token
+      }
     }
-  }).then((resp) => {
-    if (resp.data.status as Boolean) return true;
+  ).then((resp) => {
+    if ((resp.data.status as boolean) == true) return true;
     else return resp.data.errors;
   });
 }

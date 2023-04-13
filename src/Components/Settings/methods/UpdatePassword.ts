@@ -5,14 +5,17 @@ export const UpdatePassword = async (
   newpassword: string,
   rePassword: string
 ): Promise<string[] | boolean> => {
-  return await axios('/api/account/password', {
-    method: 'POST',
-    data: {
-      newPassword: newpassword,
-      oldPassword: oldPassword,
-      rePassword: rePassword
+  return await axios(
+    `${process.env.NEXT_PUBLIC_HOTEL_URL}/api/account/password`,
+    {
+      method: 'POST',
+      data: {
+        newPassword: newpassword,
+        oldPassword: oldPassword,
+        rePassword: rePassword
+      }
     }
-  })
+  )
     .then((resp) => {
       if (resp.data.status) {
         return true;

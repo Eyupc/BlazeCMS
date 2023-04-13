@@ -303,13 +303,14 @@ header .clouds {
   position: absolute;
   background-image: url(/assets/images/clouds.png);
   left: 0;
+  z-index: 2;
   top: 0px;
   width: 100%;
   height: 134px;
   overflow: hidden;
   -webkit-animation: clouds 60s linear infinite;
   animation: clouds 60s linear infinite;
-  opacity: 0;
+  opacity: 2;
 }
 
 @-webkit-keyframes clouds {
@@ -330,10 +331,10 @@ header .clouds {
   }
 }
 
-header .rplogo {
-  background-image: url(/assets/images/logo.gif);
-  width: 152px;
-  height: 68px;
+header .logo {
+  background-image: url(/assets/images/logo.png);
+  width: 186px;
+  height: 67px;
   z-index: 5;
 }
 
@@ -1610,7 +1611,7 @@ header .rplogo {
   margin-top: -2px;
 }
 
-.content .section .citymap {
+.content .section .help {
   width: 100%;
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
@@ -1623,7 +1624,7 @@ header .rplogo {
   display: grid;
 }
 
-.content .section .citymap .map-main {
+.content .section .help .help-main {
   position: relative;
   background-color: #fff;
   width: 100%;
@@ -1640,7 +1641,7 @@ header .rplogo {
   overflow: hidden;
 }
 
-.content .section .citymap .map-main .map-head {
+.content .section .help .help-main .help-head {
   background: #f8f8f8;
   padding: 10px;
   border-bottom: 1px solid #d9dddf;
@@ -1649,14 +1650,36 @@ header .rplogo {
   font-weight: 500;
 }
 
-.content .section .citymap .map-main .mapbox {
-  padding: 10px;
+.content .section .help .help-main .helpbox {
+  padding: 10px 30px 30px 30px;
   width: 100%;
-  height: 100%;
+  height: auto;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  display: grid;
+  gap: 1rem;
 }
 
+.helpbox .item-box {
+  grid-column: 1/2;
+}
+.helpbox .item-box p {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.helpbox .item-box li {
+  font-size: 0.9rem;
+}
+.helpbox img {
+  grid-column: 2/3;
+  justify-self: center;
+  -webkit-user-drag: none;
+}
+@media screen and (max-width: 600px) {
+  .content .section .help .help-main .helpbox {
+    display: block;
+  }
+}
 @media screen and (max-width: 1100px) {
   .content .section .leaderboards {
     -ms-grid-columns: 1fr 1fr 1fr !important;
@@ -1858,13 +1881,14 @@ nav ul li.community:before {
   height: 40px;
   bottom: calc(50% - 27px);
 }
-nav ul li.logout:before {
-  background-image: url(/assets/images/logout.gif);
-  width: 40px;
-  height: 40px;
-  bottom: calc(50% - 27px);
+nav ul li.help:before {
+  background-image: url(/assets/images/help.gif);
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  right: -30px;
+  bottom: calc(50% - 20px);
 }
-
 nav ul li {
   position: relative;
   width: auto;
@@ -2157,7 +2181,7 @@ nav ul li .name {
 .login-modal .modalbox .userbox .login-forgot {
   color: #2980b9;
   margin-top: 8px;
-  left: 0;
+  width: fit-content;
 }
 
 .login-modal .modalbox .userbox .login-forgot:hover {
@@ -2463,6 +2487,8 @@ h2#lastArt {
 
 #postOwner {
   height: 110px;
+  -webkit-user-drag: none;
+
   position: relative;
   top: -23px;
   overflow: hidden;
@@ -2485,6 +2511,9 @@ h2#lastArt {
   width: 100%;
   height: 15rem;
   border-radius: 4px;
+  background-position: center;
+  object-fit: cover;
+  -webkit-user-drag: none;
 }
 
 .userStats {

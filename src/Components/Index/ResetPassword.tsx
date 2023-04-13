@@ -1,11 +1,16 @@
 import axios from 'axios';
-import cnf from 'cms-config.json';
 import { useReCaptcha } from 'next-recaptcha-v3';
 
 import { FormEvent, memo, useCallback, useState } from 'react';
+import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { IModalLogin } from './interfaces/IModalLogin';
-import { LoginHeader } from './parts/LoginHeader';
+import { ChangeForm } from './parts/ChangeForm';
+import { InputResetEmail } from './parts/InputResetEmail';
+import { InputResetUsername } from './parts/InputResetUsername';
 
+import cnf from 'cms-config.json';
+import router from 'next/router';
+import { LoginHeader } from './parts/LoginHeader';
 const ResetPassword = memo(({ changePage }: IModalLogin) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -17,7 +22,7 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
     async (e: FormEvent) => {
       e.preventDefault();
       const token = await executeRecaptcha('form_submit');
-      await axios('/api/reset/request', {
+      await axios(`${process.env.NEXT_PUBLIC_HOTEL_URL}/api/reset/request`, {
         method: 'POST',
         data: {
           username: username,
@@ -25,12 +30,14 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
           captcha: token
         }
       }).then((resp) => {
-        if (resp.data.status as Boolean)
+        if ((resp.data.status as boolean) == true) {
           setResult({
             status: true,
-            text: 'We have sent you an email to reset your password!'
+            text: cnf.texts.FORGOT_PASSWORD_SUCCESS
           });
-        else setResult({ status: false, text: 'Wrong username or email.' });
+          setTimeout(() => router.reload(), 1000);
+        } else
+          setResult({ status: false, text: cnf.texts.FORGOT_PASSWORD_ERROR });
       });
     },
     [username, email]
@@ -39,34 +46,12 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
   return (
     <>
       <LoginHeader
-        title={cnf.texts.LOGIN_TITLE}
-        description={cnf.texts.LOGIN_DESC}
+        title={cnf.texts.FORGOT_PASSWORD_TITLE}
+        description={cnf.texts.FORGOT_PASSWORD_DESC}
       />
       <form id="form" onSubmit={HandleSubmit}>
-        <div className="login-username">
-          <input
-            className="login-i"
-            placeholder={cnf.texts.LOGIN_UN_PLACEHOLDER}
-            type="text"
-            name="username"
-            id="username"
-            onChange={(e) => setUsername(e.target.value)}
-            autoComplete={'on'}
-            required
-          />
-        </div>
-        <div className="login-username">
-          <input
-            className="login-i"
-            placeholder={'E-posta'}
-            type="email"
-            name="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete={'on'}
-            required
-          />
-        </div>
+        <InputResetUsername Change={(e: string) => setUsername(e)} />
+        <InputResetEmail Change={(e: string) => setEmail(e)} />
 
         {!result?.status ? (
           <div className="error">{result?.text}</div>
@@ -74,17 +59,11 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
           <div className="success">{result.text}</div>
         )}
 
-        <div
-          onClick={() => changePage()}
-          style={{ cursor: 'pointer' }}
-          className="login-forgot"
-        >
-          {'Go back'}
-        </div>
-
-        <button type="submit" id="submit" className="enterhotel">
-          {'Send mail'}
-        </button>
+        <ChangeForm
+          Change={() => changePage()}
+          text={cnf.texts.FORGOT_PASSWORD_GOTO_LOGIN}
+        />
+        <SubmitButton text={cnf.texts.FORGOT_PASSWORD_SUBMIT_BTN} />
       </form>
     </>
   );

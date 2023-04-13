@@ -1,10 +1,11 @@
-import axios from 'axios';
 import bcrypt from 'bcrypt';
 import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
-import { csrf } from 'lib/captcha';
+import { VerifyCaptcha } from 'lib/captcha';
+import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SSOGenerator } from 'utils/SSOGenerator';
+import { StringToBool } from 'utils/StringToBool';
 type RegisterBody = {
   username: string;
   password: string;
@@ -31,26 +32,13 @@ export default csrf(async function handler(
   const errors: string[] = [];
 
   try {
-    if (req.method != 'POST') return res.status(404).json({ status: false });
+    if (req.method != 'POST') return res.status(403).json({ status: false });
 
-    let captcha: string | null = null;
-    try {
-      captcha = await axios(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.NEXT_SECRET_RECAPTCHA_SITE_KEY}&response=${body.captcha}`,
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-          },
-          method: 'POST'
-        }
-      )
-        .then((resp) => resp.data.success)
-        .catch((err) => null);
-    } catch (e) {
+    const captchaResult = await VerifyCaptcha(body.captcha);
+
+    if (!captchaResult)
       return res.status(403).send({ error: 'Google recaptcha error' });
-    }
-    if (captcha == null || !captcha)
-      return res.status(403).send({ error: 'Google recaptcha error' });
+
     if (
       await DatabaseManager.GetInstance().UserQueries.UsernameExist(
         body.username
@@ -88,11 +76,11 @@ export default csrf(async function handler(
       gender: body.gender == 'M' ? 'M' : 'F',
       rank: process.env.REGISTER_RANK,
       ip_register:
-        ((process.env.CLOUDFLARE_ENABLED as Boolean) == true
+        (StringToBool(String(process.env.CLOUDFLARE_ENABLED)) == true
           ? req.headers['cf-connecting-ip']!.toString()
           : req.socket.remoteAddress!.toString()) || '',
       ip_current:
-        ((process.env.CLOUDFLARE_ENABLED as Boolean) == true
+        (StringToBool(String(process.env.CLOUDFLARE_ENABLED)) == true
           ? req.headers['cf-connecting-ip']!.toString()
           : req.socket.remoteAddress!.toString()) || '',
       last_login: Math.round(+new Date() / 1000),

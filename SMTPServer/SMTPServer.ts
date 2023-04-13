@@ -29,7 +29,7 @@ export class SMTPServer {
       process.env.NEXTAUTH_SECRET,
       { expiresIn: 60 * 10 }
     );
-    /*
+
     this.server.sendMail(
       {
         from: process.env.EMAIL_FROM,
@@ -178,7 +178,7 @@ export class SMTPServer {
           <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
         <div align="left">
           <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://localhost" style="height:39px; v-text-anchor:middle; width:92px;" arcsize="10.5%"  stroke="f" fillcolor="#3AAEE0"><w:anchorlock/><center style="color:#FFFFFF;font-family:arial,helvetica,sans-serif;"><![endif]-->  
-            <a href="${cnf.links.HOTEL_LINK}/account/reset-password/${token}" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #3AAEE0; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 16px;">
+            <a href="${process.env.NEXT_PUBLIC_HOTEL_URL}/account/reset-password/${token}" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #3AAEE0; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 16px;">
               <span style="display:block;padding:10px 20px;line-height:120%;"><span style="line-height: 16.8px;">CLICK!</span></span>
             </a>
           <!--[if mso]></center></v:roundrect><![endif]-->
@@ -226,8 +226,8 @@ export class SMTPServer {
         `
       },
       (err, res) => {
-        console.log(err);
+        console.log('Error: ' + err);
       }
-    );*/
+    );
   }
 }

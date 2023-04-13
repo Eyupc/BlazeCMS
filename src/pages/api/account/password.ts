@@ -1,8 +1,9 @@
 import bcrypt from 'bcrypt';
 import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
+import { setup } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 type Body = {
   newPassword: string;
   rePassword: string;
@@ -12,20 +13,22 @@ type Response = {
   status: boolean;
   errors?: string[];
 };
-export default async function handler(
+export default setup(async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response>
 ) {
-  if (req.method != 'POST') return;
+  if (req.method != 'POST') return res.status(403).json({ status: false });
 
-  const session = await getSession({ req: req });
   const body: Body = req.body;
   const errors: string[] = [];
 
-  if (!session) {
-    res.status(404).json({ status: false });
-    return;
-  }
+  const session = await getToken({
+    req: req,
+    secret: process.env.SECRET
+  });
+
+  if (!session) return res.status(404).json({ status: false });
+
   const data = await DatabaseManager.GetInstance().Query(
     `SELECT password FROM users WHERE id = '${session!.user.id}' LIMIT 1`
   );
@@ -37,18 +40,15 @@ export default async function handler(
   if (!data.error) {
     if (!(await bcrypt.compare(body.oldPassword, password))) {
       errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD);
-      res.status(200).json({ status: false, errors: errors });
-      return;
+      return res.status(200).json({ status: false, errors: errors });
     }
     if (body.newPassword.length < 6 || body.rePassword.length < 6) {
       errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD_LENGTH);
-      res.status(200).json({ status: false, errors: errors });
-      return;
+      return res.status(200).json({ status: false, errors: errors });
     }
     if (body.newPassword != body.rePassword) {
       errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD_MATCH);
-      res.status(200).json({ status: false, errors: errors });
-      return;
+      return res.status(200).json({ status: false, errors: errors });
     }
     const newPassword = await bcrypt.hash(body.rePassword, 10);
     await DatabaseManager.GetInstance().Query(
@@ -57,13 +57,12 @@ export default async function handler(
         "' WHERE `id`=" +
         session.user.id
     );
-    res.status(200).json({
+    return res.status(200).json({
       status: true
     });
-    return;
   }
-  res.status(200).json({
+  return res.status(200).json({
     status: false,
     errors: []
   });
-}
+});

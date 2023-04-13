@@ -1,5 +1,6 @@
 import AlertBox from '@/Components/Register/AlertBox';
 import { RegisterBox } from '@/Components/Register/RegisterBox';
+import { getServerSideProps } from '@/Components/Register/ServerSide/RegisterServerSideProps';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
@@ -41,3 +42,4 @@ export default function RegisterPage(ctx: any) {
     </>
   );
 }
+export { getServerSideProps };
