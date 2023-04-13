@@ -1,6 +1,7 @@
 import cnf from 'cms-config.json';
 import router from 'next/router';
 import { FormEvent, memo, useCallback, useState } from 'react';
+import { StringToBool } from 'utils/StringToBool';
 import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { IModalLogin } from './interfaces/IModalLogin';
 import { TryoToLogin } from './methods/TryToLogin';
@@ -39,10 +40,14 @@ const ModalLogin = memo(({ changePage }: IModalLogin) => {
         <InputName Change={(uname) => setUsername(uname)} />
         <InputPassword Change={(password) => setPassword(password)} />
         <div className="error">{error}</div>
-        <ChangeForm
-          Change={() => changePage()}
-          text={cnf.texts.LOGIN_FORGOT_PASSWORD}
-        />
+        {StringToBool(String(process.env.NEXT_PUBLIC_EMAIL_ENABLED)) == true ? (
+          <ChangeForm
+            Change={() => changePage()}
+            text={cnf.texts.LOGIN_FORGOT_PASSWORD}
+          />
+        ) : (
+          <></>
+        )}
         <SubmitButton text={cnf.texts.LOGIN_SUBMIT_BTN} />
       </form>
     </>
