@@ -2,25 +2,24 @@ import jwt from 'jsonwebtoken';
 import { setup } from 'lib/csrf';
 import { GetServerSidePropsContext } from 'next';
 import { IResetPassword } from '../interfaces/IResetPassword';
-export const getServerSideProps = setup(
-  async (
-    ctx: GetServerSidePropsContext
-  ): Promise<{ props: IResetPassword } | { notFound: boolean }> => {
-    const token: string = String(ctx.query.token);
-    let data: any = null;
-    jwt.verify(token, process.env.NEXTAUTH_SECRET, (err, res) => {
-      if (err == null) data = res;
-    });
+export async function getServerSideProps(
+  ctx: GetServerSidePropsContext
+): Promise<{ props: IResetPassword } | { notFound: boolean }> {
+  const token: string = String(ctx.query.token);
+  let data: any = null;
+  jwt.verify(token, process.env.NEXTAUTH_SECRET, (err, res) => {
+    if (err == null) data = res;
+  });
 
-    if (data == null)
-      return {
-        notFound: true
-      };
+  if (data == null)
     return {
-      props: {
-        username: data.username,
-        token: token
-      }
+      notFound: true
     };
-  }
-);
+  return {
+    props: {
+      username: data.username,
+      token: token
+    }
+  };
+}
+export default setup(getServerSideProps);
