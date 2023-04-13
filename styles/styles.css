@@ -303,13 +303,14 @@ header .clouds {
   position: absolute;
   background-image: url(/assets/images/clouds.png);
   left: 0;
+  z-index: 2;
   top: 0px;
   width: 100%;
   height: 134px;
   overflow: hidden;
   -webkit-animation: clouds 60s linear infinite;
   animation: clouds 60s linear infinite;
-  opacity: 0;
+  opacity: 2;
 }
 
 @-webkit-keyframes clouds {
@@ -330,10 +331,10 @@ header .clouds {
   }
 }
 
-header .rplogo {
-  background-image: url(/assets/images/logo.gif);
-  width: 152px;
-  height: 68px;
+header .logo {
+  background-image: url(/assets/images/logo.png);
+  width: 186px;
+  height: 67px;
   z-index: 5;
 }
 
@@ -1664,7 +1665,7 @@ header .rplogo {
 }
 .helpbox .item-box p {
   font-size: 1.1rem;
-  text-decoration: underline;
+  font-weight: 600;
 }
 .helpbox .item-box li {
   font-size: 0.9rem;
@@ -1672,6 +1673,7 @@ header .rplogo {
 .helpbox img {
   grid-column: 2/3;
   justify-self: center;
+  -webkit-user-drag: none;
 }
 @media screen and (max-width: 600px) {
   .content .section .help .help-main .helpbox {
@@ -1879,13 +1881,14 @@ nav ul li.community:before {
   height: 40px;
   bottom: calc(50% - 27px);
 }
-nav ul li.logout:before {
-  background-image: url(/assets/images/logout.gif);
-  width: 40px;
-  height: 40px;
-  bottom: calc(50% - 27px);
+nav ul li.help:before {
+  background-image: url(/assets/images/help.gif);
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  right: -30px;
+  bottom: calc(50% - 20px);
 }
-
 nav ul li {
   position: relative;
   width: auto;
@@ -2484,6 +2487,8 @@ h2#lastArt {
 
 #postOwner {
   height: 110px;
+  -webkit-user-drag: none;
+
   position: relative;
   top: -23px;
   overflow: hidden;
@@ -2506,6 +2511,9 @@ h2#lastArt {
   width: 100%;
   height: 15rem;
   border-radius: 4px;
+  background-position: center;
+  object-fit: cover;
+  -webkit-user-drag: none;
 }
 
 .userStats {
