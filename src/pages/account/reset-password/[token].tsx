@@ -6,26 +6,28 @@ import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/Anno
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
+import cnf from 'cms-config.json';
 import Head from 'next/head';
 import 'styles/styles.css';
 export default function ResetPassword({ username, token }: IResetPassword) {
   return (
     <>
       <Head>
-        <title>Reset your password</title>
+        <title>{cnf.texts.RESET_TITLE}</title>
       </Head>
       <Header />
-      <AnnouncementBar title={'test'} description={'test'} />
+      <AnnouncementBar
+        title={cnf.texts.RESET_AB_TITLE}
+        description={cnf.texts.RESET_AB_DESC}
+      />
       <Main
         child={
           <div className="register">
             <ResetPasswordBox username={username} token={token} />
             <AlertBox
-              title={'Reset password'}
-              description={"Reset your user's password easily."}
-              text={
-                "Did u forget your user's password? That happens, on this page u can easily change your user's password! After changing your password, u will be redirected to the login page."
-              }
+              title={cnf.texts.RESET_ALERT_TITLE}
+              description={cnf.texts.RESET_ALERT_DESC}
+              text={cnf.texts.RESET_ALERT_TEXT}
             />
           </div>
         }
