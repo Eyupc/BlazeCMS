@@ -21,19 +21,13 @@ export const MainNavigator = memo(
               menuName={'communityMenu'}
               Update={(e) => showCommunity(e)}
             />
-
-            <ListItem
-              name={'community'}
-              title={cnf.texts.NAVIGATOR_HELP_TITLE}
-              menuName={'test'}
-            />
           </>
         ) : (
           <>
             <ListItem
               name={'login'}
               title={cnf.texts.NAVIGATOR_LOGIN_TITLE}
-              menuName={'LogIn'}
+              menuName={'logIn'}
               Click={() => ShowLoginForm(true)}
               goTo={'/'}
             />
@@ -45,6 +39,12 @@ export const MainNavigator = memo(
             />
           </>
         )}
+        <ListItem
+          name={'help'}
+          title={cnf.texts.NAVIGATOR_HELP_TITLE}
+          menuName={'help'}
+          goTo={'/help'}
+        />
       </>
     );
   }
