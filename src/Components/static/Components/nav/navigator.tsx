@@ -20,7 +20,7 @@ export default function Navigator() {
         method: 'GET'
       })
         .then((resp) => {
-          if (resp.data.status as boolean)
+          if ((resp.data.status as boolean) == true)
             setUser({ username: resp.data.username, avatar: resp.data.avatar });
           else setUser(null);
 

@@ -30,13 +30,14 @@ const ResetPassword = memo(({ changePage }: IModalLogin) => {
           captcha: token
         }
       }).then((resp) => {
-        if (resp.data.status as boolean) {
+        if ((resp.data.status as boolean) == true) {
           setResult({
             status: true,
-            text: 'We have sent you an email to reset your password!'
+            text: cnf.texts.FORGOT_PASSWORD_SUCCESS
           });
           setTimeout(() => router.reload(), 1000);
-        } else setResult({ status: false, text: 'Wrong username or email.' });
+        } else
+          setResult({ status: false, text: cnf.texts.FORGOT_PASSWORD_ERROR });
       });
     },
     [username, email]

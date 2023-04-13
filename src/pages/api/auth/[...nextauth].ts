@@ -3,6 +3,7 @@ import DatabaseManager from 'database/DatabaseManager';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import CredetentialProvider from 'next-auth/providers/credentials';
+import { StringToBool } from 'utils/StringToBool';
 import { TokenUserType } from './types/TokenType';
 // import EmailProvider from "next-auth/providers/email"
 // import AppleProvider from "next-auth/providers/apple"
@@ -79,7 +80,7 @@ export default (request: NextApiRequest, res: NextApiResponse) =>
             ) {
               await DatabaseManager.GetInstance().UserQueries.UpdateLastLogin(
                 user.data!.id,
-                ((process.env.CLOUDFLARE_ENABLED as boolean) == true
+                (StringToBool(String(process.env.CLOUDFLARE_ENABLED)) == true
                   ? request.headers['cf-connecting-ip']!.toString()
                   : request.socket.remoteAddress!.toString()) || ''
               );

@@ -18,7 +18,7 @@ export async function TryChangePassword(
       }
     }
   ).then((resp) => {
-    if (resp.data.status as boolean) return true;
+    if ((resp.data.status as boolean) == true) return true;
     else return resp.data.errors;
   });
 }

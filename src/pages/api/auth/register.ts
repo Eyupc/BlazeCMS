@@ -5,6 +5,7 @@ import { VerifyCaptcha } from 'lib/captcha';
 import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SSOGenerator } from 'utils/SSOGenerator';
+import { StringToBool } from 'utils/StringToBool';
 type RegisterBody = {
   username: string;
   password: string;
@@ -75,11 +76,11 @@ export default csrf(async function handler(
       gender: body.gender == 'M' ? 'M' : 'F',
       rank: process.env.REGISTER_RANK,
       ip_register:
-        ((process.env.CLOUDFLARE_ENABLED as boolean) == true
+        (StringToBool(String(process.env.CLOUDFLARE_ENABLED)) == true
           ? req.headers['cf-connecting-ip']!.toString()
           : req.socket.remoteAddress!.toString()) || '',
       ip_current:
-        ((process.env.CLOUDFLARE_ENABLED as boolean) == true
+        (StringToBool(String(process.env.CLOUDFLARE_ENABLED)) == true
           ? req.headers['cf-connecting-ip']!.toString()
           : req.socket.remoteAddress!.toString()) || '',
       last_login: Math.round(+new Date() / 1000),
