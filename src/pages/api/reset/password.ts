@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import jwt from 'jsonwebtoken';
 import { csrf } from 'lib/csrf';
@@ -23,10 +24,10 @@ export default csrf(async function handler(
   });
 
   if (body.password.length < 6) {
-    errors.push('Password must contain minimum 6 characters.');
+    errors.push(cnf.texts.RESET_ERROR_PASSWORD_LENGTH);
   }
   if (body.password != body.rePassword) {
-    errors.push("The 2 passwords doesn't match!");
+    errors.push(cnf.texts.RESET_ERROR_PASSWORD_MATCH);
   }
 
   if (tokenValid && errors.length == 0) {
