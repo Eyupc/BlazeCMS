@@ -11,7 +11,7 @@ export const SubHome = memo(
         className="subItem homeMenu"
         onMouseOver={() => showSub('y')}
         onMouseLeave={() => showSub('n')}
-        id="communityMenu"
+        id="homeMenu"
         active={homeActive}
       >
         <div className="submenu-main">
@@ -23,7 +23,7 @@ export const SubHome = memo(
           />
           <SubItem
             href={'/settings'}
-            iconImg={'/assets/images/settings_icon.png'}
+            iconImg={'/assets/images/settings.png'}
             menuTitle={cnf.texts.NAVIGATOR_HOME_SETTINGS_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_HOME_SETTINGS_DESC}
           />
