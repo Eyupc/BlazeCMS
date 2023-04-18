@@ -1,5 +1,5 @@
-#[![BlazeCMS](https://www.habborator.org/archive/icons/medium/v20_b2.gif "BlazeCMS")](https://www.habborator.org/archive/icons/medium/v20_b2.gif "BlazeCMS") BlazeCMS
-##[![BlazeCMS](https://www.habborator.org/archive/icons/medium/toolbar_08.gif "Info")](https://www.habborator.org/archive/icons/medium/toolbar_08.gif "Info") Table of contents
+[![BlazeCMS](https://www.habborator.org/archive/icons/medium/v20_b2.gif "BlazeCMS")](https://www.habborator.org/archive/icons/medium/v20_b2.gif "BlazeCMS") BlazeCMS
+[![BlazeCMS](https://www.habborator.org/archive/icons/medium/toolbar_08.gif "Info")](https://www.habborator.org/archive/icons/medium/toolbar_08.gif "Info") Table of contents
 - [Introduction](#Introduction)
 - [Why would I use BlazeCMS?](#why-would-I-use-BlazeCMS)
 - [Requirements](#Requirements)
@@ -9,7 +9,8 @@
 
 ### Introduction
 BlazeCMS is a CMS built for learning purposes. Blaze CMS was created using NextJS.
-The purpose of this project was actually to learn NextJS. I tried to immerse myself in it well enough to make the most of it.
+The intention of this project was a bit personal, to learn NextJS but also that the community can use a modern CMS. 
+I tried to immerse myself in it well enough to make the most of it.
 ### Why would I use BlazeCMS?
 BlazeCMS is a CMS that is easy to customize if you have a little knowledge of NextJS or React. The texts are easily editable, and anyone could easily do this.
 This CMS also uses the latest technologies. It is also super fast, and also offers various options such as sending emails to reset a user's password.
