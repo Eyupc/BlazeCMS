@@ -1,7 +1,7 @@
 #[![BlazeCMS](https://www.habborator.org/archive/icons/medium/v20_b2.gif "BlazeCMS")](https://www.habborator.org/archive/icons/medium/v20_b2.gif "BlazeCMS") BlazeCMS
 ##[![BlazeCMS](https://www.habborator.org/archive/icons/medium/toolbar_08.gif "Info")](https://www.habborator.org/archive/icons/medium/toolbar_08.gif "Info") Table of contents
 - [Introduction](#Introduction)
-- [Why would I use BlazeCMS?](#why-would-I-use-BlazeCMS?)
+- [Why would I use BlazeCMS?](#why-would-I-use-BlazeCMS)
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Configuration](#Configuration)
