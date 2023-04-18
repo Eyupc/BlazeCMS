@@ -49,12 +49,19 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 | NEXTAUTH_SECRET                 | Random string (needs to be good protected)              |
 | NEXTAUTH_URL                    | http://localhost:{PORT}     |
 
-#####SMTP Settings
+####Server settings (production)
+| **KEY**     | **VALUE** |
+|:-----------:|:---------:|
+| SERVER_HOST | localhost (host) |
+| SERVER_PORT | 3000  (port)    |
+
+####SMTP settings
+
 | **KEY**                   | **VALUE**                                                  |
 |:-------------------------:|:----------------------------------------------------------:|
 | NEXT_PUBLIC_EMAIL_ENABLED | Boolean, true if u are using SMTP server. (Reset password) |
-| EMAIL_SERVER_USER         | admin@eyupc.dev                                            |
-| EMAIL_SERVER_PASSWORD     | adminpassword                                              |
-| EMAIL_SERVER_HOST         | smtp-relay.sendinblue.com                                  |
-| EMAIL_SERVER_PORT         | 465                                                        |
-| EMAIL_FROM                | noreply@eyupc.dev                                          |
+| EMAIL_SERVER_USER         | admin@eyupc.dev (SMTP user)                                            |
+| EMAIL_SERVER_PASSWORD     | adminpassword (SMTP password)                                            |
+| EMAIL_SERVER_HOST         | smtp-relay.sendinblue.com (SMTP host)                             |
+| EMAIL_SERVER_PORT         | 465 (SMTP port)                                                       |
+| EMAIL_FROM                | noreply@eyupc.dev (SMTP email FROM)                                          |
