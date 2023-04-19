@@ -1,4 +1,4 @@
-# <img src="https://www.habborator.org/archive/icons/medium/v20_b2.gif"> BlazeCMS
+# <img src="https://www.habborator.org/archive/icons/medium/v20_b2.gif"> BlazeCMS (v0.1)
 ## <img src="https://www.habborator.org/archive/icons/medium/toolbar_08.gif"> Table of contents
 - [Introduction](#Introduction)
 - [Why would I use BlazeCMS?](#why-would-I-use-BlazeCMS)
