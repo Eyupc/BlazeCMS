@@ -69,4 +69,4 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 
 ### How to deploy this project on a webserver?
 If u want to use IIS / Nginx or maybe another webserver, uneed to install nodejs on the host system and have server running on a port,
-then use your webserver as a **reverse proxy **on top.
+then use your webserver as a **reverse proxy** on top.
