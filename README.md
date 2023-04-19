@@ -60,7 +60,7 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 
 | **KEY**                   | **VALUE**                                                  |
 |:-------------------------:|:----------------------------------------------------------:|
-| NEXT_PUBLIC_EMAIL_ENABLED | Boolean, true if u are using SMTP server. (Reset password) |
+| NEXT_PUBLIC_EMAIL_ENABLED | Boolean, true if u are using SMTP server. (Reset password) OR false (no reset page anymore) |
 | EMAIL_SERVER_USER         | admin@eyupc.dev (SMTP user)                                            |
 | EMAIL_SERVER_PASSWORD     | adminpassword (SMTP password)                                            |
 | EMAIL_SERVER_HOST         | smtp-relay.sendinblue.com (SMTP host)                             |
