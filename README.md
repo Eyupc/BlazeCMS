@@ -5,7 +5,7 @@
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Configuration](#Configuration)
-- [Credits](#Credits)
+- [How to deploy this project on a webserver?](#how-to-deploy-this-project-on-a-webserver)
 
 ### Introduction
 BlazeCMS is a CMS built for learning purposes. Blaze CMS was created using NextJS.
@@ -66,3 +66,7 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 | EMAIL_SERVER_HOST         | smtp-relay.sendinblue.com (SMTP host)                             |
 | EMAIL_SERVER_PORT         | 465 (SMTP port)                                                       |
 | EMAIL_FROM                | noreply@eyupc.dev (SMTP email FROM)                                          |
+
+### How to deploy this project on a webserver?
+If u want to use IIS / Nginx or maybe another webserver, uneed to install nodejs on the host system and have server running on a port,
+then use your webserver as a **reverse proxy **on top.
