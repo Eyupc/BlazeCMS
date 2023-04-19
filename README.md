@@ -19,6 +19,7 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 
 ### Installation
 -  Open terminal and navigate to the folder where the CMS is located
+-  Import the SQL file in your database that is located in the 'SQL' directory.
 - Edit the <b>.env</b> file, this is the config file. This file contains settings such as for: 
 	- Database connection
 	- SMTP, imager links
