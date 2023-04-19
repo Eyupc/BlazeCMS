@@ -1,4 +1,4 @@
-# <img src="https://www.habborator.org/archive/icons/medium/v20_b2.gif"> BlazeCMS (v0.1)
+# <img src="https://www.habborator.org/archive/icons/medium/v20_b2.gif"> BlazeCMS
 ## <img src="https://www.habborator.org/archive/icons/medium/toolbar_08.gif"> Table of contents
 - [Introduction](#Introduction)
 - [Why would I use BlazeCMS?](#why-would-I-use-BlazeCMS)
@@ -70,3 +70,5 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 ### How to deploy this project on a webserver?
 If u want to use IIS / Nginx or maybe another webserver, uneed to install nodejs on the host system and have server running on a port,
 then use your webserver as a **reverse proxy** on top.
+
+##### Pss: this project is still in development.
