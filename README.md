@@ -17,7 +17,7 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 ### Requirements
 - NodeJS (>=19.6.0)
 
-###Installation
+### Installation
 -  Open terminal and navigate to the folder where the CMS is located
 - Edit the <b>.env</b> file, this is the config file. This file contains settings such as for: 
 	- Database connection
