@@ -37,7 +37,7 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 		- ``npm run start``
 
 ### Configuration
-#####CMS Settings
+##### CMS Settings
 | **KEY**                         | **VALUE**                   |
 |:-------------------------------:|:---------------------------:|
 | NEXT_PUBLIC_HOTEL_URL           | Hotel URL                   |
@@ -50,13 +50,13 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 | NEXTAUTH_SECRET                 | Random string (needs to be good protected)              |
 | NEXTAUTH_URL                    | http://localhost:{PORT}     |
 
-####Server settings (production)
+#### Server settings (production)
 | **KEY**     | **VALUE** |
 |:-----------:|:---------:|
 | SERVER_HOST | localhost (host) |
 | SERVER_PORT | 3000  (port)    |
 
-####SMTP settings
+#### SMTP settings
 
 | **KEY**                   | **VALUE**                                                  |
 |:-------------------------:|:----------------------------------------------------------:|
