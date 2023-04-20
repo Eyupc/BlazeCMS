@@ -33,7 +33,8 @@ export const SubHome = memo(
             iconImg={'/assets/images/logout.gif'}
             Click={async () => {
               await signOut({
-                redirect: true
+                redirect: true,
+                callbackUrl: `${process.env.NEXT_PUBLIC_HOTEL_URL}`
               });
             }}
             menuTitle={cnf.texts.NAVIGATOR_HOME_LOGOUT_TITLE}

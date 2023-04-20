@@ -23,7 +23,8 @@ const SettingsBox = memo(() => {
     switch (data) {
       case true:
         await signOut({
-          redirect: true
+          redirect: true,
+          callbackUrl: `${process.env.NEXT_PUBLIC_HOTEL_URL}`
         });
         break;
       case false:
