@@ -30,9 +30,12 @@ export default class DatabaseManager extends DatabaseServer {
   public get NewsQueries(): NewsQueries {
     return this._NewsQueries;
   }
-  public async Query(st: string): Promise<{ error: boolean; data?: any }> {
+  public async Query(
+    st: string,
+    params: any[]
+  ): Promise<{ error: boolean; data?: any }> {
     return new Promise((resolve, reject) => {
-      this.Connection.query(st, function (_error, results, fields) {
+      this.Connection.query(st, params, function (_error, results, fields) {
         if (_error || results.length == 0) resolve({ error: true });
 
         resolve({ error: false, data: results });

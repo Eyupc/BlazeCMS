@@ -18,15 +18,13 @@ export class UserQueries {
       let sql = '';
       if (typeof param == 'string') {
         sql =
-          'SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `username`=' +
-          `"${param}"`;
+          'SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `username`= ?';
       } else {
         sql =
-          'SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `id`=' +
-          `"${param}"`;
+          'SELECT `id`,`username`,`mail`,`motto`,`look`,`rank`,`ip_register`,`ip_current`,`last_login`,`last_online`,`online` FROM `users` WHERE `id`= ?';
       }
 
-      this.connection.query(sql, function (error, results, fields) {
+      this.connection.query(sql, param, function (error, results, fields) {
         if (error || results.length == 0) {
           resolve({ status: false });
         } else {
@@ -53,13 +51,8 @@ export class UserQueries {
   public async GetUserCurrencies(id: number): Promise<UserCurrencies> {
     return new Promise((resolve, reject) => {
       this.connection.query(
-        'SELECT `credits`,(SELECT `amount` FROM `users_currency` WHERE `user_id`=' +
-          id +
-          ' && `type`=0) AS duckets,' +
-          '(SELECT `amount` FROM `users_currency` WHERE `user_id`=' +
-          id +
-          ' && `type`= 5) AS diamonds FROM `users` WHERE `id`=' +
-          id,
+        'SELECT `credits`,(SELECT `amount` FROM `users_currency` WHERE `user_id`= ? && `type`=0) AS duckets,(SELECT `amount` FROM `users_currency` WHERE `user_id`= ? && `type`= 5) AS diamonds FROM `users` WHERE `id`= ?',
+        [id, id, id],
         function (_error, results, fields) {
           if (_error || results.length == 0) {
             resolve({ status: false });
@@ -80,9 +73,8 @@ export class UserQueries {
   public async GetUserSettings(id: number): Promise<UserSettings> {
     return new Promise((resolve, reject) => {
       this.connection.query(
-        'SELECT `user_id`,`achievement_score`, `repects_given`,`respects_received`,`can_trade`,`block_friendrequest` FROM `users_settings` WHERE `user_id` = ' +
-          id +
-          ' LIMIT 1',
+        'SELECT `user_id`,`achievement_score`, `repects_given`,`respects_received`,`can_trade`,`block_friendrequest` FROM `users_settings` WHERE `user_id` = ?',
+        id,
         function (_error, results, fields) {
           if (_error || results.length == 0) {
             resolve({ status: false });
@@ -103,14 +95,13 @@ export class UserQueries {
       );
     });
   }
+  //TODO
 
   public async CreateSubscription(userId: number): Promise<boolean> {
     return await new Promise((resolve, reject) => {
       this.connection.query(
-        'INSERT INTO `users_subscriptions`(`user_id`,`subscription_type`,`timestamp_start`,`duration`,`active`)' +
-          `VALUES(${userId},"HABBO_CLUB",${Math.round(
-            +new Date() / 1000
-          )},"56246400",1)`,
+        'INSERT INTO `users_subscriptions`(`user_id`,`subscription_type`,`timestamp_start`,`duration`,`active`) VALUES(?,?,?,?,?)',
+        [userId, 'HABBO_CLUB', Math.round(+new Date() / 1000), '56246400', 1],
         function (_error, results) {
           if (_error || results.length == 0) {
             resolve(false);
@@ -124,8 +115,21 @@ export class UserQueries {
   public async CreateUser(user: RegisterType): Promise<boolean> {
     await new Promise((resolve, reject) => {
       this.connection.query(
-        'INSERT INTO `users` (`username`, `password`, `rank`, `motto`, `gender`,`account_created`, `last_login`, `mail`, `look`, `ip_current`, `ip_register`, `credits`) ' +
-          `VALUES("${user.username}","${user.password}",${user.rank},"${user.motto}","${user.gender}","${user.account_created}","${user.last_login}","${user.mail}","${user.look}","${user.ip_current}","${user.ip_register}",${user.credits})`,
+        'INSERT INTO `users` (`username`, `password`, `rank`, `motto`, `gender`,`account_created`, `last_login`, `mail`, `look`, `ip_current`, `ip_register`, `credits`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
+        [
+          user.username,
+          user.password,
+          user.rank,
+          user.motto,
+          user.gender,
+          user.account_created,
+          user.last_login,
+          user.mail,
+          user.look,
+          user.ip_current,
+          user.ip_register,
+          user.credits
+        ],
         function (_error, results) {
           if (_error || results.length == 0) {
             resolve(false);
@@ -138,9 +142,8 @@ export class UserQueries {
 
     const user_id: number = await new Promise((resolve, reject) => {
       this.connection.query(
-        "SELECT `id` FROM `users` WHERE `username`='" +
-          user.username +
-          "' LIMIT 1",
+        'SELECT `id` FROM `users` WHERE `username`= ? LIMIT 1',
+        user.username,
         (err, results) => {
           if (err || results.length == 0) {
             resolve(0);
@@ -154,13 +157,13 @@ export class UserQueries {
     await this.CreateUserCurrency({
       id: user_id,
       type: 0,
-      amount: user.diamonds
+      amount: user.duckets
     });
 
     await this.CreateUserCurrency({
       id: user_id,
       type: 5,
-      amount: user.duckets
+      amount: user.diamonds
     });
 
     await this.CreateUserSettings({
@@ -179,8 +182,8 @@ export class UserQueries {
     // return true if statement is executed
     return await new Promise((resolve, reject) => {
       this.connection.query(
-        'INSERT INTO `users_currency` (`user_id`,`type`,`amount`) ' +
-          `VALUES(${user.id},${user.type},${user.amount})`,
+        'INSERT INTO `users_currency` (`user_id`,`type`,`amount`) VALUES(?,?,?)',
+        [user.id, user.type, user.amount],
         function (_error, results) {
           if (_error || results.length == 0) {
             resolve(false);
@@ -197,8 +200,8 @@ export class UserQueries {
     // return true if statement is executed
     return await new Promise((resolve, reject) => {
       this.connection.query(
-        'INSERT INTO `users_settings` (`user_id`,`home_room`) ' +
-          `VALUES(${user.id},${user.home_room})`,
+        'INSERT INTO `users_settings` (`user_id`,`home_room`) VALUES(?,?)',
+        [user.id, user.home_room],
         function (_error, results) {
           if (_error || results.length == 0) {
             resolve(false);
@@ -213,7 +216,8 @@ export class UserQueries {
   public async UsernameExist(username: string): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
-        "SELECT id FROM `users` WHERE `username`= '" + username + "' LIMIT 1",
+        'SELECT id FROM `users` WHERE `username`= ? LIMIT 1',
+        username,
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);
@@ -224,7 +228,8 @@ export class UserQueries {
   public async MailExist(mail: string): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
-        "SELECT id FROM `users` WHERE `mail`= '" + mail + "' LIMIT 1",
+        'SELECT id FROM `users` WHERE `mail`= ? LIMIT 1',
+        mail,
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);
@@ -235,9 +240,8 @@ export class UserQueries {
   public async TryLogin(username: string): Promise<LoginType> {
     return await new Promise((res, rej) => {
       this.connection.query(
-        "SELECT `id`,`username`,`rank`,`password` FROM `users` WHERE `username`= '" +
-          username +
-          "' LIMIT 1",
+        'SELECT `id`,`username`,`rank`,`password` FROM `users` WHERE `username`= ? LIMIT 1',
+        username,
         (_err, results) => {
           if (_err || results.length == 0) res({ status: false });
           else
@@ -261,11 +265,8 @@ export class UserQueries {
   ): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
-        "SELECT id FROM `users` WHERE `mail`= '" +
-          mail +
-          "' AND `username`= '" +
-          username +
-          "'",
+        'SELECT id FROM `users` WHERE `mail`= ? AND `username`= ?',
+        [mail, username],
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);
@@ -277,9 +278,8 @@ export class UserQueries {
   public async UpdateLastLogin(id: number, ip: string): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
-        'UPDATE `users` SET `last_login` = {login},`ip_current`= "{ip}"'
-          .replace('{login}', Math.round(+new Date() / 1000).toString())
-          .replace('{ip}', ip),
+        'UPDATE `users` SET `last_login` = ?,`ip_current`= ? WHERE id = ? ',
+        [Math.round(+new Date() / 1000), ip, id],
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);
@@ -293,9 +293,8 @@ export class UserQueries {
   ): Promise<boolean> {
     return await new Promise((res, rej) => {
       this.connection.query(
-        'UPDATE `users` SET `password` = "{password}" WHERE `username` = "{username}"'
-          .replace('{password}', password)
-          .replace('{username}', username),
+        'UPDATE `users` SET `password` = ? WHERE `username` = ?',
+        [password, username],
         (_err, results) => {
           if (_err || results.length == 0) res(false);
           else res(true);

@@ -30,7 +30,8 @@ export default setup(async function handler(
   if (!session) return res.status(404).json({ status: false });
 
   const data = await DatabaseManager.GetInstance().Query(
-    `SELECT password FROM users WHERE id = '${session!.user.id}' LIMIT 1`
+    'SELECT `password` FROM `users` WHERE `id` = ? LIMIT 1',
+    [session.user.id]
   );
 
   const password = (data.data[0].password as string).startsWith('$2y$')
@@ -52,10 +53,8 @@ export default setup(async function handler(
     }
     const newPassword = await bcrypt.hash(body.rePassword, 10);
     await DatabaseManager.GetInstance().Query(
-      "UPDATE `users` SET `password`='" +
-        newPassword +
-        "' WHERE `id`=" +
-        session.user.id
+      'UPDATE `users` SET `password`= ? WHERE `id`= ?',
+      [newPassword, session.user.id]
     );
     return res.status(200).json({
       status: true
