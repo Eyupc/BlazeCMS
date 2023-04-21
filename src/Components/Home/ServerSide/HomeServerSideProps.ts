@@ -18,8 +18,8 @@ export async function getServerSideProps(
         session.user.id
       );
     const achievement_score = await DatabaseManager.GetInstance().Query(
-      'SELECT `achievement_score` FROM `users_settings` WHERE `user_id`= ' +
-        session.user.id
+      'SELECT `achievement_score` FROM `users_settings` WHERE `user_id`= ?',
+      [session.user.id]
     );
     const newsList =
       await DatabaseManager.GetInstance().NewsQueries.getLatestNews(3);

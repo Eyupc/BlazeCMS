@@ -6,7 +6,8 @@ export default async function handler(
   res: NextApiResponse<{}>
 ) {
   const data = await DatabaseManager.GetInstance().Query(
-    `SELECT look FROM users WHERE username = '${req.query.username}' LIMIT 1`
+    'SELECT `look` FROM `users` WHERE `username` = ? LIMIT 1',
+    [req.query.username]
   );
   if (!data.error) {
     res.status(200).json({

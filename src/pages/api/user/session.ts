@@ -12,7 +12,8 @@ export default async function handler(
     return;
   }
   const data = await DatabaseManager.GetInstance().Query(
-    `SELECT id,username,look FROM users WHERE id = '${session.user.id}' LIMIT 1`
+    'SELECT `id`,`username`,`look` FROM `users` WHERE `id` = ? LIMIT 1',
+    [session.user.id]
   );
   if (!data.error) {
     res.status(200).json({
