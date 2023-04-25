@@ -2632,3 +2632,54 @@ h2#lastArt {
 .grecaptcha-badge {
   visibility: hidden;
 }
+.about {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000000a6;
+  z-index: 999;
+}
+.about > .main {
+  display: grid;
+  height: auto;
+  width: 35rem;
+  margin: 8rem auto;
+  border: 1px solid #d9dddf;
+  background-color: white;
+  box-shadow: 0 0 8px 2px #00000014;
+  border-radius: 4px;
+  grid-template-rows: 2fr 2.5fr;
+  padding: 0.5rem;
+}
+.about > .main > #header {
+  background-image: url(https://content.puhekupla.com/uploads/2014/10/header_edc03.png);
+  background-size: 100%;
+  text-align: center;
+  position: relative;
+}
+.about > .main > #header > #logo {
+  padding: 2rem;
+  -webkit-user-drag: none;
+}
+.about > .main > #header > #closeBtn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+}
+.about > .main > #info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about > .main > #info > h2 {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.about > .main > #info > p {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
