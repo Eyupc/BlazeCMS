@@ -1,5 +1,6 @@
 import cnf from 'cms-config.json';
 import { signOut } from 'next-auth/react';
+import router from 'next/router';
 import { memo } from 'react';
 import { ISubHome } from './interfaces/ISubHome';
 import { SubItem } from './parts/SubItem';
@@ -32,10 +33,11 @@ export const SubHome = memo(
             href={'#'}
             iconImg={'/assets/images/logout.gif'}
             Click={async () => {
-              await signOut({
-                redirect: true,
+              const logout = await signOut({
+                redirect: false,
                 callbackUrl: `${process.env.NEXT_PUBLIC_HOTEL_URL}`
               });
+              router.push(logout.url);
             }}
             menuTitle={cnf.texts.NAVIGATOR_HOME_LOGOUT_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_HOME_LOGOUT_DESC}

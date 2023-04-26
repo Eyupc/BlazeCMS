@@ -1,5 +1,5 @@
-import mysql from "mysql";
-import { IDatabaseServer } from "./IDatabaseServer";
+import mysql from 'mysql';
+import { IDatabaseServer } from './IDatabaseServer';
 
 export default class DatabaseServer implements IDatabaseServer {
   private connection: mysql.Connection;
@@ -11,6 +11,8 @@ export default class DatabaseServer implements IDatabaseServer {
       user: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
+      charset: 'utf8mb4',
+      connectTimeout: 5
     });
     this.connection.connect();
   }

@@ -23,7 +23,7 @@ export const ArticleBox = memo(({ data }: IArticleBox) => {
             </div>
             <div className="userStats">
               <p>
-                <strong>{cnf.texts.NEwS_DATE_TEXT} </strong>
+                <strong>{cnf.texts.NEWS_DATE_TEXT} </strong>
                 {new Date(data.timestamp).toLocaleDateString('nl-NL', {
                   day: '2-digit',
                   month: '2-digit',

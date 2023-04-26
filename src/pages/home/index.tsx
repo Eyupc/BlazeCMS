@@ -11,10 +11,11 @@ import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
 import cnf from 'cms-config.json';
 import Head from 'next/head';
+import router from 'next/router';
 import '/styles/styles.css';
 
 export default function HomePage(data: IHomeComponent) {
-  if (data.user == undefined) return <>Error</>;
+  if (data.user == undefined) router.push('/');
   return (
     <>
       <Head>

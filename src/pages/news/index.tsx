@@ -25,7 +25,10 @@ export default function NewsPageHome(props: INewsPage) {
       </Head>
       <Navigator />
       <Header />
-      <AnnouncementBar title={'test'} description={'test2'} />
+      <AnnouncementBar
+        title={'Blaze - News'}
+        description={'No news available'}
+      />
       <Main
         child={
           <div className="articlesPages">

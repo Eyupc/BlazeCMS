@@ -1,6 +1,7 @@
 import { Alert } from '@mui/material';
 import cnf from 'cms-config.json';
 import { signOut } from 'next-auth/react';
+import router from 'next/router';
 import { BaseSyntheticEvent, memo, useState } from 'react';
 import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { ICredentials } from './interfaces/ICredentials';
@@ -22,10 +23,11 @@ const SettingsBox = memo(() => {
     );
     switch (data) {
       case true:
-        await signOut({
-          redirect: true,
+        const logout = await signOut({
+          redirect: false,
           callbackUrl: `${process.env.NEXT_PUBLIC_HOTEL_URL}`
         });
+        router.push(logout.url);
         break;
       case false:
         break;
