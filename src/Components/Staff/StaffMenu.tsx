@@ -31,7 +31,7 @@ const StaffMenu = memo(({ setRank, currentRank, ranks }: IStaffMenu) => {
               (currentRank == 12 ? 'stable-active' : '')
             }
           >
-            <strong>Moderator</strong>
+            <strong>{ranks.filter((u) => u.id == 12)[0].rank_name}</strong>
             <p className="tabledesc">
               {ranks.filter((u) => u.id == 12)[0].rank_name}
             </p>
