@@ -23,6 +23,7 @@ export const About = memo(({ Close }: { Close: () => void }) => {
             <Link
               style={{ color: '#ff8000', textDecoration: 'none' }}
               href={'https://github.com/Eyupc/BlazeCMS'}
+              target="_blank"
             >
               BlazeCMS
             </Link>
