@@ -7,9 +7,8 @@ export default async function handler(
 ) {
   const id: number = Number(req.query.id);
 
-  const data = await (
-    await DatabaseManager.GetInstance().UserQueries.GetUser(id)
-  ).data;
+  const data = (await DatabaseManager.GetInstance().UserQueries.GetUser(id))
+    .data;
 
   const motto = data?.motto;
   res.json({
