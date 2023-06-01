@@ -41,3 +41,7 @@ next-env.d.ts
 package-lock.json
 package.json
 yarn.lock
+.env
+package-lock.json
+package.json
+yarn.lock
