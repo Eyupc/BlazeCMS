@@ -1,6 +1,6 @@
 import axios from 'axios';
-import cnf from 'cms-config.json';
 import { NewsType } from 'database/types/NewsTypes';
+import cnf from 'lang/en.json';
 import { useEffect, useMemo, useState } from 'react';
 import { ILeftArticleBox } from './interfaces/ILeftArticleBox';
 export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {

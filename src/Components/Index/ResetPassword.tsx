@@ -8,7 +8,7 @@ import { ChangeForm } from './parts/ChangeForm';
 import { InputResetEmail } from './parts/InputResetEmail';
 import { InputResetUsername } from './parts/InputResetUsername';
 
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import router from 'next/router';
 import { LoginHeader } from './parts/LoginHeader';
 const ResetPassword = memo(({ changePage }: IModalLogin) => {

@@ -2,11 +2,11 @@ import AlertBox from '@/Components/Register/AlertBox';
 import { getServerSideProps } from '@/Components/Settings/ServerSide/SettingsServerSideProps';
 import SettingsBox from '@/Components/Settings/SettingsBox';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
+import Main from '@/Components/static/Components/Main/main';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
-import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Head from 'next/head';
 import '/styles/styles.css';
 export default function SettingsPage() {

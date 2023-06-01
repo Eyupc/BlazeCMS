@@ -1,4 +1,4 @@
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import router from 'next/router';
 import { FormEvent, memo, useCallback, useState } from 'react';
 import { StringToBool } from 'utils/StringToBool';

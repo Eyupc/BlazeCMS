@@ -27,10 +27,21 @@ yarn-error.log*
 
 # local env files
 .env*.local
-
+*.env
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+package-lock.json
+package.json
+yarn.lock
+.env
+package-lock.json
+package.json
+yarn.lock

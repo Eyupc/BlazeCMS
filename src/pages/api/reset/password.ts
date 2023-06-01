@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import jwt from 'jsonwebtoken';
+import cnf from 'lang/en.json';
 import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 type Body = {

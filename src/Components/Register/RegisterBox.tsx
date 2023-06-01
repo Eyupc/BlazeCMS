@@ -1,5 +1,5 @@
 import { Alert } from '@mui/material';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import { signIn } from 'next-auth/react';
 import { useReCaptcha } from 'next-recaptcha-v3';
 import router from 'next/router';

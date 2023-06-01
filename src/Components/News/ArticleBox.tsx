@@ -1,5 +1,5 @@
-import cnf from 'cms-config.json';
 import parse from 'html-react-parser';
+import cnf from 'lang/en.json';
 import { memo } from 'react';
 import { IArticleBox } from './interfaces/IArticleBox';
 export const ArticleBox = memo(({ data }: IArticleBox) => {
