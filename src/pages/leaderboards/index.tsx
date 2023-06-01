@@ -1,12 +1,12 @@
-import { ILeaderboardsComponent } from '@/Components/Leaderboards/interfaces/ILeaderboardsComponent';
 import LeaderBoardsBox from '@/Components/Leaderboards/LeaderboardsBox';
 import { getServerSideProps } from '@/Components/Leaderboards/ServerSide/LeaderServerSideProps';
+import { ILeaderboardsComponent } from '@/Components/Leaderboards/interfaces/ILeaderboardsComponent';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
+import Main from '@/Components/static/Components/Main/main';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
-import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Head from 'next/head';
 import '/styles/styles.css';
 export default function LeaderBoards(data: ILeaderboardsComponent) {
@@ -52,3 +52,4 @@ export default function LeaderBoards(data: ILeaderboardsComponent) {
   );
 }
 export { getServerSideProps };
+

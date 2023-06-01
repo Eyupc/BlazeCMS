@@ -1,4 +1,4 @@
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import { memo, useState } from 'react';
 import { IInput } from '../interfaces/IInput';
 import { ChangeAvatar } from '../methods/ChangeAvatar';

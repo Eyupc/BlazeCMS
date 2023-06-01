@@ -1,15 +1,15 @@
 import BoxInner from '@/Components/Home/BoxInner';
-import { IHomeComponent } from '@/Components/Home/interfaces/IHomeComponent';
 import MeStatus from '@/Components/Home/MeStatus';
 import { NewsBox } from '@/Components/Home/NewsBox';
 import { getServerSideProps } from '@/Components/Home/ServerSide/HomeServerSideProps';
 import { TopUsersBox } from '@/Components/Home/TopUsersBox';
+import { IHomeComponent } from '@/Components/Home/interfaces/IHomeComponent';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
+import Main from '@/Components/static/Components/Main/main';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
-import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Head from 'next/head';
 import router from 'next/router';
 import '/styles/styles.css';

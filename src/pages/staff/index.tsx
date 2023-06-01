@@ -1,13 +1,13 @@
-import { IStaffComponent } from '@/Components/Staff/interfaces/IStaffComponent';
 import { getServerSideProps } from '@/Components/Staff/ServerSide/StaffServerSideProps';
 import StaffMenu from '@/Components/Staff/StaffMenu';
 import { StaffTeam } from '@/Components/Staff/StaffTeam';
+import { IStaffComponent } from '@/Components/Staff/interfaces/IStaffComponent';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
+import Main from '@/Components/static/Components/Main/main';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
-import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Head from 'next/head';
 import { useState } from 'react';
 import '/styles/styles.css';
@@ -48,3 +48,4 @@ export default function StaffPage(data: IStaffComponent) {
 }
 
 export { getServerSideProps };
+

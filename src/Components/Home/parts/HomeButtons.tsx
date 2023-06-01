@@ -1,4 +1,4 @@
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Link from 'next/link';
 import { memo } from 'react';
 const HomeButtons = memo(() => {
