@@ -39,10 +39,8 @@ next-env.d.ts
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
-package-lock.json
-package.json
-yarn.lock
 .env
-package-lock.json
-package.json
-yarn.lock
+
+# others
+.idea/
+.vscode/
