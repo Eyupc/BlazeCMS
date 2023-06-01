@@ -38,6 +38,7 @@
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "mysql": "github:mysqljs/mysql",
+    "mysql2": "^3.2.4",
     "next": "^13.1.6",
     "next-auth": "^4.19.2",
     "next-csrf": "^0.2.1",
@@ -56,8 +57,5 @@
     "prettier": "^2.8.5",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prisma": "^4.11.0"
-  },
-  "volta": {
-    "node": "19.6.1"
   }
 }
