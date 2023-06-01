@@ -1,13 +1,13 @@
 import { ArticleBox } from '@/Components/News/ArticleBox';
-import { INewsPage } from '@/Components/News/interfaces/INewsPage';
 import { LeftArticleBox } from '@/Components/News/LeftArticleBox';
 import { getServerSideProps } from '@/Components/News/ServerSide/NewsIdServerSideProps';
+import { INewsPage } from '@/Components/News/interfaces/INewsPage';
 import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/AnnouncementBar';
+import Main from '@/Components/static/Components/Main/main';
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
-import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Head from 'next/head';
 import { useState } from 'react';
 import '/styles/styles.css';

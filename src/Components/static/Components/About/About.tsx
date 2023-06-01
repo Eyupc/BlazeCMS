@@ -16,7 +16,13 @@ export const About = memo(({ Close }: { Close: () => void }) => {
         <div id={'info'}>
           <h2>Thank you, for using BlazeCMS!</h2>
           <p>
-            BlazeCMS is a modern Habbo CMS , that is available for everyone.
+            BlazeCMS is a modern Habbo CMS , that is available for everyone, made by <Link
+              style={{ color: '#ff8000', textDecoration: 'none' }}
+              href={'https://github.com/Eyupc'}
+              target="_blank"
+            >
+              Eyupc
+            </Link>.
           </p>
           <p>
             Github repository:{' '}

@@ -1,4 +1,4 @@
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import { signOut } from 'next-auth/react';
 import router from 'next/router';
 import { memo } from 'react';

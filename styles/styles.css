@@ -408,7 +408,7 @@ header .logo {
 }
 
 .content .section .login .bbgreen {
-  border-bottom: 2px solid #46bd5e !important;
+  border-bottom: 2px solid #bbbbbb !important;
 }
 
 .content .section .login .rpinfo {
@@ -1070,7 +1070,7 @@ header .logo {
 .content .section .home .meinfo .infobox .meinfo-body .work-group .workico {
   width: 40px;
   height: 40px;
-  background-position: center;
+  background-position: 67% 34%;
   background-repeat: no-repeat;
 }
 
