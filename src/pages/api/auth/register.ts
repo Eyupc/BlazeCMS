@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
+import cnf from 'lang/en.json';
 import { VerifyCaptcha } from 'lib/captcha';
 import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';

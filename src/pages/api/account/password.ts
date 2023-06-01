@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
+import cnf from 'lang/en.json';
 import { setup } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';
@@ -30,7 +30,8 @@ export default setup(async function handler(
   if (!session) return res.status(404).json({ status: false });
 
   const data = await DatabaseManager.GetInstance().Query(
-    `SELECT password FROM users WHERE id = '${session!.user.id}' LIMIT 1`
+    'SELECT `password` FROM `users` WHERE `id` = ? LIMIT 1',
+    [session.user.id]
   );
 
   const password = (data.data[0].password as string).startsWith('$2y$')
@@ -52,10 +53,8 @@ export default setup(async function handler(
     }
     const newPassword = await bcrypt.hash(body.rePassword, 10);
     await DatabaseManager.GetInstance().Query(
-      "UPDATE `users` SET `password`='" +
-        newPassword +
-        "' WHERE `id`=" +
-        session.user.id
+      'UPDATE `users` SET `password`= ? WHERE `id`= ?',
+      [newPassword, session.user.id]
     );
     return res.status(200).json({
       status: true

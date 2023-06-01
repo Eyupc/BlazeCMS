@@ -6,7 +6,7 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -25,7 +25,10 @@ export default function NewsPageHome(props: INewsPage) {
       </Head>
       <Navigator />
       <Header />
-      <AnnouncementBar title={'test'} description={'test2'} />
+      <AnnouncementBar
+        title={'Blaze - News'}
+        description={'No news available'}
+      />
       <Main
         child={
           <div className="articlesPages">

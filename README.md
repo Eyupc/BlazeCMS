@@ -6,7 +6,7 @@
 - [Installation](#Installation)
 - [Configuration](#Configuration)
 - [How to deploy this project on a webserver?](#how-to-deploy-this-project-on-a-webserver)
-
+- [Images](#Images)
 ### Introduction
 BlazeCMS is a CMS built for learning purposes. Blaze CMS was created using **[NextJS](https://nextjs.org "NextJS")**.
 The intention of this project was a bit personal, to learn NextJS but also that the community can use a modern CMS. 
@@ -71,5 +71,12 @@ This CMS also uses the latest technologies. It is also super fast, and also offe
 ### How to deploy this project on a webserver?
 If u want to use IIS / Nginx or maybe another webserver, u need to install nodejs on the host system and have server running on a port,
 then use your webserver as a **reverse proxy** on top.
+
+### Images
+https://gyazo.com/68c990f0b5ac80e7bf89376dbf3f3658 <br/>
+https://gyazo.com/ba3d44124053580928b649da5ef315db <br/>
+https://gyazo.com/be90b4b8f3de328f340a23d7e87be356 <br/>
+https://gyazo.com/559bf21716cdab007b4dea14384e3c5b <br>
+https://gyazo.com/0e928bf2030bcb4f0660c7a8acaa2300
 
 ##### Pss: this project is still in development.

@@ -1,12 +1,23 @@
-import cnf from 'cms-config.json';
+import cnf from 'lang/en.json';
 import Link from 'next/link';
-import { memo } from 'react';
+import { memo, useState } from 'react';
+import { About } from '../About/About';
 export const Footer = memo(() => {
+  const [showAbout, setShowAbout] = useState(false);
   return (
     <>
+      {showAbout ? <About Close={() => setShowAbout(false)} /> : <></>}
       <div className="footermain">
         <div className="fbox">
-          <div className="footer-title">
+          <div
+            className="footer-title"
+            style={{
+              backgroundImage: 'url(/assets/images/flowers.gif)',
+              backgroundSize: '100%',
+              cursor: 'pointer'
+            }}
+            onClick={() => setShowAbout(true)}
+          >
             {cnf.texts.FOOTER_TITLE}
             <small> ({cnf.texts.FOOTER_TITLE_V})</small>
           </div>

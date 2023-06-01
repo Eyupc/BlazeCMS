@@ -1,5 +1,5 @@
-import cnf from 'cms-config.json';
 import parse from 'html-react-parser';
+import cnf from 'lang/en.json';
 import { memo } from 'react';
 import { IArticleBox } from './interfaces/IArticleBox';
 export const ArticleBox = memo(({ data }: IArticleBox) => {
@@ -23,7 +23,7 @@ export const ArticleBox = memo(({ data }: IArticleBox) => {
             </div>
             <div className="userStats">
               <p>
-                <strong>{cnf.texts.NEwS_DATE_TEXT} </strong>
+                <strong>{cnf.texts.NEWS_DATE_TEXT} </strong>
                 {new Date(data.timestamp).toLocaleDateString('nl-NL', {
                   day: '2-digit',
                   month: '2-digit',
