@@ -1,3 +1,4 @@
+import { RowDataPacket } from 'mysql2';
 import DatabaseServer from './DatabaseServer';
 import { NewsQueries } from './News/NewsQueries';
 import { UserLists } from './User/UserLists';
@@ -10,9 +11,9 @@ export default class DatabaseManager extends DatabaseServer {
   private _NewsQueries: NewsQueries;
   constructor() {
     super();
-    this._UserQueries = new UserQueries(this.Connection);
-    this._UserLists = new UserLists(this.Connection);
-    this._NewsQueries = new NewsQueries(this.Connection);
+    this._UserQueries = new UserQueries(this.Pool);
+    this._UserLists = new UserLists(this.Pool);
+    this._NewsQueries = new NewsQueries(this.Pool);
   }
 
   public static GetInstance() {
@@ -35,11 +36,15 @@ export default class DatabaseManager extends DatabaseServer {
     params: any[]
   ): Promise<{ error: boolean; data?: any }> {
     return new Promise((resolve, reject) => {
-      this.Connection.query(st, params, function (_error, results, fields) {
-        if (_error || results.length == 0) resolve({ error: true });
+      this.Pool.query(
+        st,
+        params,
+        (_error, results: RowDataPacket[], fields) => {
+          if (_error || results.length == 0) resolve({ error: true });
 
-        resolve({ error: false, data: results });
-      });
+          resolve({ error: false, data: results });
+        }
+      );
     });
   }
 }

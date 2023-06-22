@@ -1,11 +1,11 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import { IDatabaseServer } from './IDatabaseServer';
 
 export default class DatabaseServer implements IDatabaseServer {
-  private connection: mysql.Connection;
+  private pool: mysql.Pool;
 
   constructor() {
-    this.connection = mysql.createConnection({
+    this.pool = mysql.createPool({
       host: process.env.MYSQL_HOST,
       port: process.env.MYSQL_PORT,
       user: process.env.MYSQL_USER,
@@ -14,10 +14,9 @@ export default class DatabaseServer implements IDatabaseServer {
       charset: 'utf8mb4',
       connectTimeout: 5
     });
-    this.connection.connect();
   }
 
-  public get Connection(): mysql.Connection {
-    return this.connection;
+  public get Pool(): mysql.Pool {
+    return this.pool;
   }
 }

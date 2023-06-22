@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 export interface IDatabaseServer {
-  get Connection(): mysql.Connection;
+  get Pool(): mysql.Pool;
 }
