@@ -38,7 +38,7 @@ export async function getServerSideProps(
 ): Promise<{ props: ClientProps }> {
   const session = await getSession({ req: ctx.req });
   const SSO = SSOGenerator.Generate();
-  DatabaseManager.GetInstance().Connection.query(
+  DatabaseManager.GetInstance().Pool.query(
     'UPDATE `users` SET `auth_ticket`= ? WHERE `id`= ?',
     [SSO, session!.user.id]
   );

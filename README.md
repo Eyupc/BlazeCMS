@@ -15,7 +15,7 @@ I tried to immerse myself in it well enough to make the most of it.
 BlazeCMS is a CMS that is easy to customize if you have a little knowledge of NextJS or React. The texts are easily editable, and anyone could easily do this.
 This CMS also uses the latest technologies. It is also super fast, and also offers various options such as sending emails to reset a user's password.
 ### Requirements
-- NodeJS (>=19.6.0)
+- NodeJS (>=18.6.1)
 
 ### Installation
 -  Open terminal and navigate to the folder where the CMS is located
