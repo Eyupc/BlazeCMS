@@ -10,8 +10,8 @@ export type StaffUser = {
   username: string;
   look: string;
   motto: string;
-  online: boolean;
   rank: number;
+  online: boolean;
 };
 
 export type Ranks = {
