@@ -1,6 +1,7 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IRegisterPassword } from '../interfaces/IRegisterPassword';
+
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 const RegisterPassword = memo(({ password, rePassword }: IRegisterPassword) => {
   return (
     <div className="register-password-main">

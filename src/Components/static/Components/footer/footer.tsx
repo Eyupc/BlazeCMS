@@ -1,7 +1,9 @@
-import cnf from 'cms-config.json';
 import Link from 'next/link';
 import { memo, useState } from 'react';
 import { About } from '../About/About';
+
+const cnf = require(`../../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+const links = require('../../../../../cms-config.json');
 export const Footer = memo(() => {
   const [showAbout, setShowAbout] = useState(false);
   return (
@@ -24,7 +26,7 @@ export const Footer = memo(() => {
           <p className="footer-desc">{cnf.texts.FOOTER_DESCRIPTION}</p>
           <div className="footer-social">
             <Link
-              href={cnf.links.TWITTER_URL}
+              href={links.links.TWITTER_URL}
               style={{ marginRight: '20px' }}
               target="_blank"
             >
@@ -32,7 +34,7 @@ export const Footer = memo(() => {
               Twitter
             </Link>
             <Link
-              href={cnf.links.INSTAGRAM_URL}
+              href={links.links.INSTAGRAM_URL}
               style={{ marginRight: '20px' }}
               target="_blank"
             >
@@ -42,7 +44,11 @@ export const Footer = memo(() => {
               ></i>{' '}
               Instagram
             </Link>
-            <a href={cnf.links.DISCORD_URL} target="_blank" rel={'noreferrer'}>
+            <a
+              href={links.links.DISCORD_URL}
+              target="_blank"
+              rel={'noreferrer'}
+            >
               <i className="fab fa-discord" style={{ marginRight: '5px' }}></i>{' '}
               Discord
             </a>

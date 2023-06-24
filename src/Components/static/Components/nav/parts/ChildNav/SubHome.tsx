@@ -1,10 +1,10 @@
-import cnf from 'cms-config.json';
 import { signOut } from 'next-auth/react';
 import router from 'next/router';
 import { memo } from 'react';
 import { ISubHome } from './interfaces/ISubHome';
 import { SubItem } from './parts/SubItem';
 
+const cnf = require(`../../../../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export const SubHome = memo(
   ({ showSub, homeActive, avatar, username }: ISubHome) => {
     return (

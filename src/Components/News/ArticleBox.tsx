@@ -1,7 +1,8 @@
-import cnf from 'cms-config.json';
 import parse from 'html-react-parser';
 import { memo } from 'react';
 import { IArticleBox } from './interfaces/IArticleBox';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export const ArticleBox = memo(({ data }: IArticleBox) => {
   return (
     <div className="rightArticle">

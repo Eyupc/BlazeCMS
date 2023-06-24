@@ -1,6 +1,7 @@
-import cnf from 'cms-config.json';
 import { ChangeEvent, memo } from 'react';
 import { IRegisterOption } from '../interfaces/IRegisterOption';
+
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 const RegisterOption = memo(
   ({ title, description, getOption }: IRegisterOption) => {
     return (

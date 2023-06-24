@@ -1,5 +1,4 @@
 import { Alert } from '@mui/material';
-import cnf from 'cms-config.json';
 import { signIn } from 'next-auth/react';
 import { useReCaptcha } from 'next-recaptcha-v3';
 import router from 'next/router';
@@ -11,6 +10,8 @@ import RegisterCheckbox from './parts/RegisterCheckbox';
 import RegisterInput from './parts/RegisterInput';
 import RegisterOption from './parts/RegisterOption';
 import RegisterPassword from './parts/RegisterPassword';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export function RegisterBox() {
   const [credentials, setCredentials] = useState<ICredentials>({
     username: '',

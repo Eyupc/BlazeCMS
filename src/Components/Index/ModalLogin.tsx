@@ -1,4 +1,3 @@
-import cnf from 'cms-config.json';
 import router from 'next/router';
 import { FormEvent, memo, useCallback, useState } from 'react';
 import { StringToBool } from 'utils/StringToBool';
@@ -9,6 +8,8 @@ import { ChangeForm } from './parts/ChangeForm';
 import InputName from './parts/InputName';
 import InputPassword from './parts/InputPassword';
 import { LoginHeader } from './parts/LoginHeader';
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const ModalLogin = memo(({ changePage }: IModalLogin) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

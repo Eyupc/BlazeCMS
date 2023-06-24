@@ -1,8 +1,9 @@
 import axios from 'axios';
-import cnf from 'cms-config.json';
 import { NewsType } from 'database/types/NewsTypes';
 import { useEffect, useMemo, useState } from 'react';
 import { ILeftArticleBox } from './interfaces/ILeftArticleBox';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
   const [news, setNews] = useState<JSX.Element[]>([]);
   const [update, setUpdate] = useState(false); //just toggle

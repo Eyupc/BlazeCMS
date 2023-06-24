@@ -1,6 +1,7 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IUserInfo } from '../interfaces/IUserInfo';
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const UserInfo = memo(
   ({ username, motto, last_online, achievement_score }: IUserInfo) => {
     return (

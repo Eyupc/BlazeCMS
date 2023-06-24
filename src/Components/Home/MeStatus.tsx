@@ -1,6 +1,7 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IMeStatus } from './interfaces/IMeStatus';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 const MeStatus = memo(({ ...props }: IMeStatus) => {
   return (
     <div className="me-status">

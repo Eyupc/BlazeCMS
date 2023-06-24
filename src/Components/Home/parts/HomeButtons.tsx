@@ -1,6 +1,7 @@
-import cnf from 'cms-config.json';
 import Link from 'next/link';
 import { memo } from 'react';
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const HomeButtons = memo(() => {
   return (
     <div className="hotel-button">

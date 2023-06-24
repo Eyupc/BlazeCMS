@@ -1,6 +1,8 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IStaffInfo } from './interfaces/IStaffInfo';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const StaffInfo = memo(({ rankName }: IStaffInfo) => {
   return (
     <div className="staff-info">

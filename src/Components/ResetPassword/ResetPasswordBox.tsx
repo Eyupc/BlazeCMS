@@ -1,11 +1,12 @@
 import { Alert } from '@mui/material';
-import cnf from 'cms-config.json';
 import { useRouter } from 'next/router';
 import { FormEvent, memo, useState } from 'react';
 import InputPassword from '../Settings/parts/InputPassword';
 import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { IResetPassword } from './interfaces/IResetPassword';
 import { TryChangePassword } from './methods/TryChangePassword';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export const ResetPasswordBox = memo(({ username, token }: IResetPassword) => {
   const router = useRouter();
   const [credentials, setCredentials] = useState({

@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import jwt from 'jsonwebtoken';
 import { csrf } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 type Body = {
   username: string;
   password: string;

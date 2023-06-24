@@ -1,7 +1,9 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { ISubCommunity } from './interfaces/ISubCommunity';
 import { SubItem } from './parts/SubItem';
+
+const cnf = require(`../../../../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 export const SubCommunity = memo(
   ({ communityActive, showSub }: ISubCommunity) => {
     return (

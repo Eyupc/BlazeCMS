@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
 import { setup } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -13,6 +12,8 @@ type Response = {
   status: boolean;
   errors?: string[];
 };
+
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export default setup(async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response>

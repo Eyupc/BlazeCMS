@@ -1,7 +1,8 @@
-import cnf from 'cms-config.json';
 import { memo, useState } from 'react';
 import { IInput } from '../interfaces/IInput';
 import { ChangeAvatar } from '../methods/ChangeAvatar';
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const InputName = memo(({ Change }: IInput) => {
   const [avatar, setAvatar] = useState('');
   return (

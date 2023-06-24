@@ -1,6 +1,6 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IStaffBox } from '../interfaces/IStaffBox';
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 
 const StaffBox = memo(({ username, online, avatar, motto }: IStaffBox) => {
   return (

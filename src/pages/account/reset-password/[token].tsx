@@ -6,9 +6,10 @@ import AnnouncementBar from '@/Components/static/Components/AnnouncementBar/Anno
 import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
-import cnf from 'cms-config.json';
 import Head from 'next/head';
 import 'styles/styles.css';
+
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export default function ResetPassword({ username, token }: IResetPassword) {
   return (
     <>

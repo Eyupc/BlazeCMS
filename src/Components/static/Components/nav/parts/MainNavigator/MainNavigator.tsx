@@ -1,8 +1,9 @@
 import { ShowLoginForm } from '@/Components/Index/methods/ShowLoginForm';
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IMainNavigator } from './interfaces/IMainNavigator';
 import { ListItem } from './parts/ListItem';
+
+const cnf = require(`../../../../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export const MainNavigator = memo(
   ({ loggedIn, showCommunity, showHome }: IMainNavigator) => {
     return (

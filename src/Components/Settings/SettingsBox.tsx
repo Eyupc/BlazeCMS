@@ -1,5 +1,4 @@
 import { Alert } from '@mui/material';
-import cnf from 'cms-config.json';
 import { signOut } from 'next-auth/react';
 import router from 'next/router';
 import { BaseSyntheticEvent, memo, useState } from 'react';
@@ -7,6 +6,8 @@ import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
 import { ICredentials } from './interfaces/ICredentials';
 import { UpdatePassword } from './methods/UpdatePassword';
 import InputPassword from './parts/InputPassword';
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const SettingsBox = memo(() => {
   const [credentials, setCredentials] = useState<ICredentials>({
     oldPassword: '',

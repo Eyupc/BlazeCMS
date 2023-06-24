@@ -1,7 +1,7 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { IInput } from '../interfaces/IInput';
 
+const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export const InputResetUsername = memo(({ Change }: IInput) => {
   return (
     <div className="login-username">

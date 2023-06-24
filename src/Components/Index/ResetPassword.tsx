@@ -8,9 +8,10 @@ import { ChangeForm } from './parts/ChangeForm';
 import { InputResetEmail } from './parts/InputResetEmail';
 import { InputResetUsername } from './parts/InputResetUsername';
 
-import cnf from 'cms-config.json';
 import router from 'next/router';
 import { LoginHeader } from './parts/LoginHeader';
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 const ResetPassword = memo(({ changePage }: IModalLogin) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');

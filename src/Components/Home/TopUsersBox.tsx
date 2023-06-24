@@ -1,7 +1,8 @@
-import cnf from 'cms-config.json';
 import { memo } from 'react';
 import { ITopUserBox } from './interfaces/ITopUserBox';
 import { TopUser } from './parts/TopUser';
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
+
 export const TopUsersBox = memo(({ users }: ITopUserBox) => {
   return (
     <div className="meinfo">

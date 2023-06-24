@@ -4,9 +4,10 @@ import { Footer } from '@/Components/static/Components/footer/footer';
 import Header from '@/Components/static/Components/header/header';
 import Main from '@/Components/static/Components/Main/main';
 import Navigator from '@/Components/static/Components/nav/navigator';
-import cnf from 'cms-config.json';
 import Head from 'next/head';
 import '/styles/styles.css';
+
+const cnf = require(`../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
 export default function HelpPage() {
   return (
     <>
