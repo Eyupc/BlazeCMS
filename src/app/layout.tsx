@@ -1,12 +1,21 @@
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+import { Metadata } from 'next';
+import { ReactNode } from 'react';
+import { NextAuthProvider } from './SessionProvider';
+
+type Props = {
+  children: ReactNode;
+};
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Welcome to Next.js'
+};
+export default function RootLayout({ children }: Props) {
   return (
     <html>
-      <head />
-      <body>{children}</body>
+      <NextAuthProvider>
+        <body>{children}</body>
+      </NextAuthProvider>
     </html>
   );
 }
