@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { memo } from 'react';
 const cnf = require(`../../../../languages/${process.env.NEXT_PUBLIC_CMS_LANGUAGE}`);
-
+import links from "cms-config.json";
 const HomeButtons = memo(() => {
   return (
     <div className="hotel-button">
@@ -14,7 +14,7 @@ const HomeButtons = memo(() => {
       </Link>
       <Link
         style={{ textDecoration: 'none' }}
-        href={`${cnf.links.DISCORD_URL}`}
+        href={`${links.links.DISCORD_URL}`}
         target={'_blank'}
       >
         <div className="razewiki">{cnf.texts.HOME_DISCORD_BTN}</div>
