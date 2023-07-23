@@ -7,5 +7,5 @@ type Props = {
 };
 
 export const NextAuthProvider = ({ children }: Props) => {
-  return <SessionProvider session={undefined}>{children}</SessionProvider>;
+  return <SessionProvider>{children}</SessionProvider>;
 };

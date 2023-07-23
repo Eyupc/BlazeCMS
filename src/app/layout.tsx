@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Index',
   description: 'Welcome to Next.js'
 };
 export default function RootLayout({ children }: Props) {

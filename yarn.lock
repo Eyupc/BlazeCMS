@@ -2879,10 +2879,10 @@
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
 
-"next-auth@*", "next-auth@^4.19.2":
-  "integrity" "sha512-08+kjnDoE7aQ52O996x6cwA3ffc2CbHIkrCgLYhbE+aDIJBKI0oA9UbIEIe19/+ODYJgpAHHOtJx4izmsgaVag=="
-  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.22.0.tgz"
-  "version" "4.22.0"
+"next-auth@*", "next-auth@^0.0.0-pr.6777.c5550344":
+  "integrity" "sha512-HpAlneVJ4SzSgE7Rku0scwWQN+0N2UGKdpeH9gPTRzC8QTYUnEJUqbL7HMXMUyZBC52Pk/ovsvEgO+ozxp50XQ=="
+  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-0.0.0-pr.6777.c5550344.tgz"
+  "version" "0.0.0-pr.6777.c5550344"
   dependencies:
     "@babel/runtime" "^7.20.13"
     "@panva/hkdf" "^1.0.2"
