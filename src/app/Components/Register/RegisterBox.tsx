@@ -1,3 +1,4 @@
+'use client';
 import { Alert } from '@mui/material';
 import { signIn } from 'next-auth/react';
 import { useReCaptcha } from 'next-recaptcha-v3';
@@ -33,7 +34,7 @@ export function RegisterBox() {
           password: credentials.password,
           redirect: false
         });
-        if (signed?.ok) router.push('/home');
+        if (signed?.ok) await router.push('/home');
         return;
       case null:
         return;

@@ -64,7 +64,6 @@ export const options: NextAuthOptions = {
       async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
 
-        console.log(credentials);
         if (credentials === undefined) return null;
         const user = await DatabaseManager.GetInstance().UserQueries.TryLogin(
           credentials.username

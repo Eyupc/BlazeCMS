@@ -10,7 +10,7 @@ import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import Head from 'next/head';
 import cnf from '../../../cms-config.json';
 import '/styles/styles.css';
-export default function RegisterPage(ctx: any) {
+export default function RegisterPage() {
   return (
     <>
       <ReCaptchaProvider
@@ -42,4 +42,3 @@ export default function RegisterPage(ctx: any) {
     </>
   );
 }
-export { getServerSideProps };

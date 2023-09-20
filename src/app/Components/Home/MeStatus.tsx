@@ -1,3 +1,4 @@
+'use client';
 import { memo } from 'react';
 import cnf from '../../../../cms-config.json';
 import { IMeStatus } from './interfaces/IMeStatus';

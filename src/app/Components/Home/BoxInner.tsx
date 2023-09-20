@@ -1,3 +1,4 @@
+'use client';
 import { memo } from 'react';
 import { IBoxInner } from './interfaces/IBoxInner';
 import HomeButtons from './parts/HomeButtons';

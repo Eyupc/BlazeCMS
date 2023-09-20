@@ -22,7 +22,7 @@ const ModalLogin = memo(({ changePage }: IModalLogin) => {
       const loggedIn = await TryoToLogin(username, password);
       switch (loggedIn) {
         case true:
-          router.push('/home');
+          await router.push('/home');
           break;
         default:
           setError(cnf.texts.LOGIN_ERROR);
@@ -41,7 +41,7 @@ const ModalLogin = memo(({ changePage }: IModalLogin) => {
         <InputName Change={(uname) => setUsername(uname)} />
         <InputPassword Change={(password) => setPassword(password)} />
         <div className="error">{error}</div>
-        {StringToBool(String(process.env.NEXT_PUBLIC_EMAIL_ENABLED)) == true ? (
+        {StringToBool(String(process.env.NEXT_PUBLIC_EMAIL_ENABLED)) ? (
           <ChangeForm
             Change={() => changePage()}
             text={cnf.texts.LOGIN_FORGOT_PASSWORD}

@@ -15,8 +15,7 @@ const ModalBox = memo(() => {
         <div className="userbox d-flex direction-row">
           {isLogin ? (
             <ModalLogin changePage={() => setIsLogin(false)} />
-          ) : StringToBool(String(process.env.NEXT_PUBLIC_EMAIL_ENABLED)) ==
-            true ? (
+          ) : StringToBool(String(process.env.NEXT_PUBLIC_EMAIL_ENABLED)) ? (
             <ResetPassword changePage={() => setIsLogin(true)} />
           ) : (
             <></>
