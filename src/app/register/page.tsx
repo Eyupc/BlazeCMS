@@ -1,15 +1,15 @@
-import AlertBox from '@/app/Components/Register/AlertBox';
-import { RegisterBox } from '@/app/Components/Register/RegisterBox';
-import { getServerSideProps } from '@/app/Components/Register/ServerSide/RegisterServerSideProps';
-import AnnouncementBar from '@/app/Components/static/Components/AnnouncementBar/AnnouncementBar';
-import { Footer } from '@/app/Components/static/Components/footer/footer';
-import Header from '@/app/Components/static/Components/header/header';
-import Main from '@/app/Components/static/Components/Main/main';
-import Navigator from '@/app/Components/static/Components/nav/navigator';
+import AlertBox from '@/app/components/Register/AlertBox';
+import { RegisterBox } from '@/app/components/Register/RegisterBox';
+import AnnouncementBar from '@/app/components/static/Components/AnnouncementBar/AnnouncementBar';
+import { Footer } from '@/app/components/static/Components/footer/footer';
+import Header from '@/app/components/static/Components/header/header';
+import Main from '@/app/components/static/Components/Main/main';
+import Navigator from '@/app/components/static/Components/nav/navigator';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import Head from 'next/head';
 import cnf from '../../../cms-config.json';
 import '/styles/styles.css';
+
 export default function RegisterPage() {
   return (
     <>
