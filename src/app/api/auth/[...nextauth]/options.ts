@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import CredetentialProvider from 'next-auth/providers/credentials';
 import DatabaseManager from '../../../../../database/DatabaseManager';
-import { StringToBool } from '../../../../../utils/StringToBool';
 import { TokenUserType } from '../types/TokenType';
+import { StringToBool } from '../../../../../utils/StringToBool';
+import { headers } from 'next/headers';
 // import EmailProvider from "next-auth/providers/email"
 // import AppleProvider from "next-auth/providers/apple"
 
@@ -52,19 +53,19 @@ export const options: NextAuthOptions = {
     //}),
     CredetentialProvider({
       id: 'credentials',
-      name: 'Login',
+      name: 'credentials',
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-        password: { label: 'Password', type: 'password' }
+        username: { label: 'username', type: 'text' },
+        password: { label: 'password', type: 'password' }
       },
       async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
-
-        if (credentials === undefined) return null;
+        const headerList = headers();
+        if (!credentials) return null;
         const user = await DatabaseManager.GetInstance().UserQueries.TryLogin(
           credentials.username
         );
@@ -74,18 +75,18 @@ export const options: NextAuthOptions = {
           if (user.data!.password.startsWith('$2y$'))
             user.data!.password = user.data!.password.replace('$2y$', '$2b$'); //PHP hashed passwords
           if (await bcrypt.compare(credentials.password, user.data!.password)) {
-            // await DatabaseManager.GetInstance().UserQueries.UpdateLastLogin(
-            //   user.data!.id,
-            //   (StringToBool(String(process.env.CLOUDFLARE_ENABLED)) == true
-            //     ? request.headers['cf-connecting-ip']!.toString()
-            //     : request.socket.remoteAddress!.toString()) || ''
-            // );
+            await DatabaseManager.GetInstance().UserQueries.UpdateLastLogin(
+              user.data!.id,
+              StringToBool(String(process.env.CLOUDFLARE_ENABLED))
+                ? headerList.get('cf-connecting-ip') ?? ''
+                : headerList.get('x-forwarded-for') ?? ''
+            );
             return Promise.resolve({
               id: user.data!.id
             });
           }
+          return null;
         }
-        return null;
       }
     })
   ],
@@ -109,7 +110,7 @@ export const options: NextAuthOptions = {
     strategy: 'jwt',
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 1 * 24 * 60 * 60 // 30 days
+    maxAge: 24 * 60 * 60 // 30 days
 
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
