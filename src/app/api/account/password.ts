@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 import cnf from 'cms-config.json';
 import DatabaseManager from 'database/DatabaseManager';
-import { setup } from 'lib/csrf';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';
+
 type Body = {
   newPassword: string;
   rePassword: string;
@@ -13,7 +13,7 @@ type Response = {
   status: boolean;
   errors?: string[];
 };
-export default setup(async function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response>
 ) {
@@ -64,4 +64,4 @@ export default setup(async function handler(
     status: false,
     errors: []
   });
-});
+}
