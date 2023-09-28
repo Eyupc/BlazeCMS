@@ -53,6 +53,7 @@
     "dotenv-webpack": "^8.0.1",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.3",
-    "prisma": "^4.16.2"
+    "prisma": "^4.16.2",
+    "turbo": "^1.10.14"
   }
 }
