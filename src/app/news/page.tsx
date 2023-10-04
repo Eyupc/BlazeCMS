@@ -1,24 +1,25 @@
 import { INewsPage } from '@/app/components/News/interfaces/INewsPage';
-import { LeftArticleBox } from '@/app/components/News/LeftArticleBox';
-import { getServerSideProps } from '@/app/components/News/ServerSide/NewsServerSideProps';
 import AnnouncementBar from '@/app/components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/app/components/static/Components/footer/footer';
 import Header from '@/app/components/static/Components/header/header';
 import Main from '@/app/components/static/Components/Main/main';
 import Navigator from '@/app/components/static/Components/nav/navigator';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import cnf from '../../../cms-config.json';
 import '../../../styles/styles.css';
+import DatabaseManager from '../../../database/DatabaseManager';
+import NewsPageStatic from '@/app/components/News/NewsComponent';
+import NotFound from 'next/dist/client/components/not-found-error';
 
-export default function NewsPageHome(props: INewsPage) {
-  const router = useRouter();
+const getNewsData = async (): Promise<INewsPage> => {
+  const news = await DatabaseManager.GetInstance().NewsQueries.getLatestNews(1);
+  if (!news.status) return { news: null };
+  return { news: JSON.parse(JSON.stringify(news.news![0])) };
+};
 
-  useEffect(() => {
-    if (props.news != null) router.push(`/news/${props.news!.id}`);
-  }, []);
-
+export default async function NewsPageHome() {
+  const newsData = await getNewsData();
+  if (!newsData.news) return <NotFound />;
   return (
     <>
       <Head>
@@ -30,16 +31,8 @@ export default function NewsPageHome(props: INewsPage) {
         title={'Blaze - News'}
         description={'No news available'}
       />
-      <Main
-        child={
-          <div className="articlesPages">
-            <LeftArticleBox changeNews={() => console.log()} />
-          </div>
-        }
-      />
+      <Main child={<NewsPageStatic news={newsData?.news ?? null} />} />
       <Footer />
     </>
   );
 }
-
-export { getServerSideProps };
