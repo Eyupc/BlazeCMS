@@ -1,6 +1,5 @@
 import { ILeaderboardsComponent } from '@/app/components/Leaderboards/interfaces/ILeaderboardsComponent';
 import LeaderBoardsBox from '@/app/components/Leaderboards/LeaderboardsBox';
-import { getServerSideProps } from '@/app/components/Leaderboards/ServerSide/LeaderServerSideProps';
 import AnnouncementBar from '@/app/components/static/Components/AnnouncementBar/AnnouncementBar';
 import { Footer } from '@/app/components/static/Components/footer/footer';
 import Header from '@/app/components/static/Components/header/header';
@@ -9,8 +8,32 @@ import Navigator from '@/app/components/static/Components/nav/navigator';
 import Head from 'next/head';
 import cnf from '../../../cms-config.json';
 import '/styles/styles.css';
+import DatabaseManager from '../../../database/DatabaseManager';
 
-export default function LeaderBoards(data: ILeaderboardsComponent) {
+const getLeaderBoardsData = async (): Promise<ILeaderboardsComponent> => {
+  const credits = await DatabaseManager.GetInstance().UserLists.getTopList(
+    'credits'
+  );
+  const duckets = await DatabaseManager.GetInstance().UserLists.getTopList(
+    'duckets'
+  );
+  const diamonds = await DatabaseManager.GetInstance().UserLists.getTopList(
+    'diamonds'
+  );
+  const achievement_score =
+    await DatabaseManager.GetInstance().UserLists.getTopList(
+      'achievement_score'
+    );
+
+  return {
+    cr_topList: JSON.parse(JSON.stringify(credits.users)),
+    di_topList: JSON.parse(JSON.stringify(diamonds.users)),
+    du_topList: JSON.parse(JSON.stringify(duckets.users)),
+    as_topList: JSON.parse(JSON.stringify(achievement_score.users))
+  };
+};
+export default async function LeaderBoards() {
+  const data = await getLeaderBoardsData();
   return (
     <>
       <Head>
@@ -52,4 +75,3 @@ export default function LeaderBoards(data: ILeaderboardsComponent) {
     </>
   );
 }
-export { getServerSideProps };
