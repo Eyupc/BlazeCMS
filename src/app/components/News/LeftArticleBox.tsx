@@ -1,5 +1,6 @@
+'use client';
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cnf from '../../../../cms-config.json';
 import { NewsType } from '../../../../database/types/NewsTypes';
 import { ILeftArticleBox } from './interfaces/ILeftArticleBox';
@@ -14,15 +15,12 @@ export const LeftArticleBox = ({ changeNews }: ILeftArticleBox) => {
       await axios(`${process.env.NEXT_PUBLIC_HOTEL_URL}/api/news/latest`, {
         method: 'GET'
       }).then((res) => {
-        if (res.data.status)
-          (res.data.news as Array<any>).forEach((e, i) => {
-            setItems((oldArr) => [...oldArr, e]);
-          });
+        if (res.data.status) setItems(res.data.news);
       });
     })();
   }, []);
 
-  useMemo(async () => {
+  useEffect(() => {
     for (let i = 0; i <= 2; i++) {
       if (items[news.length + i] == undefined) break;
       setNews((oldArr) => [
