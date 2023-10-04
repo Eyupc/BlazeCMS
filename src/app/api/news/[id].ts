@@ -1,6 +1,7 @@
 import DatabaseManager from 'database/DatabaseManager';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+//TODO
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
