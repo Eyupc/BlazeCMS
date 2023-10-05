@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
-import DatabaseManager from 'database/DatabaseManager';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import cnf from '../../../../../cms-config.json';
+import DatabaseManager from '../../../../../database/DatabaseManager';
 import { getToken } from 'next-auth/jwt';
+import { NextRequest, NextResponse } from 'next/server';
 
 type Body = {
   newPassword: string;
@@ -13,21 +13,17 @@ type Response = {
   status: boolean;
   errors?: string[];
 };
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Response>
-) {
-  if (req.method != 'POST') return res.status(403).json({ status: false });
-
-  const body: Body = req.body;
+export async function POST(req: NextRequest) {
+  const body: Body = await req.json();
   const errors: string[] = [];
 
   const session = await getToken({
     req: req,
     secret: process.env.SECRET
   });
+  console.log(session);
 
-  if (!session) return res.status(404).json({ status: false });
+  if (!session) return NextResponse.json({ status: false }, { status: 404 });
 
   const data = await DatabaseManager.GetInstance().Query(
     'SELECT `password` FROM `users` WHERE `id` = ? LIMIT 1',
@@ -41,26 +37,26 @@ export default async function handler(
   if (!data.error) {
     if (!(await bcrypt.compare(body.oldPassword, password))) {
       errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD);
-      return res.status(200).json({ status: false, errors: errors });
+      return NextResponse.json({ status: false, errors: errors });
     }
     if (body.newPassword.length < 6 || body.rePassword.length < 6) {
       errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD_LENGTH);
-      return res.status(200).json({ status: false, errors: errors });
+      return NextResponse.json({ status: false, errors: errors });
     }
     if (body.newPassword != body.rePassword) {
       errors.push(cnf.texts.SETTINGS_ERROR_PASSWORD_MATCH);
-      return res.status(200).json({ status: false, errors: errors });
+      return NextResponse.json({ status: false, errors: errors });
     }
     const newPassword = await bcrypt.hash(body.rePassword, 10);
     await DatabaseManager.GetInstance().Query(
       'UPDATE `users` SET `password`= ? WHERE `id`= ?',
       [newPassword, session.user.id]
     );
-    return res.status(200).json({
+    return NextResponse.json({
       status: true
     });
   }
-  return res.status(200).json({
+  return NextResponse.json({
     status: false,
     errors: []
   });
