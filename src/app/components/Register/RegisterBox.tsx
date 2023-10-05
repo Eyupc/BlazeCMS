@@ -2,7 +2,7 @@
 import { Alert } from '@mui/material';
 import { signIn } from 'next-auth/react';
 import { useReCaptcha } from 'next-recaptcha-v3';
-import router from 'next/router';
+import { useRouter } from 'next/navigation';
 import { BaseSyntheticEvent, useState } from 'react';
 import cnf from '../../../../cms-config.json';
 import { SubmitButton } from '../static/Components/Buttons/SubmitButton';
@@ -12,6 +12,7 @@ import RegisterCheckbox from './parts/RegisterCheckbox';
 import RegisterInput from './parts/RegisterInput';
 import RegisterOption from './parts/RegisterOption';
 import RegisterPassword from './parts/RegisterPassword';
+
 export function RegisterBox() {
   const [credentials, setCredentials] = useState<ICredentials>({
     username: '',
@@ -20,6 +21,7 @@ export function RegisterBox() {
     email: '',
     gender: 'M'
   });
+  const router = useRouter();
   const [errors, setErrors] = useState<string[]>([]);
   const { executeRecaptcha } = useReCaptcha();
 
@@ -34,7 +36,10 @@ export function RegisterBox() {
           password: credentials.password,
           redirect: false
         });
-        if (signed?.ok) await router.push('/home');
+        if (signed?.ok) {
+          router.refresh();
+          router.push('/home');
+        }
         return;
       case null:
         return;

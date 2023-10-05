@@ -24,6 +24,7 @@ const ModalLogin = memo(({ changePage }: IModalLogin) => {
       const loggedIn = await TryoToLogin(username, password);
       switch (loggedIn) {
         case true:
+          router.refresh();
           router.push('/home');
           break;
         default:
