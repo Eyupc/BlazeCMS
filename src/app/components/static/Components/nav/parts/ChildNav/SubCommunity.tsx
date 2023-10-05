@@ -2,9 +2,11 @@ import { memo } from 'react';
 import cnf from '../../../../../../../../cms-config.json';
 import { ISubCommunity } from './interfaces/ISubCommunity';
 import { SubItem } from './parts/SubItem';
+import { useRouter } from 'next/navigation';
 
 export const SubCommunity = memo(
   ({ communityActive, showSub }: ISubCommunity) => {
+    const router = useRouter();
     return (
       <div
         className="subItem communityMenu"
@@ -19,12 +21,14 @@ export const SubCommunity = memo(
             iconImg={'/assets/images/staff.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_STAFF_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_STAFF_DESC}
+            Click={() => router.refresh()}
           />
           <SubItem
             href={'/leaderboards'}
             iconImg={'/assets/images/leader.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_LEADER_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_LEADER_DESC}
+            Click={() => router.refresh()}
           />
 
           <SubItem
@@ -32,6 +36,7 @@ export const SubCommunity = memo(
             iconImg={'/assets/images/news.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_NEWS_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_NEWS_DESC}
+            Click={() => router.refresh()}
           />
         </div>
       </div>
