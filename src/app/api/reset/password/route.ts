@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import cnf from 'cms-config.json';
-import DatabaseManager from 'database/DatabaseManager';
+import cnf from '../../../../../cms-config.json';
+import DatabaseManager from '../../../../../database/DatabaseManager';
 import jwt from 'jsonwebtoken';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 type Body = {
   username: string;
@@ -10,13 +10,8 @@ type Body = {
   rePassword: string;
   token: string;
 };
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<{}>
-) {
-  if (req.method != 'POST') return res.status(403).json({ status: false });
-
-  const body: Body = req.body;
+export async function POST(req: NextRequest) {
+  const body: Body = await req.json();
   const errors: string[] = [];
   let tokenValid: boolean = false;
   jwt.verify(body.token, process.env.NEXTAUTH_SECRET, (err, result) => {
@@ -36,7 +31,7 @@ export default async function handler(
       body.username,
       hashedPass
     );
-    return res.status(200).json({ status: true });
+    return NextResponse.json({ status: true });
   }
-  return res.status(200).json({ status: false, errors: errors });
+  return NextResponse.json({ status: false, errors: errors });
 }
