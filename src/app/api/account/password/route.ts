@@ -21,7 +21,6 @@ export async function POST(req: NextRequest) {
     req: req,
     secret: process.env.SECRET
   });
-  console.log(session);
 
   if (!session) return NextResponse.json({ status: false }, { status: 404 });
 
