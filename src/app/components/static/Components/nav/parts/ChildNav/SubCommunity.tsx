@@ -21,14 +21,12 @@ export const SubCommunity = memo(
             iconImg={'/assets/images/staff.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_STAFF_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_STAFF_DESC}
-            Click={() => router.refresh()}
           />
           <SubItem
             href={'/leaderboards'}
             iconImg={'/assets/images/leader.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_LEADER_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_LEADER_DESC}
-            Click={() => router.refresh()}
           />
 
           <SubItem
@@ -36,7 +34,6 @@ export const SubCommunity = memo(
             iconImg={'/assets/images/news.gif'}
             menuTitle={cnf.texts.NAVIGATOR_COMMUNITY_NEWS_TITLE}
             menuDesc={cnf.texts.NAVIGATOR_COMMUNITY_NEWS_DESC}
-            Click={() => router.refresh()}
           />
         </div>
       </div>

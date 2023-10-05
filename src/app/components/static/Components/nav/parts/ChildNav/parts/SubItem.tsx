@@ -10,6 +10,7 @@ export const SubItem = memo(
       <Link
         href={href}
         onClick={() => {
+          router.refresh();
           if (Click != undefined) Click();
         }}
         className="submenu-href"
