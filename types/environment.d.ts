@@ -52,5 +52,7 @@ namespace NodeJS {
     NEXT_SECRET_RECAPTCHA_SITE_KEY: string;
     CSRF_SECRET: string;
     NEXT_PUBLIC_EMAIL_ENABLED: boolean;
+
+    NEXT_PUBLIC_CMS_LANGUAGE: string;
   }
 }
